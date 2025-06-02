@@ -97,7 +97,7 @@ export default function Info() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 text-sm font-light mb-4">
-                Anything missing from above, despite being tradeable gamepass skins have their reasons:
+                Anything missing from the list, despite being tradeable gamepass skins have their reasons:
               </p>
               <div className="space-y-2">
                 {missingReasons.map((reason, index) => (
