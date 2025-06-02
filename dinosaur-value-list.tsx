@@ -262,8 +262,8 @@ export default function Component() {
       range: "Promo Codes",
       color: "bg-cyan-500",
       dinosaurs: [
-        { name: "Wyvern", value: "Promo Code", rarity: "1/8", code: "Pokemantrainer" },
-        { name: "Yutashu", value: "Promo Code", rarity: "1/8", code: "Burnt Burrito" },
+        { name: "Wyvern", value: "0.1", rarity: "1/8", code: "Pokemantrainer" },
+        { name: "Yutashu", value: "0.1", rarity: "1/8", code: "Burnt Burrito" },
       ],
       isOpen: openTiers["Codes"],
     },
