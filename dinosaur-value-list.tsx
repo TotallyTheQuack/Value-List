@@ -13,6 +13,7 @@ interface Dinosaur {
   value: number | string
   rarity?: string
   code?: string
+  sdna?: string
 }
 
 interface Tier {
@@ -42,6 +43,7 @@ export default function Component() {
     Retextures: false,
     Throwbacks: false,
     Greyscale: false,
+    Inverteds: false,
   })
 
   const tiers: Tier[] = [
@@ -244,16 +246,39 @@ export default function Component() {
       isOpen: openTiers["Greyscale"],
     },
     {
+      name: "Inverteds",
+      range: "Inverted Skins",
+      color: "bg-indigo-500",
+      dinosaurs: [
+        { name: "Inverted Albino Terror", value: "TBD", rarity: "8/8" },
+        { name: "Inverted Alametus", value: "TBD", rarity: "8/8" },
+        { name: "Inverted Megavore", value: "TBD", rarity: "7/8" },
+        { name: "Inverted Fasolatherium", value: "TBD", rarity: "6/8" },
+        { name: "Inverted Gelioichthys", value: "TBD", rarity: "6/8" },
+        { name: "Inverted Dolichomalasaurus", value: "TBD", rarity: "6/8" },
+        { name: "Inverted Mayhem Tripod", value: "TBD", rarity: "5/8" },
+        { name: "Inverted Mayhem Excavator", value: "TBD", rarity: "4/8" },
+        { name: "Inverted Argentinosaurus", value: "TBD", rarity: "4/8" },
+        { name: "Inverted Carcharocles Megalodon", value: "TBD", rarity: "4/8" },
+        { name: "Inverted Purussaurus", value: "TBD", rarity: "4/8" },
+        { name: "Inverted Mayhem Wanderer", value: "TBD", rarity: "3/8" },
+        { name: "Inverted Maip Macrothorax", value: "TBD", rarity: "3/8" },
+        { name: "Inverted Avinychus", value: "TBD", rarity: "3/8" },
+        { name: "Inverted Mayhem Crawler", value: "TBD", rarity: "2/8" },
+      ],
+      isOpen: openTiers["Inverteds"],
+    },
+    {
       name: "Retextures",
       range: "Special",
       color: "bg-pink-500",
       dinosaurs: [
-        { name: "Rainbow Albino Terror", value: 6, rarity: "2/8" },
-        { name: "Rainbow Megavore", value: 6, rarity: "2/8" },
-        { name: "Diamond Albino Terror", value: 5, rarity: "2/8" },
-        { name: "Diamond Megavore", value: 5, rarity: "2/8" },
-        { name: "Diamond Barosaurus", value: 3, rarity: "1/8" },
-        { name: "Rainbow Barosaurus", value: 2, rarity: "1/8" },
+        { name: "Rainbow Albino Terror", value: 6, rarity: "2/8", sdna: "50 SDNA" },
+        { name: "Rainbow Megavore", value: 6, rarity: "2/8", sdna: "50 SDNA" },
+        { name: "Diamond Albino Terror", value: 5, rarity: "2/8", sdna: "250 SDNA" },
+        { name: "Diamond Megavore", value: 5, rarity: "2/8", sdna: "250 SDNA" },
+        { name: "Diamond Barosaurus", value: 3, rarity: "1/8", sdna: "250 SDNA" },
+        { name: "Rainbow Barosaurus", value: 2, rarity: "1/8", sdna: "50 SDNA" },
       ],
       isOpen: openTiers["Retextures"],
     },
@@ -277,6 +302,7 @@ export default function Component() {
         { name: "Apex Hothead Megavore", value: 2, rarity: "1/8" },
         { name: "Solar Bringer Megavore", value: 0.5, rarity: "1/8" },
         { name: "Deep Sea Megavore", value: 0.5, rarity: "1/8" },
+        { name: "All Glass Skins", value: 0.3, rarity: "1/8", sdna: "20 SDNA" },
       ],
       isOpen: openTiers["SDNA"],
     },
@@ -307,13 +333,13 @@ export default function Component() {
       range: "Robux",
       color: "bg-amber-500",
       dinosaurs: [
-        { name: "Classic Pitch Black Terror V4", value: "750 SDNA", rarity: "1/8" },
-        { name: "Classic Krampus", value: "300 SDNA", rarity: "1/8" },
-        { name: "Classic Headlessaurus", value: "200 SDNA", rarity: "1/8" },
-        { name: "Classic Fossil Brachiosaurus", value: "150 SDNA", rarity: "1/8" },
-        { name: "Classic Megavore V3", value: "100 SDNA", rarity: "2/8" },
-        { name: "Classic Albino Terror V4", value: "100 SDNA", rarity: "1/8" },
-        { name: "Classic Psychoceratops", value: "100 SDNA", rarity: "1/8" },
+        { name: "Classic Pitch Black Terror V4", value: 10, rarity: "1/8", sdna: "750 SDNA" },
+        { name: "Classic Krampus", value: 4, rarity: "1/8", sdna: "300 SDNA" },
+        { name: "Classic Headlessaurus", value: 3, rarity: "1/8", sdna: "200 SDNA" },
+        { name: "Classic Fossil Brachiosaurus", value: 2, rarity: "1/8", sdna: "150 SDNA" },
+        { name: "Classic Megavore V3", value: 1.5, rarity: "2/8", sdna: "100 SDNA" },
+        { name: "Classic Albino Terror V4", value: 1.5, rarity: "1/8", sdna: "100 SDNA" },
+        { name: "Classic Psychoceratops", value: 1.5, rarity: "1/8", sdna: "100 SDNA" },
       ],
       isOpen: openTiers["Classic Gamepass"],
     },
@@ -519,7 +545,8 @@ export default function Component() {
             dino.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             dino.value.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
             (dino.rarity && dino.rarity.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (dino.code && dino.code.toLowerCase().includes(searchTerm.toLowerCase())),
+            (dino.code && dino.code.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (dino.sdna && dino.sdna.toLowerCase().includes(searchTerm.toLowerCase())),
         ),
       }))
       .filter((tier) => tier.dinosaurs.length > 0)
@@ -547,17 +574,20 @@ export default function Component() {
   return (
     <div className="min-h-screen bg-black">
       <div className="max-w-4xl mx-auto p-6">
-        <div className="flex justify-end gap-2 mb-4">
-          <Link href="/info">
-            <button className="bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-md text-sm font-light transition-colors border border-gray-700/50">
-              Info
-            </button>
-          </Link>
-          <Link href="/changelog">
-            <button className="bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-md text-sm font-light transition-colors border border-gray-700/50">
-              Changelog
-            </button>
-          </Link>
+        <div className="flex flex-col items-end mb-4">
+          <div className="flex gap-2 mb-1">
+            <Link href="/info">
+              <button className="bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-md text-sm font-light transition-colors border border-gray-700/50">
+                Info
+              </button>
+            </Link>
+            <Link href="/changelog">
+              <button className="bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-md text-sm font-light transition-colors border border-gray-700/50">
+                Changelog
+              </button>
+            </Link>
+          </div>
+          <span className="text-gray-500 text-xs font-light">Updated June 2nd 2025</span>
         </div>
         <div className="text-center mb-12">
           <h1 className="text-3xl font-light text-white mb-3 tracking-wide">Dinosaur Simulator</h1>
@@ -628,6 +658,9 @@ export default function Component() {
                             )}
                             {dino.code && (
                               <Badge className="text-xs bg-gray-600/80 text-gray-100 border-0">Code: {dino.code}</Badge>
+                            )}
+                            {dino.sdna && (
+                              <Badge className="text-xs bg-emerald-600/80 text-emerald-100 border-0">{dino.sdna}</Badge>
                             )}
                           </div>
                         </div>
