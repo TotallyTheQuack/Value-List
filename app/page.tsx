@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import ClientPage from "./ClientPage"
 
 export const metadata: Metadata = {
-  title: "Value List - Dinosaur Simulator Trading",
-  description: "Complete value list for Dinosaur Simulator trading with tiers, rarities, and promo codes",
+  title: "DS Value List",
+  description: "The Value List of all time",
 }
 
 export default function Page() {
