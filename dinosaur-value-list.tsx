@@ -322,9 +322,9 @@ export default function Component() {
       range: "Badges",
       color: "bg-orange-500",
       dinosaurs: [
-        { name: "Withered Willow Futalognkosaurus", value: 0, rarity: "1/8" },
-        { name: "Crow Istiodactylus", value: 0, rarity: "1/8" },
-        { name: "Raven Hatzegopteryx", value: 0, rarity: "1/8" },
+        { name: "Withered Willow Futalognkosaurus", value: 0.05, rarity: "1/8" },
+        { name: "Crow Istiodactylus", value: 0.05, rarity: "1/8" },
+        { name: "Raven Hatzegopteryx", value: 0.05, rarity: "1/8" },
       ],
       isOpen: openTiers["Halloween 2020"],
     },
