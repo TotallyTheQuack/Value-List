@@ -322,9 +322,9 @@ export default function Component() {
       range: "Badges",
       color: "bg-orange-500",
       dinosaurs: [
-        { name: "Withered Willow Futalognkosaurus", value: 0.05, rarity: "1/8" },
-        { name: "Crow Istiodactylus", value: 0.05, rarity: "1/8" },
-        { name: "Raven Hatzegopteryx", value: 0.05, rarity: "1/8" },
+        { name: "Withered Willow Futalognkosaurus", value: 0, rarity: "1/8" },
+        { name: "Crow Istiodactylus", value: 0, rarity: "1/8" },
+        { name: "Raven Hatzegopteryx", value: 0, rarity: "1/8" },
       ],
       isOpen: openTiers["Halloween 2020"],
     },
@@ -574,20 +574,17 @@ export default function Component() {
   return (
     <div className="min-h-screen bg-black">
       <div className="max-w-4xl mx-auto p-6">
-        <div className="flex flex-col items-end mb-4">
-          <div className="flex gap-2 mb-1">
-            <Link href="/info">
-              <button className="bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-md text-sm font-light transition-colors border border-gray-700/50">
-                Info
-              </button>
-            </Link>
-            <Link href="/changelog">
-              <button className="bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-md text-sm font-light transition-colors border border-gray-700/50">
-                Changelog
-              </button>
-            </Link>
-          </div>
-          <span className="text-gray-500 text-xs font-light">Updated June 2nd 2025</span>
+        <div className="flex justify-end gap-2 mb-4">
+          <Link href="/info">
+            <button className="bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-md text-sm font-light transition-colors border border-gray-700/50">
+              Info
+            </button>
+          </Link>
+          <Link href="/changelog">
+            <button className="bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-md text-sm font-light transition-colors border border-gray-700/50">
+              Changelog
+            </button>
+          </Link>
         </div>
         <div className="text-center mb-12">
           <h1 className="text-3xl font-light text-white mb-3 tracking-wide">Dinosaur Simulator</h1>
