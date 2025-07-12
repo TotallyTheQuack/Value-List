@@ -15,271 +15,244 @@ interface ChangelogEntry {
 
 export default function Changelog() {
   const changelogEntries: ChangelogEntry[] = [
+    // RISES
     {
-      name: "Metron Praenintius",
-      oldValue: 1500,
-      newValue: 1750,
-      rarity: "8/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Isisauriraptor",
-      oldValue: 160,
-      newValue: 180,
-      rarity: "8/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Berserk Alametus",
-      oldValue: 155,
-      newValue: 170,
-      rarity: "8/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Fallen Gladiator",
+      name: "Albino Terror",
       oldValue: 95,
-      newValue: 105,
+      newValue: 100,
       rarity: "8/8",
       isIncrease: true,
-      tierColor: "bg-blue-500",
+      tierColor: "bg-orange-500",
     },
     {
-      name: "Zomvinychus",
-      oldValue: 40,
-      newValue: 45,
-      rarity: "6/8",
-      isIncrease: true,
-      tierColor: "bg-blue-500",
-    },
-    {
-      name: "Galactic Barosaurus",
-      oldValue: 105,
+      name: "Violex Magnus",
+      oldValue: 100,
       newValue: 110,
-      rarity: "5/8",
+      rarity: "7/8",
+      isIncrease: true,
+      tierColor: "bg-orange-500",
+    },
+    {
+      name: "Pitch Black Terror",
+      oldValue: 52,
+      newValue: 58,
+      rarity: "7/8",
       isIncrease: true,
       tierColor: "bg-orange-500",
     },
     {
       name: "Scylla",
-      oldValue: 31,
-      newValue: 40,
+      oldValue: 40,
+      newValue: 45,
       rarity: "6/8",
       isIncrease: true,
-      tierColor: "bg-green-500",
+      tierColor: "bg-yellow-500",
     },
     {
-      name: "Kaiju Gelioichthys",
-      oldValue: 13,
-      newValue: 13,
-      rarity: "5/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Pitch Black Terror",
-      oldValue: 50,
-      newValue: 52,
+      name: "Kaiju Spinofaarus",
+      oldValue: 34,
+      newValue: 38,
       rarity: "6/8",
       isIncrease: true,
-      tierColor: "bg-orange-500",
-    },
-    {
-      name: "Krampus",
-      oldValue: 16,
-      newValue: 18,
-      rarity: "5/8",
-      isIncrease: true,
-      tierColor: "bg-orange-500",
-    },
-    {
-      name: "Spawn Shunosaurus",
-      oldValue: 0,
-      newValue: 22,
-      rarity: "5/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Butterfly Alametus",
-      oldValue: 0,
-      newValue: 13,
-      rarity: "4/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Spring Blossom Lusotitan",
-      oldValue: 0,
-      newValue: 5,
-      rarity: "3/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Tree Elder Ankylosaurus",
-      oldValue: 0,
-      newValue: 5,
-      rarity: "3/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Forest Dweller Shantungosaurus",
-      oldValue: 0,
-      newValue: 5,
-      rarity: "3/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Sneaky Bunny Guanlong",
-      oldValue: 0,
-      newValue: 4,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Monarch Meganeura",
-      oldValue: 0,
-      newValue: 4,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Honey Heist Gigatitan",
-      oldValue: 0,
-      newValue: 4,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Collector Maip Macrothorax",
-      oldValue: 0,
-      newValue: 4,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Valley Golem Machimosaurus",
-      oldValue: 0,
-      newValue: 2,
-      rarity: "1/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Cottontail Maiasaura",
-      oldValue: 0,
-      newValue: 1,
-      rarity: "1/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: " Drinking Bird Gigantoraptor",
-      oldValue: 0,
-      newValue: 1,
-      rarity: "1/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Chicken Egg Balaur",
-      oldValue: 0,
-      newValue: 1,
-      rarity: "1/8",
-      isIncrease: true,
-      tierColor: "bg-purple-500",
-    },
-    {
-      name: "Hydralania",
-      oldValue: 255,
-      newValue: 205,
-      rarity: "7/8",
-      isIncrease: false,
-      tierColor: "bg-red-500",
-    },
-    {
-      name: "Blue Whale Shastasaurus",
-      oldValue: 190,
-      newValue: 170,
-      rarity: "5/8",
-      isIncrease: false,
-      tierColor: "bg-red-500",
-    },
-    {
-      name: "Violex Magnus",
-      oldValue: 105,
-      newValue: 100,
-      rarity: "7/8",
-      isIncrease: false,
-      tierColor: "bg-red-500",
-    },
-    {
-      name: "Pitch Wraith Terror",
-      oldValue: 420,
-      newValue: 390,
-      rarity: "7/8",
-      isIncrease: false,
-      tierColor: "bg-orange-500",
-    },
-    {
-      name: "Pitch Luminescent Avinychus",
-      oldValue: 72,
-      newValue: 70,
-      rarity: "5/8",
-      isIncrease: false,
-      tierColor: "bg-orange-500",
+      tierColor: "bg-yellow-500",
     },
     {
       name: "Spinofaarus",
-      oldValue: 36,
-      newValue: 34,
-      rarity: "5/8",
-      isIncrease: false,
-      tierColor: "bg-orange-500",
+      oldValue: 34,
+      newValue: 40,
+      rarity: "6/8",
+      isIncrease: true,
+      tierColor: "bg-yellow-500",
     },
     {
-      name: "Classic Albino Terror",
-      oldValue: 35,
-      newValue: 32,
-      rarity: "3/8",
-      isIncrease: false,
-      tierColor: "bg-orange-500",
+      name: "Alpha Kaiju Spinosaurus",
+      oldValue: 25,
+      newValue: 30,
+      rarity: "5/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Firebird",
+      oldValue: 21,
+      newValue: 24,
+      rarity: "6/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
     },
     {
       name: "Movie Spinosaurus",
-      oldValue: 15,
-      newValue: 13,
-      rarity: "3/8",
+      oldValue: 13,
+      newValue: 32,
+      rarity: "7/8",
+      isIncrease: true,
+      tierColor: "bg-yellow-500",
+    },
+    // DROPS
+    {
+      name: "Blue Whale Shastasaurus",
+      oldValue: 170,
+      newValue: 120,
+      rarity: "5/8",
+      isIncrease: false,
+      tierColor: "bg-red-500",
+    },
+    {
+      name: "Galactic Barosaurus",
+      oldValue: 110,
+      newValue: 98,
+      rarity: "6/8",
       isIncrease: false,
       tierColor: "bg-orange-500",
     },
     {
-      name: "Saurophaganax Remodel",
-      oldValue: 12,
-      newValue: 8,
-      rarity: "3/8",
+      name: "Orca Spinosaurus",
+      oldValue: 95,
+      newValue: 85,
+      rarity: "4/8",
       isIncrease: false,
       tierColor: "bg-orange-500",
     },
     {
-      name: "Singularfaarus",
+      name: "Dolphin Ichthyovenator",
+      oldValue: 70,
+      newValue: 65,
+      rarity: "4/8",
+      isIncrease: false,
+      tierColor: "bg-orange-500",
+    },
+    {
+      name: "Zomvinychus",
+      oldValue: 45,
+      newValue: 42,
+      rarity: "5/8",
+      isIncrease: false,
+      tierColor: "bg-yellow-500",
+    },
+    {
+      name: "Carcharocles Megalodon",
+      oldValue: 21,
+      newValue: 20,
+      rarity: "4/8",
+      isIncrease: false,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Spawn Shunosaurus",
+      oldValue: 22,
+      newValue: 16,
+      rarity: "4/8",
+      isIncrease: false,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Kralkatorrik",
+      oldValue: 20,
+      newValue: 20,
+      rarity: "2/8",
+      isIncrease: false,
+      tierColor: "bg-green-500",
+    },
+    // ADJUSTMENTS
+    {
+      name: "Pitch Wraith Terror",
+      oldValue: 390,
+      newValue: 380,
+      rarity: "7/8",
+      isIncrease: false,
+      tierColor: "bg-red-500",
+    },
+    {
+      name: "Hydralania",
+      oldValue: 205,
+      newValue: 190,
+      rarity: "6/8",
+      isIncrease: false,
+      tierColor: "bg-red-500",
+    },
+    {
+      name: "Peak Spinosaurus",
+      oldValue: 37,
+      newValue: 34,
+      rarity: "4/8",
+      isIncrease: false,
+      tierColor: "bg-yellow-500",
+    },
+    {
+      name: "Pitch Coconut Brachiosaurus",
+      oldValue: 36,
+      newValue: 35,
+      rarity: "4/8",
+      isIncrease: false,
+      tierColor: "bg-yellow-500",
+    },
+    // GRAYSCALES
+    {
+      name: "Grayscale Megavore",
       oldValue: 10,
-      newValue: 8,
-      rarity: "3/8",
-      isIncrease: false,
+      newValue: 28,
+      rarity: "2/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Grayscale Gelioichthys",
+      oldValue: 5,
+      newValue: 28,
+      rarity: "2/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Grayscale Albino Terror",
+      oldValue: 10,
+      newValue: 22,
+      rarity: "2/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Grayscale Alametus",
+      oldValue: 10,
+      newValue: 20,
+      rarity: "2/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Grayscale Fasolatherium",
+      oldValue: 8,
+      newValue: 20,
+      rarity: "2/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Grayscale Dolichomalosaurus",
+      oldValue: 8,
+      newValue: 16,
+      rarity: "2/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
+    },
+    {
+      name: "Grayscale Avinychus",
+      oldValue: 5,
+      newValue: 15,
+      rarity: "2/8",
+      isIncrease: true,
+      tierColor: "bg-green-500",
+    },
+    // CROSSOVERS
+    {
+      name: "Crossover Hybrid/Vinera",
+      oldValue: 50,
+      newValue: 95,
+      rarity: "6/8",
+      isIncrease: true,
       tierColor: "bg-orange-500",
     },
-    ]
+  ]
 
   const getRarityColor = (rarity: string) => {
     if (rarity.includes("8/8")) return "bg-purple-600/80 text-purple-100"
@@ -344,7 +317,7 @@ export default function Changelog() {
                 </div>
 
                 <div>
-                  <h3 className="text-red-400 text-lg font-light mb-4">-DROPS-</h3>
+                  <h3 className="text-red-400 text-lg font-light mb-4">-DROPS & ADJUSTMENTS-</h3>
                   <div className="space-y-2">
                     {changelogEntries
                       .filter((entry) => !entry.isIncrease)
@@ -362,6 +335,50 @@ export default function Changelog() {
                           </div>
                         </div>
                       ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gray-900/30 border-gray-800/50 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="text-white text-xl font-light tracking-wide">New Movie Event Additions</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Distorted King - NEW → 115 (6/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-orange-600/80 text-orange-100 border-0">6/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Mosasaurus - NEW → 75 (7/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-red-600/80 text-red-100 border-0">7/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Forgotten Mutant - NEW → 38 (5/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-yellow-600/80 text-yellow-100 border-0">5/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Chaos Titanosaur - NEW → 28 (5/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-yellow-600/80 text-yellow-100 border-0">5/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">+ 11 more Movie Event skins added</span>
                   </div>
                 </div>
               </div>

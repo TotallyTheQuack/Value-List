@@ -18,7 +18,7 @@ export default function Info() {
       color: "bg-indigo-600/80 text-indigo-100",
     },
     {
-      tier: "3-4/8",
+      tier: "3/8",
       description: "Occasionally retains its value but with difficulty.",
       color: "bg-blue-600/80 text-blue-100",
     },
