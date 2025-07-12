@@ -378,8 +378,86 @@ export default function Changelog() {
                 <div className="flex items-center gap-3 text-white text-sm">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">+ 11 more Movie Event skins added</span>
+                    <span className="font-light">Chaos Mosasaurus - NEW → 20 (5/8)</span>
                   </div>
+                  <Badge className="text-xs bg-yellow-600/80 text-yellow-100 border-0">5/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Tyrannosaurus Rex - NEW → 13 (4/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-green-600/80 text-green-100 border-0">4/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Chaos Spinosaurus - NEW → 13 (4/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-green-600/80 text-green-100 border-0">4/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Classified Tylosaurus - NEW → 10 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Classified Troodon - NEW → 3 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Velociraptor - NEW → 3 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Ankylosaurus - NEW → 2 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Hatzegopteryx - NEW → 1.5 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Parasaurolophus - NEW → 1 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Allosaurus - NEW → 1 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Carnotaurus - NEW → 1 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                </div>
+                <div className="flex items-center gap-3 text-white text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span className="font-light">Movie Pteranodon - NEW → 1 (2/8)</span>
+                  </div>
+                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
                 </div>
               </div>
             </CardContent>
