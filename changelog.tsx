@@ -1,16 +1,15 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 
 interface ChangelogEntry {
   name: string
   oldValue: number
   newValue: number
-  rarity: string
+  oldRarity: string
+  newRarity: string
   isIncrease: boolean
-  tierColor: string
 }
 
 export default function Changelog() {
@@ -18,253 +17,240 @@ export default function Changelog() {
     // RISES
     {
       name: "Albino Terror",
-      oldValue: 95,
-      newValue: 100,
-      rarity: "8/8",
+      oldValue: 100,
+      newValue: 105,
+      oldRarity: "8/8",
+      newRarity: "8/8",
       isIncrease: true,
-      tierColor: "bg-orange-500",
     },
     {
       name: "Violex Magnus",
-      oldValue: 100,
-      newValue: 110,
-      rarity: "7/8",
-      isIncrease: true,
-      tierColor: "bg-orange-500",
-    },
-    {
-      name: "Pitch Black Terror",
-      oldValue: 52,
-      newValue: 58,
-      rarity: "7/8",
-      isIncrease: true,
-      tierColor: "bg-orange-500",
-    },
-    {
-      name: "Scylla",
-      oldValue: 40,
-      newValue: 45,
-      rarity: "6/8",
-      isIncrease: true,
-      tierColor: "bg-yellow-500",
-    },
-    {
-      name: "Kaiju Spinofaarus",
-      oldValue: 34,
-      newValue: 38,
-      rarity: "6/8",
-      isIncrease: true,
-      tierColor: "bg-yellow-500",
-    },
-    {
-      name: "Spinofaarus",
-      oldValue: 34,
-      newValue: 40,
-      rarity: "6/8",
-      isIncrease: true,
-      tierColor: "bg-yellow-500",
-    },
-    {
-      name: "Alpha Kaiju Spinosaurus",
-      oldValue: 25,
-      newValue: 30,
-      rarity: "5/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Firebird",
-      oldValue: 21,
-      newValue: 24,
-      rarity: "6/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Movie Spinosaurus",
-      oldValue: 13,
-      newValue: 32,
-      rarity: "7/8",
-      isIncrease: true,
-      tierColor: "bg-yellow-500",
-    },
-    // DROPS
-    {
-      name: "Blue Whale Shastasaurus",
-      oldValue: 170,
-      newValue: 120,
-      rarity: "5/8",
-      isIncrease: false,
-      tierColor: "bg-red-500",
-    },
-    {
-      name: "Galactic Barosaurus",
       oldValue: 110,
-      newValue: 98,
-      rarity: "6/8",
-      isIncrease: false,
-      tierColor: "bg-orange-500",
-    },
-    {
-      name: "Orca Spinosaurus",
-      oldValue: 95,
-      newValue: 85,
-      rarity: "4/8",
-      isIncrease: false,
-      tierColor: "bg-orange-500",
-    },
-    {
-      name: "Dolphin Ichthyovenator",
-      oldValue: 70,
-      newValue: 65,
-      rarity: "4/8",
-      isIncrease: false,
-      tierColor: "bg-orange-500",
+      newValue: 115,
+      oldRarity: "7/8",
+      newRarity: "7/8",
+      isIncrease: true,
     },
     {
       name: "Zomvinychus",
-      oldValue: 45,
-      newValue: 42,
-      rarity: "5/8",
-      isIncrease: false,
-      tierColor: "bg-yellow-500",
+      oldValue: 42,
+      newValue: 46,
+      oldRarity: "5/8",
+      newRarity: "6/8",
+      isIncrease: true,
     },
     {
-      name: "Carcharocles Megalodon",
-      oldValue: 21,
-      newValue: 20,
-      rarity: "4/8",
-      isIncrease: false,
-      tierColor: "bg-green-500",
+      name: "Spinofaarus",
+      oldValue: 40,
+      newValue: 45,
+      oldRarity: "6/8",
+      newRarity: "6/8",
+      isIncrease: true,
     },
     {
       name: "Spawn Shunosaurus",
-      oldValue: 22,
+      oldValue: 16,
       newValue: 16,
-      rarity: "4/8",
-      isIncrease: false,
-      tierColor: "bg-green-500",
+      oldRarity: "4/8",
+      newRarity: "5/8",
+      isIncrease: true,
     },
+    // DROPS
     {
-      name: "Kralkatorrik",
-      oldValue: 20,
-      newValue: 20,
-      rarity: "2/8",
+      name: "Metron Praenintius",
+      oldValue: 1750,
+      newValue: 1600,
+      oldRarity: "8/8",
+      newRarity: "7/8",
       isIncrease: false,
-      tierColor: "bg-green-500",
     },
-    // ADJUSTMENTS
     {
       name: "Pitch Wraith Terror",
-      oldValue: 390,
-      newValue: 380,
-      rarity: "7/8",
+      oldValue: 380,
+      newValue: 280,
+      oldRarity: "7/8",
+      newRarity: "7/8",
       isIncrease: false,
-      tierColor: "bg-red-500",
+    },
+    {
+      name: "Wraith Terror",
+      oldValue: 285,
+      newValue: 210,
+      oldRarity: "7/8",
+      newRarity: "6/8",
+      isIncrease: false,
     },
     {
       name: "Hydralania",
-      oldValue: 205,
-      newValue: 190,
-      rarity: "6/8",
+      oldValue: 190,
+      newValue: 180,
+      oldRarity: "6/8",
+      newRarity: "6/8",
       isIncrease: false,
-      tierColor: "bg-red-500",
     },
     {
-      name: "Peak Spinosaurus",
-      oldValue: 37,
+      name: "Isisauriraptor",
+      oldValue: 180,
+      newValue: 155,
+      oldRarity: "8/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
+      name: "Berserk Alametus",
+      oldValue: 170,
+      newValue: 150,
+      oldRarity: "8/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
+      name: "Blue Whale Shastasaurus",
+      oldValue: 120,
+      newValue: 105,
+      oldRarity: "5/8",
+      newRarity: "5/8",
+      isIncrease: false,
+    },
+    {
+      name: "Distorted King",
+      oldValue: 115,
+      newValue: 65,
+      oldRarity: "6/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
+      name: "Galactic Barosaurus",
+      oldValue: 98,
+      newValue: 90,
+      oldRarity: "6/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
+      name: "Movie Mosasaurus",
+      oldValue: 75,
+      newValue: 28,
+      oldRarity: "7/8",
+      newRarity: "4/8",
+      isIncrease: false,
+    },
+    {
+      name: "Pitch Luminescent Avinychus",
+      oldValue: 70,
+      newValue: 68,
+      oldRarity: "5/8",
+      newRarity: "5/8",
+      isIncrease: false,
+    },
+    {
+      name: "Reaper Gelioichthys",
+      oldValue: 68,
+      newValue: 68,
+      oldRarity: "7/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
+      name: "Forgotten Mutant",
+      oldValue: 38,
+      newValue: 26,
+      oldRarity: "5/8",
+      newRarity: "4/8",
+      isIncrease: false,
+    },
+    {
+      name: "Chaos Titanosaur",
+      oldValue: 28,
+      newValue: 12,
+      oldRarity: "5/8",
+      newRarity: "3/8",
+      isIncrease: false,
+    },
+    {
+      name: "Chaos Mosasaurus",
+      oldValue: 20,
+      newValue: 5,
+      oldRarity: "5/8",
+      newRarity: "2/8",
+      isIncrease: false,
+    },
+    {
+      name: "Movie Tyrannosaurus Rex",
+      oldValue: 13,
+      newValue: 1,
+      oldRarity: "4/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    {
+      name: "Chaos Spinosaurus",
+      oldValue: 13,
+      newValue: 9,
+      oldRarity: "4/8",
+      newRarity: "3/8",
+      isIncrease: false,
+    },
+    {
+      name: "Classified Tylosaurus",
+      oldValue: 10,
+      newValue: 1,
+      oldRarity: "2/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    {
+      name: "Movie Velociraptor",
+      oldValue: 3,
+      newValue: 1,
+      oldRarity: "2/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    // ADJUSTMENTS
+    {
+      name: "Fallen Gladiator",
+      oldValue: 105,
+      newValue: 110,
+      oldRarity: "8/8",
+      newRarity: "7/8",
+      isIncrease: false,
+    },
+    {
+      name: "Orca Spinosaurus",
+      oldValue: 85,
+      newValue: 80,
+      oldRarity: "4/8",
+      newRarity: "5/8",
+      isIncrease: false,
+    },
+    {
+      name: "Scylla",
+      oldValue: 45,
+      newValue: 46,
+      oldRarity: "6/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
+      name: "Movie Spinosaurus",
+      oldValue: 32,
       newValue: 34,
-      rarity: "4/8",
+      oldRarity: "7/8",
+      newRarity: "6/8",
       isIncrease: false,
-      tierColor: "bg-yellow-500",
     },
+    // COLLECTORS' TIER
     {
-      name: "Pitch Coconut Brachiosaurus",
-      oldValue: 36,
-      newValue: 35,
-      rarity: "4/8",
+      name: "Branded Purrusaurus",
+      oldValue: 2250,
+      newValue: 2000,
+      oldRarity: "2/8",
+      newRarity: "2/8",
       isIncrease: false,
-      tierColor: "bg-yellow-500",
-    },
-    // GRAYSCALES
-    {
-      name: "Grayscale Megavore",
-      oldValue: 10,
-      newValue: 28,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Grayscale Gelioichthys",
-      oldValue: 5,
-      newValue: 28,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Grayscale Albino Terror",
-      oldValue: 10,
-      newValue: 22,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Grayscale Alametus",
-      oldValue: 10,
-      newValue: 20,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Grayscale Fasolatherium",
-      oldValue: 8,
-      newValue: 20,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Grayscale Dolichomalosaurus",
-      oldValue: 8,
-      newValue: 16,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    {
-      name: "Grayscale Avinychus",
-      oldValue: 5,
-      newValue: 15,
-      rarity: "2/8",
-      isIncrease: true,
-      tierColor: "bg-green-500",
-    },
-    // CROSSOVERS
-    {
-      name: "Crossover Hybrid/Vinera",
-      oldValue: 50,
-      newValue: 95,
-      rarity: "6/8",
-      isIncrease: true,
-      tierColor: "bg-orange-500",
     },
   ]
-
-  const getRarityColor = (rarity: string) => {
-    if (rarity.includes("8/8")) return "bg-purple-600/80 text-purple-100"
-    if (rarity.includes("7/8")) return "bg-red-600/80 text-red-100"
-    if (rarity.includes("6/8")) return "bg-orange-600/80 text-orange-100"
-    if (rarity.includes("5/8")) return "bg-yellow-600/80 text-yellow-100"
-    if (rarity.includes("4/8")) return "bg-green-600/80 text-green-100"
-    if (rarity.includes("3/8")) return "bg-blue-600/80 text-blue-100"
-    if (rarity.includes("2/8")) return "bg-indigo-600/80 text-indigo-100"
-    if (rarity.includes("1/8")) return "bg-gray-600/80 text-gray-100"
-    return "bg-gray-500/80 text-gray-100"
-  }
 
   return (
     <div className="min-h-screen bg-black">
@@ -300,17 +286,11 @@ export default function Changelog() {
                     {changelogEntries
                       .filter((entry) => entry.isIncrease)
                       .map((entry, index) => (
-                        <div key={index} className="flex items-center gap-3 text-white text-sm">
-                          <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <span className="font-light">
-                              {entry.name} - {entry.oldValue} (OLD) → {entry.newValue} ({entry.rarity})
-                            </span>
-                          </div>
-                          <div className="flex gap-1">
-                            <div className={`w-3 h-3 ${entry.tierColor} rounded-sm`}></div>
-                            <Badge className={`text-xs ${getRarityColor(entry.rarity)} border-0`}>{entry.rarity}</Badge>
-                          </div>
+                        <div key={index} className="flex items-center gap-2 text-white text-sm">
+                          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                          <span className="font-light">
+                            {entry.name} - {entry.oldValue} ({entry.oldRarity}) → {entry.newValue} ({entry.newRarity})
+                          </span>
                         </div>
                       ))}
                   </div>
@@ -322,17 +302,11 @@ export default function Changelog() {
                     {changelogEntries
                       .filter((entry) => !entry.isIncrease)
                       .map((entry, index) => (
-                        <div key={index} className="flex items-center gap-3 text-white text-sm">
-                          <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                            <span className="font-light">
-                              {entry.name} - {entry.oldValue} (OLD) → {entry.newValue} ({entry.rarity})
-                            </span>
-                          </div>
-                          <div className="flex gap-1">
-                            <div className={`w-3 h-3 ${entry.tierColor} rounded-sm`}></div>
-                            <Badge className={`text-xs ${getRarityColor(entry.rarity)} border-0`}>{entry.rarity}</Badge>
-                          </div>
+                        <div key={index} className="flex items-center gap-2 text-white text-sm">
+                          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                          <span className="font-light">
+                            {entry.name} - {entry.oldValue} ({entry.oldRarity}) → {entry.newValue} ({entry.newRarity})
+                          </span>
                         </div>
                       ))}
                   </div>
@@ -343,121 +317,13 @@ export default function Changelog() {
 
           <Card className="bg-gray-900/30 border-gray-800/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-white text-xl font-light tracking-wide">New Movie Event Additions</CardTitle>
+              <CardTitle className="text-white text-xl font-light tracking-wide">Collectors' Tier Updates</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Distorted King - NEW → 115 (6/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-orange-600/80 text-orange-100 border-0">6/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Mosasaurus - NEW → 75 (7/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-red-600/80 text-red-100 border-0">7/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Forgotten Mutant - NEW → 38 (5/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-yellow-600/80 text-yellow-100 border-0">5/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Chaos Titanosaur - NEW → 28 (5/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-yellow-600/80 text-yellow-100 border-0">5/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Chaos Mosasaurus - NEW → 20 (5/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-yellow-600/80 text-yellow-100 border-0">5/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Tyrannosaurus Rex - NEW → 13 (4/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-green-600/80 text-green-100 border-0">4/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Chaos Spinosaurus - NEW → 13 (4/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-green-600/80 text-green-100 border-0">4/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Classified Tylosaurus - NEW → 10 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Classified Troodon - NEW → 3 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Velociraptor - NEW → 3 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Ankylosaurus - NEW → 2 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Hatzegopteryx - NEW → 1.5 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Parasaurolophus - NEW → 1 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Allosaurus - NEW → 1 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Carnotaurus - NEW → 1 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
-                </div>
-                <div className="flex items-center gap-3 text-white text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <span className="font-light">Movie Pteranodon - NEW → 1 (2/8)</span>
-                  </div>
-                  <Badge className="text-xs bg-indigo-600/80 text-indigo-100 border-0">2/8</Badge>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <span className="font-light">Branded Purrusaurus - 2000-2500 (2/8) → 2000 (2/8)</span>
                 </div>
               </div>
             </CardContent>
