@@ -16,15 +16,15 @@ export default function Changelog() {
   const changelogEntries: ChangelogEntry[] = [
     // RISES
     {
-      name: "Albino Terror",
-      oldValue: 100,
-      newValue: 105,
-      oldRarity: "8/8",
+      name: "Violex Magnus",
+      oldValue: 115,
+      newValue: 120,
+      oldRarity: "7/8",
       newRarity: "8/8",
       isIncrease: true,
     },
     {
-      name: "Violex Magnus",
+      name: "Fallen Gladiator",
       oldValue: 110,
       newValue: 115,
       oldRarity: "7/8",
@@ -32,222 +32,205 @@ export default function Changelog() {
       isIncrease: true,
     },
     {
-      name: "Zomvinychus",
-      oldValue: 42,
-      newValue: 46,
-      oldRarity: "5/8",
-      newRarity: "6/8",
-      isIncrease: true,
-    },
-    {
       name: "Spinofaarus",
-      oldValue: 40,
-      newValue: 45,
+      oldValue: 45,
+      newValue: 52,
       oldRarity: "6/8",
       newRarity: "6/8",
       isIncrease: true,
     },
     {
+      name: "Krampus",
+      oldValue: 18,
+      newValue: 20,
+      oldRarity: "4/8",
+      newRarity: "4/8",
+      isIncrease: true,
+    },
+    {
       name: "Spawn Shunosaurus",
       oldValue: 16,
-      newValue: 16,
-      oldRarity: "4/8",
+      newValue: 18,
+      oldRarity: "5/8",
+      newRarity: "5/8",
+      isIncrease: true,
+    },
+    {
+      name: "Kaiju Gelioichthys",
+      oldValue: 13,
+      newValue: 18,
+      oldRarity: "5/8",
       newRarity: "5/8",
       isIncrease: true,
     },
     // DROPS
     {
-      name: "Metron Praenintius",
-      oldValue: 1750,
-      newValue: 1600,
-      oldRarity: "8/8",
-      newRarity: "7/8",
-      isIncrease: false,
-    },
-    {
       name: "Pitch Wraith Terror",
-      oldValue: 380,
-      newValue: 280,
-      oldRarity: "7/8",
-      newRarity: "7/8",
-      isIncrease: false,
-    },
-    {
-      name: "Wraith Terror",
-      oldValue: 285,
-      newValue: 210,
+      oldValue: 280,
+      newValue: 220,
       oldRarity: "7/8",
       newRarity: "6/8",
       isIncrease: false,
     },
     {
+      name: "Wraith Terror",
+      oldValue: 210,
+      newValue: 170,
+      oldRarity: "6/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
       name: "Hydralania",
-      oldValue: 190,
-      newValue: 180,
+      oldValue: 180,
+      newValue: 165,
       oldRarity: "6/8",
       newRarity: "6/8",
       isIncrease: false,
     },
     {
       name: "Isisauriraptor",
-      oldValue: 180,
-      newValue: 155,
-      oldRarity: "8/8",
+      oldValue: 155,
+      newValue: 140,
+      oldRarity: "6/8",
       newRarity: "6/8",
       isIncrease: false,
     },
     {
       name: "Berserk Alametus",
-      oldValue: 170,
-      newValue: 150,
-      oldRarity: "8/8",
+      oldValue: 150,
+      newValue: 130,
+      oldRarity: "6/8",
       newRarity: "6/8",
       isIncrease: false,
     },
     {
       name: "Blue Whale Shastasaurus",
-      oldValue: 120,
-      newValue: 105,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: false,
-    },
-    {
-      name: "Distorted King",
-      oldValue: 115,
-      newValue: 65,
-      oldRarity: "6/8",
-      newRarity: "6/8",
-      isIncrease: false,
-    },
-    {
-      name: "Galactic Barosaurus",
-      oldValue: 98,
-      newValue: 90,
-      oldRarity: "6/8",
-      newRarity: "6/8",
-      isIncrease: false,
-    },
-    {
-      name: "Movie Mosasaurus",
-      oldValue: 75,
-      newValue: 28,
-      oldRarity: "7/8",
-      newRarity: "4/8",
-      isIncrease: false,
-    },
-    {
-      name: "Pitch Luminescent Avinychus",
-      oldValue: 70,
-      newValue: 68,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: false,
-    },
-    {
-      name: "Reaper Gelioichthys",
-      oldValue: 68,
-      newValue: 68,
-      oldRarity: "7/8",
-      newRarity: "6/8",
-      isIncrease: false,
-    },
-    {
-      name: "Forgotten Mutant",
-      oldValue: 38,
-      newValue: 26,
-      oldRarity: "5/8",
-      newRarity: "4/8",
-      isIncrease: false,
-    },
-    {
-      name: "Chaos Titanosaur",
-      oldValue: 28,
-      newValue: 12,
-      oldRarity: "5/8",
-      newRarity: "3/8",
-      isIncrease: false,
-    },
-    {
-      name: "Chaos Mosasaurus",
-      oldValue: 20,
-      newValue: 5,
-      oldRarity: "5/8",
-      newRarity: "2/8",
-      isIncrease: false,
-    },
-    {
-      name: "Movie Tyrannosaurus Rex",
-      oldValue: 13,
-      newValue: 1,
-      oldRarity: "4/8",
-      newRarity: "1/8",
-      isIncrease: false,
-    },
-    {
-      name: "Chaos Spinosaurus",
-      oldValue: 13,
-      newValue: 9,
-      oldRarity: "4/8",
-      newRarity: "3/8",
-      isIncrease: false,
-    },
-    {
-      name: "Classified Tylosaurus",
-      oldValue: 10,
-      newValue: 1,
-      oldRarity: "2/8",
-      newRarity: "1/8",
-      isIncrease: false,
-    },
-    {
-      name: "Movie Velociraptor",
-      oldValue: 3,
-      newValue: 1,
-      oldRarity: "2/8",
-      newRarity: "1/8",
-      isIncrease: false,
-    },
-    // ADJUSTMENTS
-    {
-      name: "Fallen Gladiator",
       oldValue: 105,
-      newValue: 110,
-      oldRarity: "8/8",
-      newRarity: "7/8",
+      newValue: 95,
+      oldRarity: "5/8",
+      newRarity: "4/8",
       isIncrease: false,
     },
     {
-      name: "Orca Spinosaurus",
-      oldValue: 85,
-      newValue: 80,
-      oldRarity: "4/8",
+      name: "Zomvinychus",
+      oldValue: 46,
+      newValue: 44,
+      oldRarity: "6/8",
       newRarity: "5/8",
       isIncrease: false,
     },
     {
-      name: "Scylla",
-      oldValue: 45,
-      newValue: 46,
-      oldRarity: "6/8",
-      newRarity: "6/8",
+      name: "Alien Irritator",
+      oldValue: 38,
+      newValue: 33,
+      oldRarity: "3/8",
+      newRarity: "3/8",
+      isIncrease: false,
+    },
+    {
+      name: "Disco Stegosaurus",
+      oldValue: 28,
+      newValue: 25,
+      oldRarity: "4/8",
+      newRarity: "4/8",
       isIncrease: false,
     },
     {
       name: "Movie Spinosaurus",
-      oldValue: 32,
-      newValue: 34,
-      oldRarity: "7/8",
-      newRarity: "6/8",
+      oldValue: 34,
+      newValue: 22,
+      oldRarity: "6/8",
+      newRarity: "5/8",
+      isIncrease: false,
+    },
+    {
+      name: "Movie Mosasaurus",
+      oldValue: 28,
+      newValue: 25,
+      oldRarity: "4/8",
+      newRarity: "4/8",
+      isIncrease: false,
+    },
+    {
+      name: "Forgotten Mutant",
+      oldValue: 26,
+      newValue: 20,
+      oldRarity: "4/8",
+      newRarity: "4/8",
+      isIncrease: false,
+    },
+    {
+      name: "Kralkatorrik",
+      oldValue: 20,
+      newValue: 18,
+      oldRarity: "2/8",
+      newRarity: "2/8",
       isIncrease: false,
     },
     // COLLECTORS' TIER
     {
-      name: "Branded Purrusaurus",
-      oldValue: 2250,
-      newValue: 2000,
+      name: "Crossover Hybrid/Vinera",
+      oldValue: 95,
+      newValue: 70,
+      oldRarity: "6/8",
+      newRarity: "5/8",
+      isIncrease: false,
+    },
+    {
+      name: "Grayscale Megavore",
+      oldValue: 35,
+      newValue: 45,
       oldRarity: "2/8",
-      newRarity: "2/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    {
+      name: "Grayscale Gelioichthys",
+      oldValue: 35,
+      newValue: 45,
+      oldRarity: "2/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    {
+      name: "Grayscale Albino Terror",
+      oldValue: 32,
+      newValue: 42,
+      oldRarity: "2/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    {
+      name: "Grayscale Alametus",
+      oldValue: 28,
+      newValue: 38,
+      oldRarity: "2/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    {
+      name: "Grayscale Fasolatherium",
+      oldValue: 28,
+      newValue: 38,
+      oldRarity: "2/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    {
+      name: "Grayscale Dolichomalosaurus",
+      oldValue: 20,
+      newValue: 30,
+      oldRarity: "2/8",
+      newRarity: "1/8",
+      isIncrease: false,
+    },
+    {
+      name: "Grayscale Avinychus",
+      oldValue: 20,
+      newValue: 30,
+      oldRarity: "2/8",
+      newRarity: "1/8",
       isIncrease: false,
     },
   ]
@@ -324,6 +307,64 @@ export default function Changelog() {
                 <div className="flex items-center gap-2 text-white text-sm">
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <span className="font-light">Branded Purrusaurus - 2000-2500 (2/8) → 2000 (2/8)</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gray-900/30 border-gray-800/50 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="text-white text-xl font-light tracking-wide">New Tradables</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Giganotosaurus - NEW → 14 (4/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Therizinosaurus - NEW → 12 (4/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Spinofaarus - NEW → 5 (3/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Gallimimus - NEW → 2 (2/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Novel Carnotaurus - NEW → 2 (2/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Ceratosaurus - NEW → 2 (2/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Quetzalcoatlus - NEW → 2 (2/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Dilophosaurus - NEW → 2 (2/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Chaos Tyrannosaurus Rex - NEW → 2 (2/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Pachycephalosaurus - NEW → 1 (2/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Stegosaurus - NEW → 1 (2/8)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="font-light">Movie Compsognathus - NEW → 1 (2/8)</span>
                 </div>
               </div>
             </CardContent>
