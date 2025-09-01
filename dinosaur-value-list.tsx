@@ -1099,7 +1099,7 @@ export default function Component() {
 
             <div className="flex flex-col gap-4 mb-6 sm:mb-8">
                 <div className="w-full">
-                    <Input type="text" placeholder="Search dinosaurs, values, rarities..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className={`h-12 sm:h-14 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-xl backdrop-blur-sm text-base`} />
+                    <Input type="text" placeholder="Search dinosaurs, values..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className={`h-12 sm:h-14 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-xl backdrop-blur-sm text-base`} />
                 </div>
 
                 <div className="flex flex-col items-center gap-3">
