@@ -61,15 +61,6 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        neutral: {
-          ...config.theme.colors.trueGray,
-        },
-        gray: {
-          ...config.theme.colors.coolGray,
-        },
-        slate: {
-          ...config.theme.colors.blueGray,
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
