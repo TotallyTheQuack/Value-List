@@ -611,7 +611,7 @@ export default function Component() {
     } else if (savedTheme && themes[savedTheme]) {
       newTheme = savedTheme
     }
-    
+
     setCurrentTheme(newTheme)
     setIsThemeLoaded(true)
   }, [])
@@ -619,7 +619,7 @@ export default function Component() {
   // Handle showing/hiding the floating search bar
   useEffect(() => {
     const handleScroll = () => {
-      const headerHeight = headerControlsRef.current?.offsetHeight ?? 300;
+      const headerHeight = headerControlsRef.current?.offsetHeight ?? 300
       setShowFloatingSearch(window.scrollY > headerHeight)
     }
 
@@ -650,11 +650,11 @@ export default function Component() {
       gradient: "bg-gradient-to-br from-red-800/60 to-pink-800/60",
       dinosaurs: [
         { name: "Metron Praenintius", value: 850, rarity: "7/8" },
-        { name: "Pitch Wraith Terror", value: 200, rarity: "5/8" },
+        { name: "Pitch Wraith Terror", value: 200, rarity: "8/8" },
         { name: "Hydralania", value: 175, rarity: "7/8" },
         { name: "Fallen Gladiator", value: 145, rarity: "8/8" },
-        { name: "Violex Magnus", value: 145, rarity: "8/8" },
-        { name: "Wraith Terror", value: 150, rarity: "5/8" },
+        { name: "Violex Magnus", value: 150, rarity: "8/8" },
+        { name: "Wraith Terror", value: 155, rarity: "7/8" },
         { name: "Isisauriraptor", value: 125, rarity: "6/8" },
         { name: "Berserk Alametus", value: 125, rarity: "6/8" },
       ],
@@ -671,8 +671,8 @@ export default function Component() {
         { name: "Galactic Barosaurus", value: 95, rarity: "7/8" },
         { name: "Orca Spinosaurus", value: 65, rarity: "5/8" },
         { name: "Reaper Gelioichthys", value: 68, rarity: "6/8" },
-        { name: "Pitch Luminescent Avinychus", value: 68, rarity: "5/8" },
-        { name: "Distorted King", value: 85, rarity: "7/8" },
+        { name: "Pitch Luminescent Avinychus", value: 65, rarity: "5/8" },
+        { name: "Distorted King", value: 85, rarity: "6/8" },
         { name: "Dolphin Ichthyovenator", value: 55, rarity: "5/8" },
         { name: "Pitch Black Terror", value: 58, rarity: "7/8" },
         { name: "Luminescent Avinychus", value: 54, rarity: "6/8" },
@@ -690,17 +690,18 @@ export default function Component() {
         { name: "Kaiju Giraffatitan", value: 47, rarity: "5/8" },
         { name: "Scylla", value: 46, rarity: "6/8" },
         { name: "Phantom Bringer Ceratosaurus", value: 42, rarity: "5/8" },
-        { name: "Zomvinychus", value: 46, rarity: "6/8" },
-        { name: "Classic Pitch Black Terror", value: 40, rarity: "3/8" },
+        { name: "Classic Pitch Black Terror", value: 36, rarity: "3/8" },
         { name: "Kaiju Spinofaarus", value: 38, rarity: "6/8" },
-        { name: "Pitch Coconut Brachiosaurus", value: 35, rarity: "4/8" },
+        { name: "Pitch Coconut Brachiosaurus", value: 35, rarity: "3/8" },
         { name: "Peak Spinosaurus", value: 32, rarity: "4/8" },
-        { name: "Alien Irritator", value: 26, rarity: "4/8" },
+        { name: "Alien Irritator", value: 25, rarity: "4/8" },
         { name: "Classic Albino Terror", value: 32, rarity: "3/8" },
         { name: "Early Winter Frost Sauroposeidon", value: 31, rarity: "3/8" },
         { name: "Alpha Kaiju Spinosaurus", value: 30, rarity: "5/8" },
         { name: "White Walker Carcharodontosaurus", value: 30, rarity: "3/8" },
         { name: "Classic Megavore", value: 30, rarity: "3/8" },
+        { name: "Zomvinychus", value: 55, rarity: "8/8" },
+        { name: "Movie Mosasaurus", value: 41, rarity: "6/8" },
       ],
     },
     {
@@ -709,16 +710,15 @@ export default function Component() {
       color: "from-green-500 to-yellow-500",
       gradient: "bg-gradient-to-br from-green-800/60 to-yellow-800/60",
       dinosaurs: [
-        { name: "Pitch Black Dolichomalosaurus", value: 28, rarity: "4/8" },
+        { name: "Pitch Black Dolichomalosaurus", value: 26, rarity: "4/8" },
         { name: "Reindeer Istiodactylus", value: 28, rarity: "3/8" },
         { name: "Pitch Black Apatosaurus", value: 27, rarity: "4/8" },
         { name: "Gold Fossil Tyrannosaurus", value: 27, rarity: "5/8" },
         { name: "Disco Stegosaurus", value: 25, rarity: "4/8" },
-        { name: "Movie Mosasaurus", value: 25, rarity: "4/8" },
         { name: "Firebird", value: 27, rarity: "6/8" },
         { name: "Rakebaby Guanlong", value: 24, rarity: "5/8" },
         { name: "Toy Train Mastodonsaurus", value: 23, rarity: "5/8" },
-        { name: "Movie Spinosaurus", value: 18, rarity: "3/8" },
+        { name: "Movie Spinosaurus", value: 19, rarity: "3/8" },
         { name: "Gold Fossil Spinosaurus", value: 22, rarity: "3/8" },
         { name: "Headlessaurus", value: 20, rarity: "5/8" },
         { name: "Forgotten Mutant", value: 12, rarity: "4/8" },
@@ -729,7 +729,7 @@ export default function Component() {
         { name: "Kaiju Gelioichthys", value: 19, rarity: "5/8" },
         { name: "Masquerade Gigantoraptor", value: 18, rarity: "5/8" },
         { name: "Spawn Shunosaurus", value: 18, rarity: "5/8" },
-        { name: "Kralkatorrik", value: 18, rarity: "3/8" },
+        { name: "Kralkatorrik", value: 15, rarity: "3/8" },
         { name: "Cyber Ichthyovenator", value: 17, rarity: "4/8" },
         { name: "Coconut Brachiosaurus", value: 16, rarity: "4/8" },
         { name: "Santa Clawz", value: 16, rarity: "2/8" },
@@ -759,6 +759,7 @@ export default function Component() {
         { name: "Movie Brachiosaurus", value: 10, rarity: "3/8" },
         { name: "Cozy Cabin Argentinosaurus", value: 10, rarity: "3/8" },
         { name: "Pumpkin Megalodon", value: 10, rarity: "2/8" },
+        { name: "Abandoned Matriarch", value: 13, rarity: "4/8" },
       ],
     },
     {
@@ -816,8 +817,8 @@ export default function Component() {
         { name: "Vampire Batzegopteryx", value: 4, rarity: "1/8" },
         { name: "Movie Giganotosaurus", value: 5, rarity: "3/8" },
         { name: "Gold Lily Saurolophus", value: 6, rarity: "2/8" },
-        { name: "Indomitable Thief Gen 2", value: 8, rarity: "3/8" },
-        { name: "Indomitable King", value: 5, rarity: "2/8" },
+        { name: "Indomitable Thief Gen 2", value: 10, rarity: "3/8" },
+        { name: "Indomitable King", value: 7, rarity: "3/8" },
       ],
     },
     {
@@ -904,7 +905,7 @@ export default function Component() {
         { name: "Minotaurus", value: "0.5", rarity: "1/8" },
         { name: "Kentrallos", value: "0.5", rarity: "1/8" },
         { name: "Erymanthian Styracoboar", value: "0.5", rarity: "1/8" },
-        { name: "Indomitable Thief", value: 3, rarity: "2/8" },
+        { name: "Indomitable Thief", value: 5, rarity: "3/8" },
         { name: "Movie Baryonyx", value: 3, rarity: "2/8" },
         { name: "Movie Pyroraptor", value: 3, rarity: "2/8" },
       ],
@@ -976,9 +977,7 @@ export default function Component() {
   ]
 
   const allDinosaurs = useMemo(() => {
-    return tiers.flatMap((tier) =>
-      tier.dinosaurs.map((dino) => ({ ...dino, tier: tier.name })),
-    )
+    return tiers.flatMap((tier) => tier.dinosaurs.map((dino) => ({ ...dino, tier: tier.name })))
   }, [])
 
   const filteredAndSortedDinosaurs = useMemo(() => {
@@ -1000,34 +999,33 @@ export default function Component() {
     }
 
     const parseValue = (value: string | number): number => {
-      if (typeof value === 'number') return value
-      if (typeof value === 'string') {
-        if (value.includes('-')) {
-          const parts = value.split('-').map(part => parseFloat(part.trim()))
+      if (typeof value === "number") return value
+      if (typeof value === "string") {
+        if (value.includes("-")) {
+          const parts = value.split("-").map((part) => Number.parseFloat(part.trim()))
           return (parts[0] + parts[1]) / 2
         }
-        return parseFloat(value)
+        return Number.parseFloat(value)
       }
       return 0
     }
 
     const parseDemand = (rarity: string | undefined): number => {
       if (!rarity) return 0
-      return parseInt(rarity.split('/')[0], 10)
+      return Number.parseInt(rarity.split("/")[0], 10)
     }
 
     const sorted = [...filtered]
 
-    if (sortMode === 'value') {
+    if (sortMode === "value") {
       sorted.sort((a, b) => parseValue(b.value) - parseValue(a.value))
-    } else if (sortMode === 'alphabetical') {
+    } else if (sortMode === "alphabetical") {
       sorted.sort((a, b) => a.name.localeCompare(b.name))
-    } else if (sortMode === 'demand') {
+    } else if (sortMode === "demand") {
       sorted.sort((a, b) => parseDemand(b.rarity) - parseDemand(a.rarity))
     }
-    
-    return sorted
 
+    return sorted
   }, [allDinosaurs, selectedTier, searchTerm, sortMode])
 
   const getRarityColor = (rarity: string) => {
@@ -1036,97 +1034,176 @@ export default function Component() {
   }
 
   return (
-    <div className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}>
-      
+    <div
+      className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}
+    >
       {/* Theme Side Panel */}
-      <div className={`fixed inset-0 z-[100] transition-opacity duration-300 ${isThemePanelOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div
+        className={`fixed inset-0 z-[100] transition-opacity duration-300 ${isThemePanelOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      >
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsThemePanelOpen(false)} />
-        <div className={`relative w-72 max-w-[80vw] h-full ${theme.dropdownBg} ${theme.border} border-r transition-transform duration-300 ${isThemePanelOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div
+          className={`relative w-72 max-w-[80vw] h-full ${theme.dropdownBg} ${theme.border} border-r transition-transform duration-300 ${isThemePanelOpen ? "translate-x-0" : "-translate-x-full"}`}
+        >
           <div className="flex items-center justify-between p-4 border-b ${theme.border}">
             <h2 className={`font-semibold ${theme.textPrimary}`}>Select Theme</h2>
-            <button onClick={() => setIsThemePanelOpen(false)} className={`${theme.buttonBg} ${theme.buttonHover} p-2 rounded-lg`}>
+            <button
+              onClick={() => setIsThemePanelOpen(false)}
+              className={`${theme.buttonBg} ${theme.buttonHover} p-2 rounded-lg`}
+            >
               <X className={`w-5 h-5 ${theme.textSecondary}`} />
             </button>
           </div>
           <div className="p-4 space-y-2">
             {Object.entries(themes).map(([key, themeOption]) => (
-                <button
+              <button
                 key={key}
                 onClick={() => handleThemeChange(key)}
                 className={`w-full text-left px-3 py-2 rounded-lg transition-colors text-sm ${
-                    currentTheme === key
+                  currentTheme === key
                     ? `${theme.buttonBg} ${theme.buttonText}`
                     : `${theme.textSecondary} ${theme.buttonHover.replace("hover:", "hover:")}`
                 }`}
-                >
+              >
                 {themeOption.name}
-                </button>
+              </button>
             ))}
           </div>
         </div>
       </div>
-      
+
       {/* Floating Search Bar */}
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${ showFloatingSearch ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none" }`}>
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showFloatingSearch ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"}`}
+      >
         <div className={`${theme.scrollHeaderBg} backdrop-blur-xl ${theme.border} border-b shadow-lg`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-            <Input type="text" placeholder="Search dinosaurs..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className={`h-10 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-lg backdrop-blur-sm text-sm`} />
+            <Input
+              type="text"
+              placeholder="Search dinosaurs..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={`h-10 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-lg backdrop-blur-sm text-sm`}
+            />
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        
         <div ref={headerControlsRef}>
-            <div className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8`}>
-                <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4">
-                    <div className="relative order-2 sm:order-1">
-                        <button onClick={() => setIsThemePanelOpen(true)} className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}>
-                            <Paintbrush className="w-4 h-4" />
-                            <span>Themes</span>
-                        </button>
-                    </div>
-                    <div className="text-center order-1 sm:order-2">
-                        <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary} mb-1`}>Dinosaur Simulator</h1>
-                        <p className={`text-lg ${theme.textSecondary} font-light`}>Value List</p>
-                    </div>
-                    <div className="flex gap-2 sm:gap-3 order-3">
-                        <Link href={`/info?theme=${currentTheme}`}><button className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}>Info</button></Link>
-                        <Link href={`/changelog?theme=${currentTheme}`}><button className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}>Changelog</button></Link>
-                    </div>
-                </div>
+          <div
+            className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8`}
+          >
+            <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4">
+              <div className="relative order-2 sm:order-1">
+                <button
+                  onClick={() => setIsThemePanelOpen(true)}
+                  className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}
+                >
+                  <Paintbrush className="w-4 h-4" />
+                  <span>Themes</span>
+                </button>
+              </div>
+              <div className="text-center order-1 sm:order-2">
+                <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary} mb-1`}>Dinosaur Simulator</h1>
+                <p className={`text-lg ${theme.textSecondary} font-light`}>Value List</p>
+              </div>
+              <div className="flex gap-2 sm:gap-3 order-3">
+                <Link href={`/info?theme=${currentTheme}`}>
+                  <button
+                    className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+                  >
+                    Info
+                  </button>
+                </Link>
+                <Link href={`/changelog?theme=${currentTheme}`}>
+                  <button
+                    className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+                  >
+                    Changelog
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4 mb-6 sm:mb-8">
+            <div className="w-full">
+              <Input
+                type="text"
+                placeholder="Search dinosaurs, values..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={`h-12 sm:h-14 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-xl backdrop-blur-sm text-base`}
+              />
             </div>
 
-            <div className="flex flex-col gap-4 mb-6 sm:mb-8">
-                <div className="w-full">
-                    <Input type="text" placeholder="Search dinosaurs, values..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className={`h-12 sm:h-14 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-xl backdrop-blur-sm text-base`} />
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="relative flex-1 sm:flex-none sm:min-w-[180px]">
+                  <select
+                    value={selectedTier}
+                    onChange={(e) => setSelectedTier(e.target.value)}
+                    className={`w-full h-12 px-4 py-3 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} rounded-xl backdrop-blur-sm focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} appearance-none cursor-pointer text-sm font-medium`}
+                  >
+                    <option value="all" className="bg-gray-900 text-white">
+                      All Tiers
+                    </option>
+                    {tiers.map((tier) => (
+                      <option key={tier.name} value={tier.name} className="bg-gray-900 text-white">
+                        {tier.name} ({tier.range})
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown
+                    className={`absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 ${theme.textSecondary} pointer-events-none`}
+                  />
                 </div>
 
-                <div className="flex flex-col items-center gap-3">
-                    <div className="flex flex-col sm:flex-row gap-3">
-                        <div className="relative flex-1 sm:flex-none sm:min-w-[180px]">
-                        <select value={selectedTier} onChange={(e) => setSelectedTier(e.target.value)} className={`w-full h-12 px-4 py-3 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} rounded-xl backdrop-blur-sm focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} appearance-none cursor-pointer text-sm font-medium`}>
-                            <option value="all" className="bg-gray-900 text-white">All Tiers</option>
-                            {tiers.map((tier) => (<option key={tier.name} value={tier.name} className="bg-gray-900 text-white">{tier.name} ({tier.range})</option>))}
-                        </select>
-                        <ChevronDown className={`absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 ${theme.textSecondary} pointer-events-none`} />
-                        </div>
-
-                        <div className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border self-start h-12`}>
-                        <button onClick={() => setViewMode("grid")} className={`px-4 py-2 rounded-lg transition-all flex items-center justify-center ${viewMode === "grid" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}><Grid className="w-4 h-4" /></button>
-                        <button onClick={() => setViewMode("list")} className={`px-4 py-2 rounded-lg transition-all flex items-center justify-center ${viewMode === "list" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}><List className="w-4 h-4" /></button>
-                        </div>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-3">
-                        <div className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border self-start h-12`}>
-                        <button onClick={() => setSortMode('value')} className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === 'value' ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}><DollarSign className="w-4 h-4" /> Value</button>
-                        <button onClick={() => setSortMode('alphabetical')} className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === 'alphabetical' ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}><ArrowDownUp className="w-4 h-4" /> A-Z</button>
-                        <button onClick={() => setSortMode('demand')} className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === 'demand' ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}><BarChartHorizontalBig className="w-4 h-4" /> Demand</button>
-                        </div>
-                    </div>
+                <div
+                  className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border self-start h-12`}
+                >
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={`px-4 py-2 rounded-lg transition-all flex items-center justify-center ${viewMode === "grid" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                  >
+                    <Grid className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`px-4 py-2 rounded-lg transition-all flex items-center justify-center ${viewMode === "list" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                  >
+                    <List className="w-4 h-4" />
+                  </button>
                 </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <div
+                  className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border self-start h-12`}
+                >
+                  <button
+                    onClick={() => setSortMode("value")}
+                    className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === "value" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                  >
+                    <DollarSign className="w-4 h-4" /> Value
+                  </button>
+                  <button
+                    onClick={() => setSortMode("alphabetical")}
+                    className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === "alphabetical" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                  >
+                    <ArrowDownUp className="w-4 h-4" /> A-Z
+                  </button>
+                  <button
+                    onClick={() => setSortMode("demand")}
+                    className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === "demand" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                  >
+                    <BarChartHorizontalBig className="w-4 h-4" /> Demand
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
 
         <div className="mb-4 sm:mb-6">
@@ -1137,19 +1214,46 @@ export default function Component() {
           {viewMode === "grid" ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
               {filteredAndSortedDinosaurs.map((dino, index) => (
-                <Card key={`${dino.name}-${index}`} className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm hover:scale-105 transition-all duration-200 group shadow-lg`}>
+                <Card
+                  key={`${dino.name}-${index}`}
+                  className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm hover:scale-105 transition-all duration-200 group shadow-lg`}
+                >
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className={`font-semibold ${theme.textPrimary} text-sm leading-tight group-hover:${theme.textAccent} transition-colors`}>{dino.name}</h3>
-                      <Badge className={`${theme.badgeBg} ${theme.badgeText} border-0 ml-2 shrink-0 font-bold text-xs shadow-sm`}>{dino.value}</Badge>
+                      <h3
+                        className={`font-semibold ${theme.textPrimary} text-sm leading-tight group-hover:${theme.textAccent} transition-colors`}
+                      >
+                        {dino.name}
+                      </h3>
+                      <Badge
+                        className={`${theme.badgeBg} ${theme.badgeText} border-0 ml-2 shrink-0 font-bold text-xs shadow-sm`}
+                      >
+                        {dino.value}
+                      </Badge>
                     </div>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {dino.rarity && (<Badge className={`text-xs ${getRarityColor(dino.rarity)} border shadow-sm`}>{dino.rarity}</Badge>)}
-                      {dino.code && (<Badge className="text-xs bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shadow-sm">Code: {dino.code}</Badge>)}
-                      {dino.sdna && (<Badge className="text-xs bg-gradient-to-r from-emerald-500 to-green-500 text-white border-0 shadow-sm">{dino.sdna}</Badge>)}
+                      {dino.rarity && (
+                        <Badge className={`text-xs ${getRarityColor(dino.rarity)} border shadow-sm`}>
+                          {dino.rarity}
+                        </Badge>
+                      )}
+                      {dino.code && (
+                        <Badge className="text-xs bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shadow-sm">
+                          Code: {dino.code}
+                        </Badge>
+                      )}
+                      {dino.sdna && (
+                        <Badge className="text-xs bg-gradient-to-r from-emerald-500 to-green-500 text-white border-0 shadow-sm">
+                          {dino.sdna}
+                        </Badge>
+                      )}
                     </div>
                     <div className="mt-3">
-                      <Badge className={`text-xs ${theme.textAccent} ${theme.border} border ${theme.inputBg} backdrop-blur-sm`}>{dino.tier}</Badge>
+                      <Badge
+                        className={`text-xs ${theme.textAccent} ${theme.border} border ${theme.inputBg} backdrop-blur-sm`}
+                      >
+                        {dino.tier}
+                      </Badge>
                     </div>
                   </CardContent>
                 </Card>
@@ -1158,18 +1262,41 @@ export default function Component() {
           ) : (
             <div className="space-y-2">
               {filteredAndSortedDinosaurs.map((dino, index) => (
-                <Card key={`${dino.name}-${index}`} className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm ${theme.buttonHover.replace("hover:", "hover:")} transition-all duration-200 shadow-lg`}>
+                <Card
+                  key={`${dino.name}-${index}`}
+                  className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm ${theme.buttonHover.replace("hover:", "hover:")} transition-all duration-200 shadow-lg`}
+                >
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
                         <h3 className={`font-semibold ${theme.textPrimary} text-sm flex-1 truncate`}>{dino.name}</h3>
-                        <Badge className={`${theme.badgeBg} ${theme.badgeText} border-0 font-bold text-xs shrink-0 shadow-sm`}>{dino.value}</Badge>
+                        <Badge
+                          className={`${theme.badgeBg} ${theme.badgeText} border-0 font-bold text-xs shrink-0 shadow-sm`}
+                        >
+                          {dino.value}
+                        </Badge>
                       </div>
                       <div className="flex items-center gap-1.5 sm:gap-2 ml-3 sm:ml-4 flex-wrap">
-                        {dino.rarity && (<Badge className={`text-xs ${getRarityColor(dino.rarity)} border shadow-sm shrink-0`}>{dino.rarity}</Badge>)}
-                        {dino.code && (<Badge className="text-xs bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shrink-0 shadow-sm">Code: {dino.code}</Badge>)}
-                        {dino.sdna && (<Badge className="text-xs bg-gradient-to-r from-emerald-500 to-green-500 text-white border-0 shrink-0 shadow-sm">{dino.sdna}</Badge>)}
-                        <Badge className={`text-xs ${theme.textAccent} ${theme.border} border ${theme.inputBg} shrink-0 backdrop-blur-sm`}>{dino.tier}</Badge>
+                        {dino.rarity && (
+                          <Badge className={`text-xs ${getRarityColor(dino.rarity)} border shadow-sm shrink-0`}>
+                            {dino.rarity}
+                          </Badge>
+                        )}
+                        {dino.code && (
+                          <Badge className="text-xs bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shrink-0 shadow-sm">
+                            Code: {dino.code}
+                          </Badge>
+                        )}
+                        {dino.sdna && (
+                          <Badge className="text-xs bg-gradient-to-r from-emerald-500 to-green-500 text-white border-0 shrink-0 shadow-sm">
+                            {dino.sdna}
+                          </Badge>
+                        )}
+                        <Badge
+                          className={`text-xs ${theme.textAccent} ${theme.border} border ${theme.inputBg} shrink-0 backdrop-blur-sm`}
+                        >
+                          {dino.tier}
+                        </Badge>
                       </div>
                     </div>
                   </CardContent>
@@ -1189,7 +1316,12 @@ export default function Component() {
         <div className="mt-12 sm:mt-16 text-center">
           <p className={`${theme.textSecondary} text-sm font-light`}>
             Directly forked from the{" "}
-            <a href="https://discord.gg/kNPy4jwMWj" target="_blank" rel="noopener noreferrer" className={`${theme.textAccent} ${theme.linkHover} transition-colors underline decoration-current/60 hover:decoration-current`}>
+            <a
+              href="https://discord.gg/kNPy4jwMWj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${theme.textAccent} ${theme.linkHover} transition-colors underline decoration-current/60 hover:decoration-current`}
+            >
               Dinosaur Simulator Trading Network
             </a>{" "}
             Discord Server with slight changes.

@@ -25,6 +25,7 @@ interface Theme {
   scrollHeaderBg: string
   dropdownBg: string
   linkHover: string
+  rarityColors: Record<string, string>
 }
 
 const themes: Record<string, Theme> = {
@@ -85,7 +86,7 @@ const themes: Record<string, Theme> = {
       "6/8": "bg-purple-500 text-white border-purple-400",
       "5/8": "bg-violet-500 text-white border-violet-400",
       "4/8": "bg-indigo-500 text-white border-indigo-400",
-      "3/8": "bg-cyan-400 text-white border-cyan-300",
+      "3/8": "bg-cyan-500 text-white border-cyan-400",
       "2/8": "bg-purple-700 text-white border-purple-600",
       "1/8": "bg-slate-600 text-white border-slate-500",
     },
@@ -304,7 +305,7 @@ const themes: Record<string, Theme> = {
       "4/8": "bg-green-800 text-white border-green-700",
       "3/8": "bg-green-900 text-white border-green-800",
       "2/8": "bg-green-950 text-white border-green-900",
-      "1/8": "bg-gray-800 text-gray-400 border-gray-700",
+      "1/8": "bg-gray-500 text-white border-gray-400",
     },
   },
   royalGold: {
@@ -325,7 +326,7 @@ const themes: Record<string, Theme> = {
     badgeBg: "bg-amber-600/40",
     badgeText: "text-amber-100",
     scrollHeaderBg: "bg-slate-900/95",
-    dropdownBg: "bg-slate-950",
+    dropdownBg: "bg-slate-900",
     linkHover: "hover:text-yellow-100",
     rarityColors: {
       "8/8": "bg-yellow-400 text-black border-yellow-300",
@@ -602,226 +603,161 @@ export default function Changelog() {
   const changelogEntries: ChangelogEntry[] = [
     // RISES
     {
-      name: "Wraith Terror",
-      oldValue: 140,
-      newValue: 150,
+      name: "Pitch Wraith Terror",
+      oldValue: 200,
+      newValue: 200,
       oldRarity: "5/8",
-      newRarity: "5/8",
+      newRarity: "8/8",
       isIncrease: true,
     },
     {
-      name: "Fallen Gladiator",
-      oldValue: 140,
-      newValue: 145,
-      oldRarity: "8/8",
-      newRarity: "8/8",
+      name: "Wraith Terror",
+      oldValue: 150,
+      newValue: 155,
+      oldRarity: "5/8",
+      newRarity: "7/8",
       isIncrease: true,
     },
     {
       name: "Violex Magnus",
-      oldValue: 140,
-      newValue: 145,
+      oldValue: 145,
+      newValue: 150,
       oldRarity: "8/8",
       newRarity: "8/8",
-      isIncrease: true,
-    },
-    {
-      name: "Galactic Barosaurus",
-      oldValue: 90,
-      newValue: 95,
-      oldRarity: "7/8",
-      newRarity: "7/8",
-      isIncrease: true,
-    },
-    {
-      name: "Distorted King",
-      oldValue: 60,
-      newValue: 85,
-      oldRarity: "5/8",
-      newRarity: "7/8",
       isIncrease: true,
     },
     {
       name: "Zomvinychus",
-      oldValue: 44,
-      newValue: 46,
+      oldValue: 46,
+      newValue: 55,
       oldRarity: "6/8",
-      newRarity: "6/8",
-      isIncrease: true,
-    },
-    {
-      name: "Firebird",
-      oldValue: 26,
-      newValue: 27,
-      oldRarity: "6/8",
-      newRarity: "6/8",
+      newRarity: "8/8",
       isIncrease: true,
     },
     {
       name: "Movie Mosasaurus",
-      oldValue: 22,
-      newValue: 25,
-      oldRarity: "3/8",
-      newRarity: "4/8",
+      oldValue: 25,
+      newValue: 41,
+      oldRarity: "4/8",
+      newRarity: "6/8",
       isIncrease: true,
     },
     {
-      name: "Kralkatorrik",
+      name: "Movie Spinosaurus",
       oldValue: 18,
-      newValue: 18,
+      newValue: 19,
+      oldRarity: "3/8",
+      newRarity: "3/8",
+      isIncrease: true,
+    },
+    {
+      name: "Indomitable Thief Gen 2",
+      oldValue: 8,
+      newValue: 10,
+      oldRarity: "3/8",
+      newRarity: "3/8",
+      isIncrease: true,
+    },
+    {
+      name: "Indomitable King",
+      oldValue: 5,
+      newValue: 7,
       oldRarity: "2/8",
       newRarity: "3/8",
       isIncrease: true,
     },
     {
-      name: "Butterfly Alametus",
-      oldValue: 13,
-      newValue: 17,
-      oldRarity: "4/8",
-      newRarity: "4/8",
+      name: "Indomitable Thief",
+      oldValue: 3,
+      newValue: 5,
+      oldRarity: "2/8",
+      newRarity: "3/8",
       isIncrease: true,
     },
     // DROPS
     {
-      name: "Albino Terror",
-      oldValue: 105,
-      newValue: 100,
-      oldRarity: "8/8",
-      newRarity: "8/8",
+      name: "Distorted King",
+      oldValue: 85,
+      newValue: 85,
+      oldRarity: "7/8",
+      newRarity: "6/8",
       isIncrease: false,
     },
     {
-      name: "Movie Spinosaurus",
-      oldValue: 22,
-      newValue: 18,
+      name: "Spinofaarus",
+      oldValue: 50,
+      newValue: 48,
+      oldRarity: "6/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
+      name: "Kralkatorrik",
+      oldValue: 18,
+      newValue: 15,
       oldRarity: "3/8",
       newRarity: "3/8",
       isIncrease: false,
     },
-    {
-      name: "Chaos Spinosaurus",
-      oldValue: 9,
-      newValue: 5,
-      oldRarity: "3/8",
-      newRarity: "2/8",
-      isIncrease: false,
-    },
     // ADJUSTMENTS
     {
-      name: "Pitch Wraith Terror",
-      oldValue: 190,
-      newValue: 200,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Hydralania",
-      oldValue: 170,
-      newValue: 175,
-      oldRarity: "7/8",
-      newRarity: "7/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Isisauriraptor",
-      oldValue: 130,
-      newValue: 125,
-      oldRarity: "6/8",
-      newRarity: "6/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Blue Whale Shastasaurus",
-      oldValue: 85,
-      newValue: 80,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Orca Spinosaurus",
-      oldValue: 70,
+      name: "Pitch Luminescent Avinychus",
+      oldValue: 68,
       newValue: 65,
-      oldRarity: "4/8",
+      oldRarity: "5/8",
       newRarity: "5/8",
       isIncrease: false,
       isAdjustment: true,
     },
     {
-      name: "Dolphin Ichthyovenator",
-      oldValue: 55,
-      newValue: 55,
-      oldRarity: "4/8",
-      newRarity: "5/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Phantom Bringer Ceratosaurus",
-      oldValue: 45,
-      newValue: 42,
-      oldRarity: "4/8",
-      newRarity: "5/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Peak Spinosaurus",
-      oldValue: 34,
-      newValue: 32,
+      name: "Classic Pitch Black Terror",
+      oldValue: 40,
+      newValue: 36,
       oldRarity: "3/8",
-      newRarity: "4/8",
+      newRarity: "3/8",
       isIncrease: false,
       isAdjustment: true,
     },
     {
-      name: "Spring Blossom Lusotitan",
-      oldValue: 6,
-      newValue: 10,
-      oldRarity: "2/8",
-      newRarity: "2/8",
-      isIncrease: true,
+      name: "Pitch Coconut Brachiosaurus",
+      oldValue: 35,
+      newValue: 35,
+      oldRarity: "4/8",
+      newRarity: "3/8",
+      isIncrease: false,
       isAdjustment: true,
     },
-    // COLLECTORS' TIER
     {
-      name: "Branded Purrusaurus",
-      oldValue: 1350,
-      newValue: "1250-1500",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: false,
-      isCollectors: true,
-    },
-    {
-      name: "Crossover Hybrid/Vinera",
-      oldValue: 45,
-      newValue: 40,
+      name: "Pitch Black Dolichomalosaurus",
+      oldValue: 28,
+      newValue: 26,
       oldRarity: "4/8",
       newRarity: "4/8",
       isIncrease: false,
-      isCollectors: true,
+      isAdjustment: true,
+    },
+    {
+      name: "Alien Irritator",
+      oldValue: 26,
+      newValue: 25,
+      oldRarity: "4/8",
+      newRarity: "4/8",
+      isIncrease: false,
+      isAdjustment: true,
     },
   ]
 
-  const newTradables = [
-    { name: "Indomitable Thief Gen 2", value: 8, rarity: "3/8" },
-    { name: "Indomitable King", value: 5, rarity: "2/8" },
-    { name: "Indomitable Thief", value: 3, rarity: "2/8" },
-    { name: "Movie Baryonyx", value: 3, rarity: "2/8" },
-    { name: "Movie Pyroraptor", value: 3, rarity: "2/8" },
-  ]
+  const newTradables = [{ name: "Abandoned Matriarch", value: 13, rarity: "4/8" }]
 
   return (
-    <div className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}>
+    <div
+      className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}
+    >
       <div className="max-w-5xl mx-auto p-4 sm:p-6">
         {/* Header */}
-        <div className={`relative z-20 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl`}>
+        <div
+          className={`relative z-20 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl`}
+        >
           <div className="flex justify-between items-center">
             {/* Left Side: Settings Button */}
             <div className="relative">
@@ -856,11 +792,11 @@ export default function Changelog() {
 
             {/* Middle: Title */}
             <div className="text-center">
-                <div className="flex items-center justify-center gap-3 mb-2">
-                    <Clock className={`w-8 h-8 ${theme.textAccent}`} />
-                    <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary}`}>Update History</h1>
-                </div>
-                <p className={`text-lg ${theme.textSecondary} font-light`}>Recent Value Changes & Market Updates</p>
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <Clock className={`w-8 h-8 ${theme.textAccent}`} />
+                <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary}`}>Update History</h1>
+              </div>
+              <p className={`text-lg ${theme.textSecondary} font-light`}>Recent Value Changes & Market Updates</p>
             </div>
 
             {/* Right Side: Navigation Buttons */}
@@ -892,15 +828,16 @@ export default function Changelog() {
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-6 h-6 text-green-400" />
                 <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-                  Market Update - August 31, 2025
+                  Market Update - September 12, 2025
                 </CardTitle>
               </div>
             </CardHeader>
             <CardContent className="p-6">
               <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-4">
                 <p className="text-green-400 text-sm font-medium leading-relaxed">
-                  <strong>GOOD NEWS ALL TRADERS!</strong> The only major drop this update has been DNA! We have not
-                  gotten a list with this much green for the entirety of 2025! Adds are recovering ever so slowly.
+                  <strong>GOOD NEWS ALL TRADERS!</strong> Mixed market conditions with several significant rises
+                  including major rarity upgrades for Pitch Wraith Terror and Zomvinychus. DNA conversion rate continues
+                  to decline, now requiring 13-14K DNA for 1 Value.
                 </p>
               </div>
             </CardContent>
@@ -1017,7 +954,7 @@ export default function Changelog() {
           </Card>
 
           {/* New Additions & Special Updates */}
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6">
             {/* New Tradables */}
             <Card
               className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
@@ -1049,51 +986,13 @@ export default function Changelog() {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Collectors' Updates */}
-            <Card
-              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-            >
-              <CardHeader
-                className={`bg-gradient-to-r from-amber-900/20 to-yellow-900/20 ${theme.cardBorder} border-b`}
-              >
-                <div className="flex items-center gap-3">
-                  <RotateCcw className="w-6 h-6 text-amber-400" />
-                  <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Collectors' Tier</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-3">
-                  {changelogEntries
-                    .filter((entry) => entry.isCollectors)
-                    .map((entry, index) => (
-                      <div
-                        key={index}
-                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-transform duration-200`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-3 h-3 rounded-full shrink-0 ${entry.isIncrease ? "bg-green-500" : "bg-red-500"}`}
-                          ></div>
-                          <div className="flex-1 min-w-0">
-                            <p className={`${theme.textPrimary} text-sm font-medium truncate`}>{entry.name}</p>
-                            <p className={`${theme.textSecondary} text-xs`}>
-                              {entry.oldValue} ({entry.oldRarity}) → {entry.newValue} ({entry.newRarity})
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
           {/* DNA Rate Change */}
           <Card
             className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
           >
-            <CardHeader className={`bg-gradient-to-r from-red-900/20 to-orange-900/20 ${theme.cardBorder} border-b`}>
+            <CardHeader className={`bg-gradient-to-r from-red-900/20 to-orange-950/20 ${theme.cardBorder} border-b`}>
               <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>DNA Conversion Rate Update</CardTitle>
               <p className={`${theme.textSecondary} text-sm mt-2`}>Important changes to DNA trading rates</p>
             </CardHeader>
@@ -1103,7 +1002,7 @@ export default function Changelog() {
                   <div className="w-3 h-3 bg-red-500 rounded-full shrink-0"></div>
                   <div>
                     <p className={`${theme.textPrimary} text-sm font-medium`}>DNA Conversion Rate Change</p>
-                    <p className={`${theme.textSecondary} text-xs`}>8-12K DNA = 1 Value → 12-13K DNA = 1 Value</p>
+                    <p className={`${theme.textSecondary} text-xs`}>12-13K DNA = 1 Value → 13-14K DNA = 1 Value</p>
                   </div>
                 </div>
               </div>
