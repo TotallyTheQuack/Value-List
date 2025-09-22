@@ -650,11 +650,11 @@ export default function Component() {
       gradient: "bg-gradient-to-br from-red-800/60 to-pink-800/60",
       dinosaurs: [
         { name: "Metron Praenintius", value: 850, rarity: "7/8" },
-        { name: "Pitch Wraith Terror", value: 200, rarity: "8/8" },
+        { name: "Pitch Wraith Terror", value: 240, rarity: "8/8" },
         { name: "Hydralania", value: 175, rarity: "7/8" },
-        { name: "Fallen Gladiator", value: 145, rarity: "8/8" },
+        { name: "Fallen Gladiator", value: 145, rarity: "7/8" },
         { name: "Violex Magnus", value: 150, rarity: "8/8" },
-        { name: "Wraith Terror", value: 155, rarity: "7/8" },
+        { name: "Wraith Terror", value: 160, rarity: "7/8" },
         { name: "Isisauriraptor", value: 125, rarity: "6/8" },
         { name: "Berserk Alametus", value: 125, rarity: "6/8" },
       ],
@@ -667,16 +667,16 @@ export default function Component() {
       dinosaurs: [
         { name: "Albino Terror", value: 100, rarity: "8/8" },
         { name: "Megavore", value: 100, rarity: "8/8" },
-        { name: "Blue Whale Shastasaurus", value: 80, rarity: "5/8" },
-        { name: "Galactic Barosaurus", value: 95, rarity: "7/8" },
-        { name: "Orca Spinosaurus", value: 65, rarity: "5/8" },
+        { name: "Blue Whale Shastasaurus", value: 80, rarity: "6/8" },
+        { name: "Galactic Barosaurus", value: 85, rarity: "6/8" },
+        { name: "Orca Spinosaurus", value: 62, rarity: "6/8" },
         { name: "Reaper Gelioichthys", value: 68, rarity: "6/8" },
         { name: "Pitch Luminescent Avinychus", value: 65, rarity: "5/8" },
         { name: "Distorted King", value: 85, rarity: "6/8" },
         { name: "Dolphin Ichthyovenator", value: 55, rarity: "5/8" },
         { name: "Pitch Black Terror", value: 58, rarity: "7/8" },
         { name: "Luminescent Avinychus", value: 54, rarity: "6/8" },
-        { name: "Giant Albino Baryonyx", value: 52, rarity: "6/8" },
+        { name: "Giant Albino Baryonyx", value: 50, rarity: "5/8" },
         { name: "Spinofaarus", value: 50, rarity: "6/8" },
       ],
     },
@@ -700,8 +700,9 @@ export default function Component() {
         { name: "Alpha Kaiju Spinosaurus", value: 30, rarity: "5/8" },
         { name: "White Walker Carcharodontosaurus", value: 30, rarity: "3/8" },
         { name: "Classic Megavore", value: 30, rarity: "3/8" },
-        { name: "Zomvinychus", value: 55, rarity: "8/8" },
-        { name: "Movie Mosasaurus", value: 41, rarity: "6/8" },
+        { name: "Zomvinychus", value: 75, rarity: "8/8" },
+        { name: "Movie Mosasaurus", value: 46, rarity: "6/8" },
+        { name: "Crossover Hybrid/Vinera", value: 40, rarity: "4/8" },
       ],
     },
     {
@@ -715,10 +716,10 @@ export default function Component() {
         { name: "Pitch Black Apatosaurus", value: 27, rarity: "4/8" },
         { name: "Gold Fossil Tyrannosaurus", value: 27, rarity: "5/8" },
         { name: "Disco Stegosaurus", value: 25, rarity: "4/8" },
-        { name: "Firebird", value: 27, rarity: "6/8" },
+        { name: "Firebird", value: 30, rarity: "7/8" },
         { name: "Rakebaby Guanlong", value: 24, rarity: "5/8" },
         { name: "Toy Train Mastodonsaurus", value: 23, rarity: "5/8" },
-        { name: "Movie Spinosaurus", value: 19, rarity: "3/8" },
+        { name: "Movie Spinosaurus", value: 20, rarity: "5/8" },
         { name: "Gold Fossil Spinosaurus", value: 22, rarity: "3/8" },
         { name: "Headlessaurus", value: 20, rarity: "5/8" },
         { name: "Forgotten Mutant", value: 12, rarity: "4/8" },
@@ -729,10 +730,11 @@ export default function Component() {
         { name: "Kaiju Gelioichthys", value: 19, rarity: "5/8" },
         { name: "Masquerade Gigantoraptor", value: 18, rarity: "5/8" },
         { name: "Spawn Shunosaurus", value: 18, rarity: "5/8" },
-        { name: "Kralkatorrik", value: 15, rarity: "3/8" },
-        { name: "Cyber Ichthyovenator", value: 17, rarity: "4/8" },
-        { name: "Coconut Brachiosaurus", value: 16, rarity: "4/8" },
+        { name: "Kralkatorrik", value: 15, rarity: "2/8" },
+        { name: "Cyber Ichthyovenator", value: 17, rarity: "3/8" },
+        { name: "Coconut Brachiosaurus", value: 16, rarity: "3/8" },
         { name: "Santa Clawz", value: 16, rarity: "2/8" },
+        { name: "Luminescent Avinychus", value: 56, rarity: "6/8" },
       ],
     },
     {
@@ -759,7 +761,7 @@ export default function Component() {
         { name: "Movie Brachiosaurus", value: 10, rarity: "3/8" },
         { name: "Cozy Cabin Argentinosaurus", value: 10, rarity: "3/8" },
         { name: "Pumpkin Megalodon", value: 10, rarity: "2/8" },
-        { name: "Abandoned Matriarch", value: 13, rarity: "4/8" },
+        { name: "Abandoned Matriarch", value: 12, rarity: "3/8" },
       ],
     },
     {
@@ -784,7 +786,7 @@ export default function Component() {
         { name: "Polar Grazer Puertasaurus", value: 7, rarity: "2/8" },
         { name: "Barosaurus Plush", value: 7, rarity: "1/8" },
         { name: "Kaiju Quetzalcoatlus", value: 7, rarity: "2/8" },
-        { name: "Kaiju Archelon", value: 7, rarity: "3/8" },
+        { name: "Kaiju Archelon", value: 10, rarity: "3/8" },
         { name: "Neon Pulverizer Concavenator", value: 7, rarity: "2/8" },
         { name: "Christmas Dodo", value: 7, rarity: "3/8" },
         { name: "Christmas Stegoceras", value: 7, rarity: "2/8" },
@@ -916,9 +918,8 @@ export default function Component() {
       color: "from-amber-500 to-yellow-600",
       gradient: "bg-gradient-to-br from-amber-800/60 to-yellow-800/60",
       dinosaurs: [
-        { name: "Branded Purrusaurus", value: "1250-1500", rarity: "1/8" },
+        { name: "Branded Purrusaurus", value: "1500-1850", rarity: "1/8" },
         { name: "Golden Ectenosaurus", value: "100-170", rarity: "1/8" },
-        { name: "Crossover Hybrid/Vinera", value: 40, rarity: "4/8" },
         { name: "Grayscale Fasolatherium", value: 105, rarity: "1/8" },
         { name: "Grayscale Albino Terror", value: 105, rarity: "1/8" },
         { name: "Grayscale Gelioichthys", value: 100, rarity: "1/8" },
@@ -1233,7 +1234,9 @@ export default function Component() {
                     </div>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {dino.rarity && (
-                        <Badge className={`text-xs ${getRarityColor(dino.rarity)} border shadow-sm`}>
+                        <Badge
+                          className={`${theme.badgeBg} ${theme.badgeText} border-0 ml-2 shrink-0 font-bold text-xs shadow-sm`}
+                        >
                           {dino.rarity}
                         </Badge>
                       )}
