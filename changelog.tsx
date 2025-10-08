@@ -1097,7 +1097,7 @@ export default function Changelog() {
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-6 h-6 text-green-400" />
                 <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-                  Market Update - September 18, 2025
+                  Market Update - October 8, 2025
                 </CardTitle>
               </div>
             </CardHeader>

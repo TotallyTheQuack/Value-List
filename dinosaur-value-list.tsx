@@ -915,65 +915,6 @@ export default function Component() {
       ],
     },
     {
-      name: "E Tier",
-      range: "4-9",
-      color: "from-purple-500 to-blue-500",
-      gradient: "bg-gradient-to-br from-purple-800/60 to-blue-800/60",
-      dinosaurs: [
-        { name: "Chaos Spinosaurus", value: 5, rarity: "2/8" },
-        { name: "Possessed Troodon", value: 9, rarity: "2/8" },
-        { name: "Heartracer Concavenator", value: 9, rarity: "2/8" },
-        { name: "Movie Triceratops", value: 8, rarity: "3/8" },
-        { name: "Saurophaganax Remodel", value: 8, rarity: "3/8" },
-        { name: "Singularfaarus", value: 8, rarity: "3/8" },
-        { name: "Apatosaurus Plush", value: 8, rarity: "2/8" },
-        { name: "Blackodile", value: 8, rarity: "3/8" },
-        { name: "Christmas Shunosaurus", value: 8, rarity: "2/8" },
-        { name: "Infected Camarasaurus", value: 8, rarity: "2/8" },
-        { name: "Galactic Torvosaurus", value: 7.5, rarity: "3/8" },
-        { name: "Fossil Spinosaurus", value: 7.5, rarity: "2/8" },
-        { name: "Fossil Baryonyx", value: 7, rarity: "2/8" },
-        { name: "Polar Grazer Puertasaurus", value: 7, rarity: "2/8" },
-        { name: "Barosaurus Plush", value: 7, rarity: "1/8" },
-        { name: "Kaiju Quetzalcoatlus", value: 7, rarity: "2/8" },
-        { name: "Kaiju Archelon", value: 10, rarity: "3/8" },
-        { name: "Neon Pulverizer Concavenator", value: 7, rarity: "2/8" },
-        { name: "Christmas Dodo", value: 7, rarity: "3/8" },
-        { name: "Christmas Stegoceras", value: 7, rarity: "2/8" },
-        { name: "Gargoyle Hatzegopteryx", value: 6.5, rarity: "3/8" },
-        { name: "Clay Iguanodon", value: 6, rarity: "3/8" },
-        { name: "Violex Parvulus", value: 6, rarity: "2/8" },
-        { name: "Spring Blossom Lusotitan", value: 10, rarity: "3/8" },
-        { name: "Putrefied Amargasaurus", value: 6, rarity: "2/8" },
-        { name: "Movie Spinofaarus", value: 5, rarity: "3/8" },
-        { name: "Tree Elder Shantungosaurus", value: 5, rarity: "2/8" },
-        { name: "Forest Dweller Shantungosaurus", value: 5, rarity: "2/8" },
-        { name: "Steelforged Concavenator", value: 5, rarity: "1/8" },
-        { name: "Fossil Cadger", value: 5, rarity: "3/8" },
-        { name: "The Mimic", value: 5, rarity: "4/8" },
-        { name: "Yeti Albertosaurus", value: 5, rarity: "2/8" },
-        { name: "Maceball Stegosaurus", value: 5, rarity: "2/8" },
-        { name: "Galactic Hatzegopteryx", value: 5, rarity: "2/8" },
-        { name: "Chaos Mosasaurus", value: 5, rarity: "2/8" },
-        { name: "Acrocanthorse", value: 5, rarity: "2/8" },
-        { name: "Pop Candy Pachycephalosaurus", value: 5, rarity: "2/8" },
-        { name: "Flying Dutchman", value: 5, rarity: "2/8" },
-        { name: "Fossil Brachiosaurus", value: 4.5, rarity: "1/8" },
-        { name: "Pitch Black Avimimus", value: 4.5, rarity: "3/8" },
-        { name: "Fossil Carcharocles Megalodon", value: 4.5, rarity: "1/8" },
-        { name: "Voodoo Murusraptor", value: 4, rarity: "3/8" },
-        { name: "Sneaky Bunny Guanlong", value: 4, rarity: "2/8" },
-        { name: "Monarch Meganeura", value: 4, rarity: "2/8" },
-        { name: "Honey Heist Gigatitan", value: 4, rarity: "2/8" },
-        { name: "Collector Maip Macrothorax", value: 4, rarity: "2/8" },
-        { name: "Vampire Batzegopteryx", value: 4, rarity: "1/8" },
-        { name: "Movie Giganotosaurus", value: 12, rarity: "3/8" },
-        { name: "Gold Lily Saurolophus", value: 6, rarity: "2/8" },
-        { name: "Indomitable Thief Gen 2", value: 10, rarity: "3/8" },
-        { name: "Indomitable King", value: 7, rarity: "3/8" },
-      ],
-    },
-    {
       name: "Collectors' Tier",
       range: "Special",
       color: "from-amber-500 to-yellow-600",
@@ -1053,7 +994,7 @@ export default function Component() {
       filtered = filtered.filter(
         (dino) =>
           dino.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          dino.value.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (dino.value ? dino.value.toString().toLowerCase().includes(searchTerm.toLowerCase()) : false) ||
           (dino.rarity && dino.rarity.toLowerCase().includes(searchTerm.toLowerCase())) ||
           (dino.code && dino.code.toLowerCase().includes(searchTerm.toLowerCase())) ||
           (dino.sdna && dino.sdna.toLowerCase().includes(searchTerm.toLowerCase())),
@@ -1095,10 +1036,13 @@ export default function Component() {
     return theme.rarityColors[rarityKey] || "bg-gradient-to-r from-gray-500 to-gray-600 text-white border-gray-400"
   }
 
+  // Fix black screen issue: Check if theme is loaded before rendering the main content
+  if (!isThemeLoaded) {
+    return <div className="min-h-screen bg-black" />
+  }
+
   return (
-    <div
-      className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}
-    >
+    <div className={`min-h-screen ${theme.background}`}>
       {/* Theme Side Panel */}
       <div
         className={`fixed inset-0 z-[100] transition-opacity duration-300 ${isThemePanelOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
