@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Paintbrush, Clock, TrendingUp, TrendingDown, RotateCcw, DollarSign } from "lucide-react"
+import { Paintbrush, Clock, TrendingUp, TrendingDown, RotateCcw } from "lucide-react"
 import Link from "next/link"
 
 interface Theme {
@@ -603,420 +603,170 @@ export default function Changelog() {
   const changelogEntries: ChangelogEntry[] = [
     // RISES
     {
-      name: "Metron Praenintius",
-      oldValue: 850,
-      newValue: 1150,
-      oldRarity: "7/8",
-      newRarity: "5/8",
-      isIncrease: true,
-    },
-    {
-      name: "Pitch Wraith Terror",
-      oldValue: 240,
-      newValue: 280,
+      name: "Violex Magnus",
+      oldValue: 150,
+      newValue: 180,
       oldRarity: "8/8",
       newRarity: "8/8",
       isIncrease: true,
     },
     {
-      name: "Wraith Terror",
-      oldValue: 160,
-      newValue: 170,
-      oldRarity: "7/8",
-      newRarity: "7/8",
-      isIncrease: true,
-    },
-    {
       name: "Blue Whale Shastasaurus",
-      oldValue: 80,
-      newValue: 95,
-      oldRarity: "6/8",
-      newRarity: "8/8",
-      isIncrease: true,
-    },
-    {
-      name: "Zomvinychus",
-      oldValue: 75,
-      newValue: 95,
+      oldValue: 95,
+      newValue: 145,
       oldRarity: "8/8",
       newRarity: "8/8",
       isIncrease: true,
     },
     {
       name: "Orca Spinosaurus",
-      oldValue: 62,
-      newValue: 64,
+      oldValue: 64,
+      newValue: 75,
       oldRarity: "6/8",
-      newRarity: "6/8",
+      newRarity: "7/8",
       isIncrease: true,
     },
     {
       name: "Dolphin Ichthyovenator",
-      oldValue: 56,
-      newValue: 58,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: true,
-    },
-    {
-      name: "Movie Mosasaurus",
-      oldValue: 46,
-      newValue: 58,
-      oldRarity: "6/8",
-      newRarity: "6/8",
-      isIncrease: true,
-    },
-    {
-      name: "Firebird",
-      oldValue: 30,
-      newValue: 32,
-      oldRarity: "6/8",
-      newRarity: "6/8",
-      isIncrease: true,
-    },
-    {
-      name: "Movie Spinosaurus",
-      oldValue: 20,
-      newValue: 23,
+      oldValue: 58,
+      newValue: 62,
       oldRarity: "5/8",
       newRarity: "6/8",
       isIncrease: true,
     },
     {
-      name: "Carcharocles Megalodon",
-      oldValue: 20,
-      newValue: 21,
+      name: "Gold Fossil Tyrannosaurus",
+      oldValue: 27,
+      newValue: 31,
       oldRarity: "5/8",
-      newRarity: "6/8",
-      isIncrease: true,
-    },
-    {
-      name: "Kaiju Gelioichthys",
-      oldValue: 19,
-      newValue: 20,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: true,
-    },
-    {
-      name: "Forgotten Mutant",
-      oldValue: 12,
-      newValue: 18,
-      oldRarity: "4/8",
-      newRarity: "5/8",
-      isIncrease: true,
-    },
-    {
-      name: "Movie Giganotosaurus",
-      oldValue: 5,
-      newValue: 12,
-      oldRarity: "3/8",
-      newRarity: "3/8",
-      isIncrease: true,
-    },
-    {
-      name: "Movie Therizinosaurus",
-      oldValue: 3,
-      newValue: 12,
-      oldRarity: "1/8",
-      newRarity: "3/8",
-      isIncrease: true,
-    },
-    {
-      name: "Indomitable King",
-      oldValue: 7,
-      newValue: 10,
-      oldRarity: "3/8",
-      newRarity: "4/8",
-      isIncrease: true,
-    },
-    {
-      name: "Santa Clawz",
-      oldValue: 16,
-      newValue: 16,
-      oldRarity: "2/8",
-      newRarity: "3/8",
-      isIncrease: true,
-    },
-    {
-      name: "Spring Blossom Lusotitan",
-      oldValue: 10,
-      newValue: 10,
-      oldRarity: "2/8",
-      newRarity: "3/8",
+      newRarity: "7/8",
       isIncrease: true,
     },
     // DROPS
     {
-      name: "Galactic Barosaurus",
-      oldValue: 85,
-      newValue: 80,
+      name: "Pitch Black Terror",
+      oldValue: 58,
+      newValue: 54,
       oldRarity: "6/8",
       newRarity: "5/8",
       isIncrease: false,
     },
     {
-      name: "Alpha Kaiju Spinosaurus",
-      oldValue: 30,
-      newValue: 28,
-      oldRarity: "5/8",
-      newRarity: "4/8",
-      isIncrease: false,
-    },
-    {
-      name: "Chaos Titanosaur",
-      oldValue: 12,
-      newValue: 9,
-      oldRarity: "3/8",
-      newRarity: "3/8",
+      name: "Movie Mosasaurus",
+      oldValue: 58,
+      newValue: 56,
+      oldRarity: "6/8",
+      newRarity: "6/8",
       isIncrease: false,
     },
     {
       name: "Giant Albino Baryonyx",
       oldValue: 50,
-      newValue: 50,
-      oldRarity: "5/8",
+      newValue: 45,
+      oldRarity: "4/8",
       newRarity: "4/8",
       isIncrease: false,
     },
     {
-      name: "Headlessaurus",
-      oldValue: 20,
-      newValue: 20,
-      oldRarity: "5/8",
+      name: "Crossover Hybrid/Vinera",
+      oldValue: 35,
+      newValue: 22,
+      oldRarity: "4/8",
+      newRarity: "4/8",
+      isIncrease: false,
+    },
+    {
+      name: "Alpha Kaiju Spinosaurus",
+      oldValue: 28,
+      newValue: 26,
+      oldRarity: "4/8",
+      newRarity: "4/8",
+      isIncrease: false,
+    },
+    {
+      name: "Alien Irritator",
+      oldValue: 25,
+      newValue: 21,
+      oldRarity: "4/8",
       newRarity: "4/8",
       isIncrease: false,
     },
     // ADJUSTMENTS
     {
-      name: "Pitch Luminescent Avinychus",
-      oldValue: 65,
-      newValue: 64,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: false,
+      name: "Pitch Wraith Terror",
+      oldValue: 280,
+      newValue: 290,
+      oldRarity: "8/8",
+      newRarity: "8/8",
+      isIncrease: true,
       isAdjustment: true,
     },
     {
-      name: "Pitch Black Terror",
-      oldValue: 58,
-      newValue: 58,
+      name: "Hydralania",
+      oldValue: 175,
+      newValue: 180,
       oldRarity: "7/8",
-      newRarity: "6/8",
+      newRarity: "7/8",
+      isIncrease: true,
+      isAdjustment: true,
+    },
+    {
+      name: "Wraith Terror",
+      oldValue: 170,
+      newValue: 180,
+      oldRarity: "7/8",
+      newRarity: "7/8",
+      isIncrease: true,
+      isAdjustment: true,
+    },
+    {
+      name: "Zomvinychus",
+      oldValue: 95,
+      newValue: 95,
+      oldRarity: "8/8",
+      newRarity: "7/8",
       isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Aurora Borethalass",
-      oldValue: 48,
-      newValue: 49,
-      oldRarity: "5/8",
-      newRarity: "6/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Kaiju Giraffatitan",
-      oldValue: 47,
-      newValue: 48,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: true,
       isAdjustment: true,
     },
     {
       name: "Spinofaarus",
-      oldValue: 46,
+      oldValue: 45,
       newValue: 45,
+      oldRarity: "5/8",
+      newRarity: "6/8",
+      isIncrease: true,
+      isAdjustment: true,
+    },
+    {
+      name: "Rakebaby Guanlong",
+      oldValue: 24,
+      newValue: 26,
+      oldRarity: "5/8",
+      newRarity: "4/8",
+      isIncrease: true,
+      isAdjustment: true,
+    },
+    {
+      name: "Movie Spinosaurus",
+      oldValue: 23,
+      newValue: 24,
       oldRarity: "6/8",
       newRarity: "5/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Crossover Hybrid/Vinera",
-      oldValue: 40,
-      newValue: 35,
-      oldRarity: "4/8",
-      newRarity: "4/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Kaiju Spinofaarus",
-      oldValue: 38,
-      newValue: 40,
-      oldRarity: "6/8",
-      newRarity: "5/8",
       isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Classic Pitch Black Terror",
-      oldValue: 36,
-      newValue: 39,
-      oldRarity: "3/8",
-      newRarity: "5/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Pitch Coconut Brachiosaurus",
-      oldValue: 35,
-      newValue: 36,
-      oldRarity: "3/8",
-      newRarity: "4/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Peak Spinosaurus",
-      oldValue: 32,
-      newValue: 28,
-      oldRarity: "4/8",
-      newRarity: "4/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Classic Albino Terror",
-      oldValue: 32,
-      newValue: 30,
-      oldRarity: "3/8",
-      newRarity: "4/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Early Winter Frost Sauroposeidon",
-      oldValue: 31,
-      newValue: 30,
-      oldRarity: "3/8",
-      newRarity: "4/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "White Walker Carcharodontosaurus",
-      oldValue: 30,
-      newValue: 27,
-      oldRarity: "3/8",
-      newRarity: "4/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Pitch Black Apatosaurus",
-      oldValue: 27,
-      newValue: 25,
-      oldRarity: "4/8",
-      newRarity: "4/8",
-      isIncrease: false,
       isAdjustment: true,
     },
     {
       name: "Spawn Shunosaurus",
-      oldValue: 18,
+      oldValue: 19,
       newValue: 19,
-      oldRarity: "5/8",
-      newRarity: "4/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Masquerade Gigantoraptor",
-      oldValue: 18,
-      newValue: 17,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Butterfly Alametus",
-      oldValue: 17,
-      newValue: 16,
       oldRarity: "4/8",
-      newRarity: "4/8",
-      isIncrease: false,
+      newRarity: "5/8",
+      isIncrease: true,
       isAdjustment: true,
     },
   ]
 
-  const collectorsEntries: ChangelogEntry[] = [
-    {
-      name: "Branded Purrusaurus",
-      oldValue: "1500-1850",
-      newValue: "1850-2250",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: true,
-      isCollectors: true,
-    },
-    {
-      name: "Grayscale Albino Terror",
-      oldValue: 105,
-      newValue: "70-130",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: false,
-      isCollectors: true,
-    },
-    {
-      name: "Grayscale Fasolatherium",
-      oldValue: 105,
-      newValue: "70-120",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: false,
-      isCollectors: true,
-    },
-    {
-      name: "Grayscale Gelioichthys",
-      oldValue: 100,
-      newValue: "70-110",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: false,
-      isCollectors: true,
-    },
-    {
-      name: "Grayscale Megavore",
-      oldValue: 85,
-      newValue: "70-110",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: false,
-      isCollectors: true,
-    },
-    {
-      name: "Grayscale Dolichomalosaurus",
-      oldValue: 60,
-      newValue: "70-100",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: true,
-      isCollectors: true,
-    },
-    {
-      name: "Grayscale Alametus",
-      oldValue: 48,
-      newValue: "70-100",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: true,
-      isCollectors: true,
-    },
-    {
-      name: "Grayscale Avinychus",
-      oldValue: 60,
-      newValue: "50-80",
-      oldRarity: "1/8",
-      newRarity: "1/8",
-      isIncrease: false,
-      isCollectors: true,
-    },
-  ]
+  const collectorsEntries: ChangelogEntry[] = []
 
   return (
     <div
@@ -1097,17 +847,17 @@ export default function Changelog() {
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-6 h-6 text-green-400" />
                 <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-                  Market Update - October 8, 2025
+                  Market Update - October 18, 2025
                 </CardTitle>
               </div>
             </CardHeader>
             <CardContent className="p-6">
               <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-4">
                 <p className="text-green-400 text-sm font-medium leading-relaxed">
-                  <strong>MAJOR MARKET SURGE!</strong> Metron Praenintius leads with a massive +300 value increase. Blue
-                  Whale Shastasaurus receives double rarity upgrade to 8/8. Multiple Movie-related skins seeing
-                  significant appreciation. DNA conversion rate adjusted to 14K-15K DNA = 1 Value. Collectors' tier sees
-                  substantial fluctuations with Branded Purrusaurus reaching 1850-2250 range.
+                  <strong>SIGNIFICANT MARKET SHIFTS!</strong> Blue Whale Shastasaurus surges +50 value, reaching 145.
+                  Violex Magnus and top-tier items see strong appreciation. Marine-themed dinosaurs (Orca, Dolphin)
+                  continue upward trend. Gold Fossil Tyrannosaurus receives double rarity upgrade to 7/8. Major DNA
+                  conversion rate adjustment: now 20K DNA = 1 Value (increased from 14K-15K).
                 </p>
               </div>
             </CardContent>
@@ -1223,43 +973,6 @@ export default function Changelog() {
             </CardContent>
           </Card>
 
-          {/* Collectors' Tier Changes */}
-          <Card
-            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-          >
-            <CardHeader className={`bg-gradient-to-r from-purple-900/20 to-violet-900/20 ${theme.cardBorder} border-b`}>
-              <div className="flex items-center gap-3">
-                <DollarSign className="w-6 h-6 text-purple-400" />
-                <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Collectors' Tier Updates</CardTitle>
-              </div>
-              <p className={`${theme.textSecondary} text-sm mt-2`}>
-                Fluctuations in rare collector items - values shown as ranges
-              </p>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="space-y-3">
-                {collectorsEntries.map((entry, index) => (
-                  <div
-                    key={index}
-                    className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-transform duration-200`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-3 h-3 rounded-full shrink-0 ${entry.isIncrease ? "bg-green-500" : "bg-purple-500"}`}
-                      ></div>
-                      <div className="flex-1 min-w-0">
-                        <p className={`${theme.textPrimary} text-sm font-medium truncate`}>{entry.name}</p>
-                        <p className={`${theme.textSecondary} text-xs`}>
-                          {entry.oldValue} → {entry.newValue}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
           {/* DNA Rate Change */}
           <Card
             className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
@@ -1274,9 +987,7 @@ export default function Changelog() {
                   <div className="w-3 h-3 bg-red-500 rounded-full shrink-0"></div>
                   <div>
                     <p className={`${theme.textPrimary} text-sm font-medium`}>DNA Conversion Rate Change</p>
-                    <p className={`${theme.textSecondary} text-xs`}>
-                      13.5K-14.5K DNA = 1 Value → 14K-15K DNA = 1 Value
-                    </p>
+                    <p className={`${theme.textSecondary} text-xs`}>14K-15K DNA = 1 Value → 20K DNA = 1 Value</p>
                   </div>
                 </div>
               </div>
