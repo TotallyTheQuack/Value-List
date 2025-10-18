@@ -1238,9 +1238,7 @@ export default function Component() {
                     </div>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {dino.rarity && (
-                        <Badge
-                          className={`${theme.badgeBg} ${theme.badgeText} border-0 ml-2 shrink-0 font-bold text-xs shadow-sm`}
-                        >
+                        <Badge className={`text-xs ${getRarityColor(dino.rarity)} border shadow-sm shrink-0 font-bold`}>
                           {dino.rarity}
                         </Badge>
                       )}

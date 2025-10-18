@@ -511,7 +511,7 @@ const themes: Record<string, Theme> = {
     inputBorder: "border-blue-600/70",
     badgeBg: "bg-blue-600/70",
     badgeText: "text-blue-100",
-    scrollHeaderBg: "bg-blue-950/95",
+    scrollHeaderBg: "bg-blue-900/95",
     dropdownBg: "bg-blue-950",
     linkHover: "hover:text-yellow-200",
     rarityColors: {
@@ -991,6 +991,48 @@ export default function Changelog() {
                   <div>
                     <p className={`${theme.textPrimary} text-sm font-medium`}>DNA Conversion Rate Change</p>
                     <p className={`${theme.textSecondary} text-xs`}>14K-15K DNA = 1 Value → 20K DNA = 1 Value</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Platform Updates */}
+          <Card
+            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+          >
+            <CardHeader className={`bg-gradient-to-r from-blue-900/20 to-cyan-900/20 ${theme.cardBorder} border-b`}>
+              <div className="flex items-center gap-3">
+                <Clock className="w-6 h-6 text-blue-400" />
+                <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Platform Updates</CardTitle>
+              </div>
+              <p className={`${theme.textSecondary} text-sm mt-2`}>Bug fixes and improvements to the value list</p>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="space-y-3">
+                <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
+                  <div className="flex items-start gap-3">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full shrink-0 mt-1"></div>
+                    <div>
+                      <p className={`${theme.textPrimary} text-sm font-medium`}>Fixed Demand Color Theme Support</p>
+                      <p className={`${theme.textSecondary} text-xs mt-1`}>
+                        Demand tier badges (8/8, 7/8, etc.) now properly change colors based on the selected theme
+                        across all pages. Previously, only the info page displayed theme-specific colors while the main
+                        value list showed generic colors.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
+                  <div className="flex items-start gap-3">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full shrink-0 mt-1"></div>
+                    <div>
+                      <p className={`${theme.textPrimary} text-sm font-medium`}>Improved Visual Consistency</p>
+                      <p className={`${theme.textSecondary} text-xs mt-1`}>
+                        All rarity indicators now use theme-specific color schemes in both grid and list views,
+                        providing a more cohesive and immersive experience across all 17 available themes.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
