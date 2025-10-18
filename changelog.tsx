@@ -43,7 +43,7 @@ const themes: Record<string, Theme> = {
     buttonHover: "hover:bg-gray-700/50",
     buttonText: "text-gray-300",
     inputBg: "bg-gray-900/50",
-    inputBorder: "border-gray-700/50",
+    inputBorder: "border-gray-800/50",
     badgeBg: "bg-gray-700/50",
     badgeText: "text-gray-200",
     scrollHeaderBg: "bg-black/95",
@@ -609,6 +609,7 @@ export default function Changelog() {
       oldRarity: "8/8",
       newRarity: "8/8",
       isIncrease: true,
+      isAdjustment: true,
     },
     {
       name: "Blue Whale Shastasaurus",
@@ -617,6 +618,7 @@ export default function Changelog() {
       oldRarity: "8/8",
       newRarity: "8/8",
       isIncrease: true,
+      isAdjustment: true,
     },
     {
       name: "Orca Spinosaurus",
@@ -854,10 +856,11 @@ export default function Changelog() {
             <CardContent className="p-6">
               <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-4">
                 <p className="text-green-400 text-sm font-medium leading-relaxed">
-                  <strong>SIGNIFICANT MARKET SHIFTS!</strong> Blue Whale Shastasaurus surges +50 value, reaching 145.
-                  Violex Magnus and top-tier items see strong appreciation. Marine-themed dinosaurs (Orca, Dolphin)
-                  continue upward trend. Gold Fossil Tyrannosaurus receives double rarity upgrade to 7/8. Major DNA
-                  conversion rate adjustment: now 20K DNA = 1 Value (increased from 14K-15K).
+                  <strong>SIGNIFICANT MARKET SHIFTS!</strong> Blue Whale Shastasaurus surges +50 value to 145
+                  (unstable). Violex Magnus increases to 180 (unstable). Marine-themed dinosaurs (Orca, Dolphin)
+                  continue upward trend with rarity upgrades. Gold Fossil Tyrannosaurus receives double rarity upgrade
+                  to 7/8. Major DNA conversion rate adjustment: now 20K DNA = 1 Value (increased from 14K-15K). Watch
+                  for potential fluctuations in unstable items.
                 </p>
               </div>
             </CardContent>
@@ -940,7 +943,7 @@ export default function Changelog() {
           <Card
             className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
           >
-            <CardHeader className={`bg-gradient-to-r from-orange-900/20 to-yellow-900/20 ${theme.cardBorder} border-b`}>
+            <CardHeader className={`bg-gradient-to-r from-orange-900/20 to-yellow-950/20 ${theme.cardBorder} border-b`}>
               <div className="flex items-center gap-3">
                 <RotateCcw className="w-6 h-6 text-orange-400" />
                 <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Tier Adjustments</CardTitle>
