@@ -336,7 +336,7 @@ const themes: Record<string, Theme> = {
     badgeBg: "bg-amber-600/40",
     badgeText: "text-amber-100",
     scrollHeaderBg: "bg-slate-900/95",
-    dropdownBg: "bg-slate-950",
+    dropdownBg: "bg-slate-900",
     linkHover: "hover:text-yellow-100",
     rarityColors: {
       "8/8": "bg-yellow-400 text-black border-yellow-300",
@@ -643,10 +643,14 @@ export default function Info() {
   ]
 
   return (
-    <div className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}>
+    <div
+      className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}
+    >
       <div className="max-w-5xl mx-auto p-4 sm:p-6">
         {/* Header */}
-        <div className={`relative z-20 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl`}>
+        <div
+          className={`relative z-20 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl`}
+        >
           <div className="flex justify-between items-center">
             {/* Left Side: Settings Button */}
             <div className="relative">
@@ -681,11 +685,11 @@ export default function Info() {
 
             {/* Middle: Title */}
             <div className="text-center">
-                <div className="flex items-center justify-center gap-3 mb-2">
-                    <InfoIcon className={`w-8 h-8 ${theme.textAccent}`} />
-                    <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary}`}>Information Center</h1>
-                </div>
-                <p className={`text-lg ${theme.textSecondary} font-light`}>Understanding the Value List System</p>
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <InfoIcon className={`w-8 h-8 ${theme.textAccent}`} />
+                <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary}`}>Information Center</h1>
+              </div>
+              <p className={`text-lg ${theme.textSecondary} font-light`}>Understanding the Value List System</p>
             </div>
 
             {/* Right Side: Navigation Buttons */}
@@ -708,38 +712,38 @@ export default function Info() {
           </div>
         </div>
 
-        <div className="grid gap-6 lg:gap-8">
-          {/* Main Demand Tiers */}
+        <div className="space-y-8">
+          {/* Main Demand Tiers - Full Width */}
           <Card
-            className={`relative z-10 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
           >
             <CardHeader className={`${theme.inputBg} ${theme.cardBorder} border-b`}>
               <div className="flex items-center gap-3">
                 <BookOpen className={`w-6 h-6 ${theme.textAccent}`} />
-                <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>Demand Tier System</CardTitle>
+                <div>
+                  <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>Demand Tier System</CardTitle>
+                  <p className={`${theme.textSecondary} text-sm mt-1`}>
+                    Understanding trading demand and value stability
+                  </p>
+                </div>
               </div>
-              <p className={`${theme.textSecondary} text-sm mt-2`}>
-                Each tier represents the trading demand and value stability of dinosaur skins
-              </p>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="grid gap-4">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {demandTiers.map((tier, index) => (
                   <div
                     key={index}
-                    className={`${theme.inputBg} ${theme.border} border rounded-xl p-4 hover:scale-[1.02] transition-transform duration-200`}
+                    className={`${theme.inputBg} ${theme.cardBorder} border rounded-xl p-4 hover:scale-[1.02] transition-all duration-200`}
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex flex-col gap-3">
                       <Badge
                         className={`text-sm ${
                           theme.rarityColors[tier.tier as keyof typeof theme.rarityColors]
-                        } border shadow-lg shrink-0 font-bold`}
+                        } border shadow-lg w-fit font-bold`}
                       >
                         {tier.tier}
                       </Badge>
-                      <div>
-                        <p className={`${theme.textPrimary} text-sm font-medium leading-relaxed`}>{tier.description}</p>
-                      </div>
+                      <p className={`${theme.textPrimary} text-xs leading-relaxed`}>{tier.description}</p>
                     </div>
                   </div>
                 ))}
@@ -747,78 +751,80 @@ export default function Info() {
             </CardContent>
           </Card>
 
-          {/* Missing Skins */}
-          <Card
-            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-          >
-            <CardHeader className={`${theme.inputBg} ${theme.cardBorder} border-b`}>
-              <div className="flex items-center gap-3">
-                <HelpCircle className={`w-6 h-6 ${theme.textAccent}`} />
-                <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>Missing Skins Explained</CardTitle>
-              </div>
-              <p className={`${theme.textSecondary} text-sm mt-2`}>
-                Why some tradeable skins aren't included in the main value list
-              </p>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="grid gap-4">
-                {missingReasons.map((reason, index) => (
-                  <div
-                    key={index}
-                    className={`${theme.inputBg} ${theme.border} border rounded-xl p-4 hover:scale-[1.02] transition-transform duration-200`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className={`w-8 h-8 rounded-full ${theme.badgeBg} flex items-center justify-center shrink-0`}
-                      >
-                        <span className={`${theme.badgeText} text-sm font-bold`}>{index + 1}</span>
-                      </div>
-                      <p className={`${theme.textPrimary} text-sm font-medium leading-relaxed`}>{reason}</p>
-                    </div>
+          {/* Side by Side Information */}
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Missing Skins */}
+            <Card
+              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+            >
+              <CardHeader className={`${theme.inputBg} ${theme.cardBorder} border-b`}>
+                <div className="flex items-center gap-3">
+                  <HelpCircle className={`w-5 h-5 ${theme.textAccent}`} />
+                  <div>
+                    <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Missing Skins</CardTitle>
+                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>Why some skins aren't listed</p>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                </div>
+              </CardHeader>
+              <CardContent className="p-5">
+                <div className="space-y-3">
+                  {missingReasons.map((reason, index) => (
+                    <div
+                      key={index}
+                      className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div
+                          className={`w-6 h-6 rounded-full ${theme.badgeBg} flex items-center justify-center shrink-0`}
+                        >
+                          <span className={`${theme.badgeText} text-xs font-bold`}>{index + 1}</span>
+                        </div>
+                        <p className={`${theme.textPrimary} text-sm leading-relaxed`}>{reason}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
-          {/* Trading Tips */}
-          <Card
-            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-          >
-            <CardHeader className={`${theme.inputBg} ${theme.cardBorder} border-b`}>
-              <div className="flex items-center gap-3">
-                <InfoIcon className={`w-6 h-6 ${theme.textAccent}`} />
-                <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>Trading Guidelines</CardTitle>
-              </div>
-              <p className={`${theme.textSecondary} text-sm mt-2`}>
-                Essential tips for successful trading in Dinosaur Simulator
-              </p>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="grid gap-4">
-                <div className={`${theme.inputBg} ${theme.border} border rounded-xl p-4`}>
-                  <h4 className={`${theme.textAccent} font-semibold mb-2`}>Value Fluctuations</h4>
-                  <p className={`${theme.textPrimary} text-sm leading-relaxed`}>
-                    Values can change based on market demand, updates, and community trends. Always check the latest
-                    changelog before making trades.
-                  </p>
+            {/* Trading Tips */}
+            <Card
+              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+            >
+              <CardHeader className={`${theme.inputBg} ${theme.cardBorder} border-b`}>
+                <div className="flex items-center gap-3">
+                  <InfoIcon className={`w-5 h-5 ${theme.textAccent}`} />
+                  <div>
+                    <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Trading Guidelines</CardTitle>
+                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>Essential trading tips</p>
+                  </div>
                 </div>
-                <div className={`${theme.inputBg} ${theme.border} border rounded-xl p-4`}>
-                  <h4 className={`${theme.textAccent} font-semibold mb-2`}>Rarity vs Demand</h4>
-                  <p className={`${theme.textPrimary} text-sm leading-relaxed`}>
-                    A higher rarity tier (like 8/8) doesn't always mean higher value. Demand plays a crucial role in
-                    determining actual trading worth.
-                  </p>
+              </CardHeader>
+              <CardContent className="p-5">
+                <div className="space-y-3">
+                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-3`}>
+                    <h4 className={`${theme.textAccent} font-semibold text-sm mb-2`}>Value Fluctuations</h4>
+                    <p className={`${theme.textPrimary} text-xs leading-relaxed`}>
+                      Values change based on market demand, updates, and community trends. Check the changelog before
+                      trading.
+                    </p>
+                  </div>
+                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-3`}>
+                    <h4 className={`${theme.textAccent} font-semibold text-sm mb-2`}>Rarity vs Demand</h4>
+                    <p className={`${theme.textPrimary} text-xs leading-relaxed`}>
+                      Higher rarity (8/8) doesn't always mean higher value. Demand is crucial in determining worth.
+                    </p>
+                  </div>
+                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-3`}>
+                    <h4 className={`${theme.textAccent} font-semibold text-sm mb-2`}>DNA Conversion</h4>
+                    <p className={`${theme.textPrimary} text-xs leading-relaxed`}>
+                      Current rate: 20K DNA = 1 Value. This rate may change with updates.
+                    </p>
+                  </div>
                 </div>
-                <div className={`${theme.inputBg} ${theme.border} border rounded-xl p-4`}>
-                  <h4 className={`${theme.textAccent} font-semibold mb-2`}>DNA Conversion</h4>
-                  <p className={`${theme.textPrimary} text-sm leading-relaxed`}>
-                    Current DNA conversion rate: 12-13K DNA = 1 Value. This rate may change with updates.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Footer */}

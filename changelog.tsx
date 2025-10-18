@@ -840,33 +840,37 @@ export default function Changelog() {
           </div>
         </div>
 
-        <div className="grid gap-6 lg:gap-8">
-          {/* Market Summary */}
+        <div className="space-y-8">
+          {/* Market Summary - Full Width */}
           <Card
-            className={`relative z-10 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
           >
             <CardHeader className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}>
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-6 h-6 text-green-400" />
-                <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-                  Market Update - October 18, 2025
-                </CardTitle>
+                <div>
+                  <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
+                    Market Update - October 18, 2025
+                  </CardTitle>
+                  <p className={`${theme.textSecondary} text-sm mt-1`}>Latest trading trends and market movements</p>
+                </div>
               </div>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-4">
+              <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-5">
                 <p className="text-green-400 text-sm font-medium leading-relaxed">
-                  <strong>SIGNIFICANT MARKET SHIFTS!</strong> Blue Whale Shastasaurus surges +50 value to 145
-                  (unstable). Violex Magnus increases to 180 (unstable). Marine-themed dinosaurs (Orca, Dolphin)
-                  continue upward trend with rarity upgrades. Gold Fossil Tyrannosaurus receives double rarity upgrade
-                  to 7/8. Major DNA conversion rate adjustment: now 20K DNA = 1 Value (increased from 14K-15K). Watch
-                  for potential fluctuations in unstable items.
+                  <strong className="text-base">SIGNIFICANT MARKET SHIFTS!</strong>
+                  <br className="mb-2" />
+                  Blue Whale Shastasaurus surges +50 value to 145 (unstable). Violex Magnus increases to 180 (unstable).
+                  Marine-themed dinosaurs (Orca, Dolphin) continue upward trend with rarity upgrades. Gold Fossil
+                  Tyrannosaurus receives double rarity upgrade to 7/8. Major DNA conversion rate adjustment: now 20K DNA
+                  = 1 Value (increased from 14K-15K). Watch for potential fluctuations in unstable items.
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Value Changes */}
+          {/* Value Changes - Side by Side */}
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Rises */}
             <Card
@@ -875,28 +879,44 @@ export default function Changelog() {
               <CardHeader
                 className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}
               >
-                <div className="flex items-center gap-3">
-                  <TrendingUp className="w-6 h-6 text-green-400" />
-                  <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Increases</CardTitle>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <TrendingUp className="w-5 h-5 text-green-400" />
+                    <div>
+                      <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Increases</CardTitle>
+                      <p className={`${theme.textSecondary} text-xs mt-0.5`}>
+                        {
+                          changelogEntries.filter(
+                            (entry) => entry.isIncrease && !entry.isCollectors && !entry.isAdjustment,
+                          ).length
+                        }{" "}
+                        items
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-3 max-h-[600px] overflow-y-auto">
+              <CardContent className="p-4">
+                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
                   {changelogEntries
                     .filter((entry) => entry.isIncrease && !entry.isCollectors && !entry.isAdjustment)
                     .map((entry, index) => (
                       <div
                         key={index}
-                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-transform duration-200`}
+                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="w-3 h-3 bg-green-500 rounded-full shrink-0"></div>
+                        <div className="flex items-start justify-between gap-3">
                           <div className="flex-1 min-w-0">
-                            <p className={`${theme.textPrimary} text-sm font-medium truncate`}>{entry.name}</p>
-                            <p className={`${theme.textSecondary} text-xs`}>
-                              {entry.oldValue} ({entry.oldRarity}) → {entry.newValue} ({entry.newRarity})
-                            </p>
+                            <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
+                            <div className="flex items-center gap-2 mt-1">
+                              <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
+                              <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
+                              <span className="text-green-400 text-xs">→</span>
+                              <span className="text-green-400 text-xs font-semibold">{entry.newValue}</span>
+                              <span className="text-green-400 text-xs">({entry.newRarity})</span>
+                            </div>
                           </div>
+                          <div className="w-2 h-2 bg-green-500 rounded-full shrink-0 mt-1.5"></div>
                         </div>
                       </div>
                     ))}
@@ -909,28 +929,44 @@ export default function Changelog() {
               className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
             >
               <CardHeader className={`bg-gradient-to-r from-red-900/20 to-pink-900/20 ${theme.cardBorder} border-b`}>
-                <div className="flex items-center gap-3">
-                  <TrendingDown className="w-6 h-6 text-red-400" />
-                  <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Decreases</CardTitle>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <TrendingDown className="w-5 h-5 text-red-400" />
+                    <div>
+                      <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Decreases</CardTitle>
+                      <p className={`${theme.textSecondary} text-xs mt-0.5`}>
+                        {
+                          changelogEntries.filter(
+                            (entry) => !entry.isIncrease && !entry.isAdjustment && !entry.isCollectors,
+                          ).length
+                        }{" "}
+                        items
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-3">
+              <CardContent className="p-4">
+                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
                   {changelogEntries
                     .filter((entry) => !entry.isIncrease && !entry.isAdjustment && !entry.isCollectors)
                     .map((entry, index) => (
                       <div
                         key={index}
-                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-transform duration-200`}
+                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="w-3 h-3 bg-red-500 rounded-full shrink-0"></div>
+                        <div className="flex items-start justify-between gap-3">
                           <div className="flex-1 min-w-0">
-                            <p className={`${theme.textPrimary} text-sm font-medium truncate`}>{entry.name}</p>
-                            <p className={`${theme.textSecondary} text-xs`}>
-                              {entry.oldValue} ({entry.oldRarity}) → {entry.newValue} ({entry.newRarity})
-                            </p>
+                            <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
+                            <div className="flex items-center gap-2 mt-1">
+                              <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
+                              <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
+                              <span className="text-red-400 text-xs">→</span>
+                              <span className="text-red-400 text-xs font-semibold">{entry.newValue}</span>
+                              <span className="text-red-400 text-xs">({entry.newRarity})</span>
+                            </div>
                           </div>
+                          <div className="w-2 h-2 bg-red-500 rounded-full shrink-0 mt-1.5"></div>
                         </div>
                       </div>
                     ))}
@@ -939,35 +975,47 @@ export default function Changelog() {
             </Card>
           </div>
 
-          {/* Adjustments */}
+          {/* Adjustments - Full Width */}
           <Card
             className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
           >
             <CardHeader className={`bg-gradient-to-r from-orange-900/20 to-yellow-950/20 ${theme.cardBorder} border-b`}>
               <div className="flex items-center gap-3">
-                <RotateCcw className="w-6 h-6 text-orange-400" />
-                <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Tier Adjustments</CardTitle>
+                <RotateCcw className="w-5 h-5 text-orange-400" />
+                <div>
+                  <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Tier Adjustments</CardTitle>
+                  <p className={`${theme.textSecondary} text-sm mt-1`}>Rarity tier changes and value adjustments</p>
+                </div>
               </div>
-              <p className={`${theme.textSecondary} text-sm mt-2`}>Rarity tier changes and value adjustments</p>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="grid gap-3 sm:grid-cols-2 max-h-[600px] overflow-y-auto">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {changelogEntries
                   .filter((entry) => entry.isAdjustment)
                   .map((entry, index) => (
                     <div
                       key={index}
-                      className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-transform duration-200`}
+                      className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-start gap-3">
                         <div
-                          className={`w-3 h-3 rounded-full shrink-0 ${entry.isIncrease ? "bg-green-500" : "bg-red-500"}`}
+                          className={`w-2 h-2 rounded-full shrink-0 mt-1.5 ${entry.isIncrease ? "bg-green-500" : "bg-red-500"}`}
                         ></div>
                         <div className="flex-1 min-w-0">
-                          <p className={`${theme.textPrimary} text-sm font-medium truncate`}>{entry.name}</p>
-                          <p className={`${theme.textSecondary} text-xs`}>
-                            {entry.oldValue} ({entry.oldRarity}) → {entry.newValue} ({entry.newRarity})
-                          </p>
+                          <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
+                          <div className="flex items-center gap-2 mt-1 flex-wrap">
+                            <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
+                            <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
+                            <span className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs`}>→</span>
+                            <span
+                              className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs font-semibold`}
+                            >
+                              {entry.newValue}
+                            </span>
+                            <span className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs`}>
+                              ({entry.newRarity})
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -976,68 +1024,71 @@ export default function Changelog() {
             </CardContent>
           </Card>
 
-          {/* DNA Rate Change */}
-          <Card
-            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-          >
-            <CardHeader className={`bg-gradient-to-r from-red-900/20 to-orange-950/20 ${theme.cardBorder} border-b`}>
-              <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>DNA Conversion Rate Update</CardTitle>
-              <p className={`${theme.textSecondary} text-sm mt-2`}>Important changes to DNA trading rates</p>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
+          {/* Other Updates - Side by Side */}
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* DNA Rate Change */}
+            <Card
+              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+            >
+              <CardHeader className={`bg-gradient-to-r from-red-900/20 to-orange-900/20 ${theme.cardBorder} border-b`}>
                 <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full shrink-0"></div>
+                  <Clock className="w-5 h-5 text-red-400" />
                   <div>
-                    <p className={`${theme.textPrimary} text-sm font-medium`}>DNA Conversion Rate Change</p>
-                    <p className={`${theme.textSecondary} text-xs`}>14K-15K DNA = 1 Value → 20K DNA = 1 Value</p>
+                    <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>DNA Conversion</CardTitle>
+                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>Updated trading rates</p>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardHeader>
+              <CardContent className="p-5">
+                <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full shrink-0 mt-1.5"></div>
+                    <div>
+                      <p className={`${theme.textPrimary} text-sm font-semibold mb-2`}>Rate Increase (Inflation)</p>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className={`${theme.textSecondary} text-sm`}>14K-15K DNA = 1 Value</span>
+                        <span className="text-red-400">→</span>
+                        <span className="text-red-400 font-semibold text-sm">20K DNA = 1 Value</span>
+                      </div>
+                      <p className={`${theme.textSecondary} text-xs mt-2 italic`}>
+                        Higher DNA per value indicates market inflation
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-          {/* Platform Updates */}
-          <Card
-            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-          >
-            <CardHeader className={`bg-gradient-to-r from-blue-900/20 to-cyan-900/20 ${theme.cardBorder} border-b`}>
-              <div className="flex items-center gap-3">
-                <Clock className="w-6 h-6 text-blue-400" />
-                <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Platform Updates</CardTitle>
-              </div>
-              <p className={`${theme.textSecondary} text-sm mt-2`}>Bug fixes and improvements to the value list</p>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="space-y-3">
-                <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
-                  <div className="flex items-start gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full shrink-0 mt-1"></div>
-                    <div>
-                      <p className={`${theme.textPrimary} text-sm font-medium`}>Fixed Demand Color Theme Support</p>
-                      <p className={`${theme.textSecondary} text-xs mt-1`}>
-                        Demand tier badges (8/8, 7/8, etc.) now properly change colors based on the selected theme
-                        across all pages. Previously, only the info page displayed theme-specific colors while the main
-                        value list showed generic colors.
-                      </p>
+            {/* Platform Updates */}
+            <Card
+              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+            >
+              <CardHeader className={`bg-gradient-to-r from-blue-900/20 to-cyan-900/20 ${theme.cardBorder} border-b`}>
+                <div className="flex items-center gap-3">
+                  <Paintbrush className="w-5 h-5 text-blue-400" />
+                  <div>
+                    <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>Platform Updates</CardTitle>
+                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>Bug fixes & improvements</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-5">
+                <div className="space-y-3">
+                  <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
+                      <div>
+                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Theme Color Fix</p>
+                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
+                          Demand badges now match selected theme across all pages
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
-                  <div className="flex items-start gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full shrink-0 mt-1"></div>
-                    <div>
-                      <p className={`${theme.textPrimary} text-sm font-medium`}>Improved Visual Consistency</p>
-                      <p className={`${theme.textSecondary} text-xs mt-1`}>
-                        All rarity indicators now use theme-specific color schemes in both grid and list views,
-                        providing a more cohesive and immersive experience across all 17 available themes.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Footer */}

@@ -1096,34 +1096,38 @@ export default function Component() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <div ref={headerControlsRef}>
+          {/* Compact Header */}
           <div
-            className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8`}
+            className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6`}
           >
-            <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4">
-              <div className="relative order-2 sm:order-1">
-                <button
-                  onClick={() => setIsThemePanelOpen(true)}
-                  className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}
-                >
-                  <Paintbrush className="w-4 h-4" />
-                  <span>Themes</span>
-                </button>
+            <div className="flex items-center justify-between gap-4">
+              {/* Left: Theme Button */}
+              <button
+                onClick={() => setIsThemePanelOpen(true)}
+                className={`px-3 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}
+              >
+                <Paintbrush className="w-4 h-4" />
+                <span className="hidden sm:inline">Themes</span>
+              </button>
+
+              {/* Center: Title */}
+              <div className="text-center flex-1">
+                <h1 className={`text-2xl sm:text-3xl font-bold ${theme.textPrimary}`}>Dinosaur Simulator</h1>
+                <p className={`text-sm ${theme.textSecondary} font-light`}>Value List</p>
               </div>
-              <div className="text-center order-1 sm:order-2">
-                <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary} mb-1`}>Dinosaur Simulator</h1>
-                <p className={`text-lg ${theme.textSecondary} font-light`}>Value List</p>
-              </div>
-              <div className="flex gap-2 sm:gap-3 order-3">
+
+              {/* Right: Navigation */}
+              <div className="flex gap-2">
                 <Link href={`/info?theme=${currentTheme}`}>
                   <button
-                    className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+                    className={`px-3 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
                   >
                     Info
                   </button>
                 </Link>
                 <Link href={`/changelog?theme=${currentTheme}`}>
                   <button
-                    className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+                    className={`px-3 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
                   >
                     Changelog
                   </button>
@@ -1132,87 +1136,115 @@ export default function Component() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 mb-6 sm:mb-8">
-            <div className="w-full">
-              <Input
-                type="text"
-                placeholder="Search dinosaurs, values..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className={`h-12 sm:h-14 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-xl backdrop-blur-sm text-base`}
-              />
-            </div>
+          {/* Search and Filters - Organized */}
+          <div className="space-y-4 mb-6">
+            {/* Search Bar - Full Width */}
+            <Input
+              type="text"
+              placeholder="Search dinosaurs, values, codes..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={`h-12 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-xl backdrop-blur-sm text-base`}
+            />
 
-            <div className="flex flex-col items-center gap-3">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="relative flex-1 sm:flex-none sm:min-w-[180px]">
-                  <select
-                    value={selectedTier}
-                    onChange={(e) => setSelectedTier(e.target.value)}
-                    className={`w-full h-12 px-4 py-3 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} rounded-xl backdrop-blur-sm focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} appearance-none cursor-pointer text-sm font-medium`}
-                  >
-                    <option value="all" className="bg-gray-900 text-white">
-                      All Tiers
-                    </option>
-                    {tiers.map((tier) => (
-                      <option key={tier.name} value={tier.name} className="bg-gray-900 text-white">
-                        {tier.name} ({tier.range})
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown
-                    className={`absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 ${theme.textSecondary} pointer-events-none`}
-                  />
-                </div>
-
-                <div
-                  className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border self-start h-12`}
+            {/* Filters Row */}
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Tier Filter */}
+              <div className="relative flex-1 min-w-[180px] max-w-xs">
+                <select
+                  value={selectedTier}
+                  onChange={(e) => setSelectedTier(e.target.value)}
+                  className={`w-full h-11 px-4 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} rounded-xl backdrop-blur-sm focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} appearance-none cursor-pointer text-sm font-medium`}
                 >
-                  <button
-                    onClick={() => setViewMode("grid")}
-                    className={`px-4 py-2 rounded-lg transition-all flex items-center justify-center ${viewMode === "grid" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
-                  >
-                    <Grid className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode("list")}
-                    className={`px-4 py-2 rounded-lg transition-all flex items-center justify-center ${viewMode === "list" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
-                  >
-                    <List className="w-4 h-4" />
-                  </button>
-                </div>
+                  <option value="all" className="bg-gray-900 text-white">
+                    All Tiers
+                  </option>
+                  {tiers.map((tier) => (
+                    <option key={tier.name} value={tier.name} className="bg-gray-900 text-white">
+                      {tier.name}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown
+                  className={`absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 ${theme.textSecondary} pointer-events-none`}
+                />
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                <div
-                  className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border self-start h-12`}
+              {/* Sort Options */}
+              <div className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border h-11`}>
+                <button
+                  onClick={() => setSortMode("value")}
+                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs ${sortMode === "value" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
                 >
-                  <button
-                    onClick={() => setSortMode("value")}
-                    className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === "value" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
-                  >
-                    <DollarSign className="w-4 h-4" /> Value
-                  </button>
-                  <button
-                    onClick={() => setSortMode("alphabetical")}
-                    className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === "alphabetical" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
-                  >
-                    <ArrowDownUp className="w-4 h-4" /> A-Z
-                  </button>
-                  <button
-                    onClick={() => setSortMode("demand")}
-                    className={`px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${sortMode === "demand" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
-                  >
-                    <BarChartHorizontalBig className="w-4 h-4" /> Demand
-                  </button>
-                </div>
+                  <DollarSign className="w-3.5 h-3.5" /> Value
+                </button>
+                <button
+                  onClick={() => setSortMode("alphabetical")}
+                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs ${sortMode === "alphabetical" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                >
+                  <ArrowDownUp className="w-3.5 h-3.5" /> A-Z
+                </button>
+                <button
+                  onClick={() => setSortMode("demand")}
+                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs ${sortMode === "demand" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                >
+                  <BarChartHorizontalBig className="w-3.5 h-3.5" /> Demand
+                </button>
+              </div>
+
+              {/* View Toggle */}
+              <div className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border h-11`}>
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center ${viewMode === "grid" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                >
+                  <Grid className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center ${viewMode === "list" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                >
+                  <List className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="mb-4 sm:mb-6">
-          <p className={`${theme.textSecondary} text-sm`}>Showing {filteredAndSortedDinosaurs.length} dinosaurs</p>
+          {/* Active Filters & Quick Actions */}
+          {(searchTerm || selectedTier !== "all" || sortMode !== "value") && (
+            <div className="flex items-center gap-2 flex-wrap mb-6">
+              <span className={`${theme.textSecondary} text-xs`}>Active filters:</span>
+              {searchTerm && (
+                <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>Search: {searchTerm}</Badge>
+              )}
+              {selectedTier !== "all" && (
+                <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>Tier: {selectedTier}</Badge>
+              )}
+              {sortMode !== "value" && (
+                <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>
+                  Sort: {sortMode === "alphabetical" ? "A-Z" : "Demand"}
+                </Badge>
+              )}
+              <button
+                onClick={() => {
+                  setSearchTerm("")
+                  setSelectedTier("all")
+                  setSortMode("value")
+                }}
+                className={`text-xs ${theme.textAccent} ${theme.linkHover} underline`}
+              >
+                Clear all
+              </button>
+            </div>
+          )}
+
+          {/* Results Count */}
+          <div className="flex items-center justify-between">
+            <p className={`${theme.textSecondary} text-sm`}>
+              Showing <span className={`${theme.textAccent} font-semibold`}>{filteredAndSortedDinosaurs.length}</span>{" "}
+              dinosaurs
+            </p>
+          </div>
         </div>
 
         <div>
