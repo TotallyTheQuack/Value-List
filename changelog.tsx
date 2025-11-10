@@ -812,8 +812,8 @@ export default function Changelog() {
                   Major shifts in the market: Blue Whale Shastasaurus drops significantly from 145 to 115 (now 6/8
                   rarity). Violex Magnus increases to 185 (7/8). Zomvinychus sees a major drop to 78 value. Several
                   dinosaurs received tier adjustments including Distorted King, Galactic Barosaurus, and Indomitable
-                  King gaining rarity upgrades. DNA conversion rate updated: 20K DNA now equals 1 Value (increased from
-                  previous 14K rate). Watch for continued market fluctuations.
+                  King gaining rarity upgrades. DNA conversion rate updated: 14K-15l DNA now equals 1 Value (decreased from
+                  previous 20K rate). Watch for continued market fluctuations.
                 </p>
               </div>
             </CardContent>
