@@ -603,167 +603,115 @@ export default function Changelog() {
   const changelogEntries: ChangelogEntry[] = [
     // RISES
     {
-      name: "Violex Magnus",
-      oldValue: 150,
-      newValue: 180,
-      oldRarity: "8/8",
-      newRarity: "8/8",
+      name: "Distorted King",
+      oldValue: 85,
+      newValue: 85,
+      oldRarity: "6/8",
+      newRarity: "7/8",
       isIncrease: true,
-      isAdjustment: true,
     },
     {
-      name: "Blue Whale Shastasaurus",
-      oldValue: 95,
-      newValue: 145,
-      oldRarity: "8/8",
-      newRarity: "8/8",
+      name: "Galactic Barosaurus",
+      oldValue: 80,
+      newValue: 80,
+      oldRarity: "5/8",
+      newRarity: "6/8",
       isIncrease: true,
-      isAdjustment: true,
+    },
+    {
+      name: "Indomitable King",
+      oldValue: 10,
+      newValue: 12,
+      oldRarity: "4/8",
+      newRarity: "5/8",
+      isIncrease: true,
+    },
+    {
+      name: "Indomitable Thief Gen 2",
+      oldValue: 10,
+      newValue: 14,
+      oldRarity: "3/8",
+      newRarity: "3/8",
+      isIncrease: true,
+    },
+
+    // DROPS
+    {
+      name: "Blue Whale Shastasaurus",
+      oldValue: 145,
+      newValue: 115,
+      oldRarity: "8/8",
+      newRarity: "6/8",
+      isIncrease: false,
+    },
+    {
+      name: "Zomvinychus",
+      oldValue: 95,
+      newValue: 78,
+      oldRarity: "7/8",
+      newRarity: "6/8",
+      isIncrease: false,
     },
     {
       name: "Orca Spinosaurus",
-      oldValue: 64,
-      newValue: 75,
-      oldRarity: "6/8",
-      newRarity: "7/8",
-      isIncrease: true,
-    },
-    {
-      name: "Dolphin Ichthyovenator",
-      oldValue: 58,
-      newValue: 62,
-      oldRarity: "5/8",
+      oldValue: 75,
+      newValue: 72,
+      oldRarity: "7/8",
       newRarity: "6/8",
-      isIncrease: true,
+      isIncrease: false,
     },
     {
       name: "Gold Fossil Tyrannosaurus",
-      oldValue: 27,
-      newValue: 31,
-      oldRarity: "5/8",
-      newRarity: "7/8",
-      isIncrease: true,
-    },
-    // DROPS
-    {
-      name: "Pitch Black Terror",
-      oldValue: 58,
-      newValue: 54,
-      oldRarity: "6/8",
-      newRarity: "5/8",
-      isIncrease: false,
-    },
-    {
-      name: "Movie Mosasaurus",
-      oldValue: 58,
-      newValue: 56,
-      oldRarity: "6/8",
-      newRarity: "6/8",
-      isIncrease: false,
-    },
-    {
-      name: "Giant Albino Baryonyx",
-      oldValue: 50,
-      newValue: 45,
-      oldRarity: "4/8",
-      newRarity: "4/8",
-      isIncrease: false,
-    },
-    {
-      name: "Crossover Hybrid/Vinera",
-      oldValue: 35,
-      newValue: 22,
-      oldRarity: "4/8",
-      newRarity: "4/8",
-      isIncrease: false,
-    },
-    {
-      name: "Alpha Kaiju Spinosaurus",
-      oldValue: 28,
-      newValue: 26,
-      oldRarity: "4/8",
+      oldValue: 31,
+      newValue: 23,
+      oldRarity: "7/8",
       newRarity: "4/8",
       isIncrease: false,
     },
     {
       name: "Alien Irritator",
-      oldValue: 25,
-      newValue: 21,
+      oldValue: 21,
+      newValue: 19,
       oldRarity: "4/8",
       newRarity: "4/8",
       isIncrease: false,
     },
+
     // ADJUSTMENTS
     {
-      name: "Pitch Wraith Terror",
-      oldValue: 280,
-      newValue: 290,
-      oldRarity: "8/8",
-      newRarity: "8/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Hydralania",
-      oldValue: 175,
-      newValue: 180,
-      oldRarity: "7/8",
-      newRarity: "7/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Wraith Terror",
-      oldValue: 170,
-      newValue: 180,
-      oldRarity: "7/8",
-      newRarity: "7/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Zomvinychus",
-      oldValue: 95,
-      newValue: 95,
+      name: "Violex Magnus",
+      oldValue: 180,
+      newValue: 185,
       oldRarity: "8/8",
       newRarity: "7/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Spinofaarus",
-      oldValue: 45,
-      newValue: 45,
-      oldRarity: "5/8",
-      newRarity: "6/8",
       isIncrease: true,
       isAdjustment: true,
     },
     {
-      name: "Rakebaby Guanlong",
-      oldValue: 24,
-      newValue: 26,
+      name: "Pitch Luminescent Avinychus",
+      oldValue: 64,
+      newValue: 65,
       oldRarity: "5/8",
-      newRarity: "4/8",
+      newRarity: "5/8",
       isIncrease: true,
       isAdjustment: true,
     },
     {
       name: "Movie Spinosaurus",
-      oldValue: 23,
-      newValue: 24,
-      oldRarity: "6/8",
+      oldValue: 24,
+      newValue: 23,
+      oldRarity: "5/8",
       newRarity: "5/8",
-      isIncrease: true,
+      isIncrease: false,
       isAdjustment: true,
     },
     {
-      name: "Spawn Shunosaurus",
-      oldValue: 19,
-      newValue: 19,
-      oldRarity: "4/8",
+      name: "Carcharocles Megalodon",
+      oldValue: 21,
+      newValue: 21,
+      oldRarity: "6/8",
       newRarity: "5/8",
-      isIncrease: true,
+      isIncrease: false,
       isAdjustment: true,
     },
   ]
@@ -850,7 +798,7 @@ export default function Changelog() {
                 <TrendingUp className="w-6 h-6 text-green-400" />
                 <div>
                   <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-                    Market Update - October 18, 2025
+                    Market Update - November 9, 2025
                   </CardTitle>
                   <p className={`${theme.textSecondary} text-sm mt-1`}>Latest trading trends and market movements</p>
                 </div>
@@ -859,12 +807,13 @@ export default function Changelog() {
             <CardContent className="p-6">
               <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-5">
                 <p className="text-green-400 text-sm font-medium leading-relaxed">
-                  <strong className="text-base">SIGNIFICANT MARKET SHIFTS!</strong>
+                  <strong className="text-base">LATEST VALUE UPDATE!</strong>
                   <br className="mb-2" />
-                  Blue Whale Shastasaurus surges +50 value to 145 (unstable). Violex Magnus increases to 180 (unstable).
-                  Marine-themed dinosaurs (Orca, Dolphin) continue upward trend with rarity upgrades. Gold Fossil
-                  Tyrannosaurus receives double rarity upgrade to 7/8. Major DNA conversion rate adjustment: now 20K DNA
-                  = 1 Value (increased from 14K-15K). Watch for potential fluctuations in unstable items.
+                  Major shifts in the market: Blue Whale Shastasaurus drops significantly from 145 to 115 (now 6/8
+                  rarity). Violex Magnus increases to 185 (7/8). Zomvinychus sees a major drop to 78 value. Several
+                  dinosaurs received tier adjustments including Distorted King, Galactic Barosaurus, and Indomitable
+                  King gaining rarity upgrades. DNA conversion rate updated: 20K DNA now equals 1 Value (increased from
+                  previous 14K rate). Watch for continued market fluctuations.
                 </p>
               </div>
             </CardContent>
@@ -1030,9 +979,11 @@ export default function Changelog() {
             <Card
               className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
             >
-              <CardHeader className={`bg-gradient-to-r from-red-900/20 to-orange-900/20 ${theme.cardBorder} border-b`}>
+              <CardHeader
+                className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}
+              >
                 <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-red-400" />
+                  <Clock className="w-5 h-5 text-green-400" />
                   <div>
                     <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>DNA Conversion</CardTitle>
                     <p className={`${theme.textSecondary} text-xs mt-0.5`}>Updated trading rates</p>
@@ -1040,18 +991,18 @@ export default function Changelog() {
                 </div>
               </CardHeader>
               <CardContent className="p-5">
-                <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
+                <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
                   <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full shrink-0 mt-1.5"></div>
+                    <div className="w-2 h-2 bg-green-500 rounded-full shrink-0 mt-1.5"></div>
                     <div>
-                      <p className={`${theme.textPrimary} text-sm font-semibold mb-2`}>Rate Increase (Inflation)</p>
+                      <p className={`${theme.textPrimary} text-sm font-semibold mb-2`}>Value Increase</p>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className={`${theme.textSecondary} text-sm`}>14K-15K DNA = 1 Value</span>
-                        <span className="text-red-400">→</span>
-                        <span className="text-red-400 font-semibold text-sm">20K DNA = 1 Value</span>
+                        <span className={`${theme.textSecondary} text-sm`}>20K DNA = 1 Value</span>
+                        <span className="text-green-400">→</span>
+                        <span className="text-green-400 font-semibold text-sm">14K-15K DNA = 1 Value</span>
                       </div>
                       <p className={`${theme.textSecondary} text-xs mt-2 italic`}>
-                        Higher DNA per value indicates market inflation
+                        Lower DNA per value means dinosaurs are more valuable
                       </p>
                     </div>
                   </div>
@@ -1074,7 +1025,7 @@ export default function Changelog() {
               </CardHeader>
               <CardContent className="p-5">
                 <div className="space-y-3">
-                  <div className={`${theme.inputBg} ${theme.border} border rounded-lg p-4`}>
+                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
                     <div className="flex items-start gap-3">
                       <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
                       <div>
