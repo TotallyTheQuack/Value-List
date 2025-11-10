@@ -812,8 +812,8 @@ export default function Changelog() {
                   Major shifts in the market: Blue Whale Shastasaurus drops significantly from 145 to 115 (now 6/8
                   rarity). Violex Magnus increases to 185 (7/8). Zomvinychus sees a major drop to 78 value. Several
                   dinosaurs received tier adjustments including Distorted King, Galactic Barosaurus, and Indomitable
-                  King gaining rarity upgrades. DNA conversion rate updated: 14K-15l DNA now equals 1 Value (decreased from
-                  previous 20K rate). Watch for continued market fluctuations.
+                  King gaining rarity upgrades. DNA conversion rate updated: 14K-15l DNA now equals 1 Value (decreased
+                  from previous 20K rate). Watch for continued market fluctuations.
                 </p>
               </div>
             </CardContent>
@@ -1025,6 +1025,28 @@ export default function Changelog() {
               </CardHeader>
               <CardContent className="p-5">
                 <div className="space-y-3">
+                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
+                      <div>
+                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Duplicate Entries Fixed</p>
+                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
+                          Removed duplicate dinosaur entries that appeared in multiple tiers
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
+                    <div className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
+                      <div>
+                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Tier Organization Improved</p>
+                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
+                          All dinosaurs now correctly sorted into their appropriate value tiers
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                   <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
                     <div className="flex items-start gap-3">
                       <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
