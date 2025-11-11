@@ -798,7 +798,7 @@ export default function Changelog() {
                 <TrendingUp className="w-6 h-6 text-green-400" />
                 <div>
                   <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-                    Market Update - November 9, 2025
+                    Market Update - November 11, 2025
                   </CardTitle>
                   <p className={`${theme.textSecondary} text-sm mt-1`}>Latest trading trends and market movements</p>
                 </div>
@@ -813,7 +813,7 @@ export default function Changelog() {
                   rarity). Violex Magnus increases to 185 (7/8). Zomvinychus sees a major drop to 78 value. Several
                   dinosaurs received tier adjustments including Distorted King, Galactic Barosaurus, and Indomitable
                   King gaining rarity upgrades. DNA conversion rate updated: 14K-15K DNA now equals 1 Value (decreased
-                  from previous 20K rate). Watch for continued market fluctuations.
+                  from previous 20K rate). PS - (All 2025 halloween skins are unstable and will not be added until they are stable).
                 </p>
               </div>
             </CardContent>
@@ -1051,9 +1051,9 @@ export default function Changelog() {
                     <div className="flex items-start gap-3">
                       <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
                       <div>
-                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Theme Color Fix</p>
+                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Filter Update</p>
                         <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
-                          Demand badges now match selected theme across all pages
+                          Added values to the filters
                         </p>
                       </div>
                     </div>
