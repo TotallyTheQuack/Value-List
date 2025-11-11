@@ -644,7 +644,7 @@ export default function Component() {
 
   const tiers: Tier[] = [
     {
-      name: "S Tier",
+      name: "S Tier (110+)",
       range: "110+ (3M-25M dna)",
       color: "from-red-500 to-pink-600",
       gradient: "bg-gradient-to-br from-red-800/60 to-pink-800/60",
@@ -661,7 +661,7 @@ export default function Component() {
       ],
     },
     {
-      name: "A Tier",
+      name: "A Tier (50-110)",
       range: "50-110 (1.1M-3M dna)",
       color: "from-orange-500 to-red-500",
       gradient: "bg-gradient-to-br from-orange-800/60 to-red-800/60",
@@ -681,7 +681,7 @@ export default function Component() {
       ],
     },
     {
-      name: "B Tier",
+      name: "B Tier (30-49)",
       range: "30-49 (600K-1.1M dna)",
       color: "from-yellow-500 to-orange-500",
       gradient: "bg-gradient-to-br from-yellow-800/60 to-orange-800/60",
@@ -700,7 +700,7 @@ export default function Component() {
       ],
     },
     {
-      name: "C Tier",
+      name: "C Tier (15-29)",
       range: "15-29 (300K-600K dna)",
       color: "from-green-500 to-yellow-500",
       gradient: "bg-gradient-to-br from-green-800/60 to-yellow-800/60",
@@ -735,7 +735,7 @@ export default function Component() {
       ],
     },
     {
-      name: "D Tier",
+      name: "D Tier (10-14)",
       range: "10-14 (200K-300K dna)",
       color: "from-blue-500 to-green-500",
       gradient: "bg-gradient-to-br from-blue-800/60 to-green-800/60",
@@ -762,7 +762,7 @@ export default function Component() {
       ],
     },
     {
-      name: "E Tier",
+      name: "E Tier (4-9)",
       range: "4-9 (80K-200K dna)",
       color: "from-purple-500 to-blue-500",
       gradient: "bg-gradient-to-br from-purple-800/60 to-blue-800/60",
@@ -815,7 +815,7 @@ export default function Component() {
       ],
     },
     {
-      name: "F Tier",
+      name: "F Tier (0-4)",
       range: "0-4 (20K-80K dna)",
       color: "from-gray-500 to-purple-500",
       gradient: "bg-gradient-to-br from-gray-800/60 to-purple-800/60",
