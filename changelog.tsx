@@ -807,7 +807,7 @@ export default function Changelog() {
                 <p className="text-green-400 text-sm font-medium leading-relaxed">
                   <strong className="text-base">LATEST VALUE UPDATE!</strong>
                   <br className="mb-2" />
-                  Recent market adjustments: Blue Whale Shastasaurus drops from 115 to 95 (6/8). Zomvinychus decreases to 70 (5/8). Reaper Gelioichthys rises to 69 (7/8). Classic Pitch Black Terror adjusted to 36 value (5/8). White Walker Carcharodontosaurus increases to 28 (4/8). Added 22 new tradable dinosaurs including Apparition Fossil Giganotosaurus (185, 7/8), Cathedral Fasolatherium (80, 6/8), multiple Fossil variants, and several Nomad Corythosaurus skins.
+                  Recent market adjustments: Blue Whale Shastasaurus drops from 115 to 95 (6/8). Zomvinychus decreases to 70 (5/8). Reaper Gelioichthys rises to 69 (7/8). Classic Pitch Black Terror adjusted to 36 value (5/8). White Walker Carcharodontosaurus increases to 28 (4/8). Added 22 new tradable dinosaurs including Apparition Fossil Giganotosaurus 185, (7/8), Cathedral Fasolatherium 80, (6/8), multiple new Fossil variants, and several of the Nomad Corythosaurus skins.
                 </p>
               </div>
             </CardContent>
