@@ -616,7 +616,7 @@ const themes: Record<string, Theme> = {
     },
   },
   oled: {
-    name: "OLED Black",
+    name: "TEST",
     background: "bg-black",
     cardBg: "bg-zinc-950/40",
     cardBorder: "border-zinc-800/30",
@@ -699,6 +699,9 @@ export default function Component() {
   const handleThemeChange = (themeName: string) => {
     setCurrentTheme(themeName)
     localStorage.setItem("dinosaur-value-list-theme", themeName)
+    const url = new URL(window.location.href)
+    url.searchParams.set("theme", themeName)
+    window.history.replaceState({}, "", url.toString())
     setIsThemePanelOpen(false)
   }
 

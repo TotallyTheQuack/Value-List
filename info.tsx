@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Paintbrush, InfoIcon, BookOpen, HelpCircle } from "lucide-react"
+import { Paintbrush, InfoIcon, BookOpen, HelpCircle } from 'lucide-react'
 import Link from "next/link"
 
 interface Theme {
@@ -96,7 +96,7 @@ const themes: Record<string, Theme> = {
       "6/8": "bg-purple-500 text-white border-purple-400",
       "5/8": "bg-violet-500 text-white border-violet-400",
       "4/8": "bg-indigo-500 text-white border-indigo-400",
-      "3/8": "bg-cyan-400 text-white border-cyan-300",
+      "3/8": "bg-cyan-500 text-white border-cyan-400",
       "2/8": "bg-purple-700 text-white border-purple-600",
       "1/8": "bg-slate-600 text-white border-slate-500",
     },
@@ -566,6 +566,68 @@ const themes: Record<string, Theme> = {
       "1/8": "bg-slate-700 text-slate-200 border-slate-600",
     },
   },
+  pb: {
+    name: "Pitch Black",
+    background: "bg-black",
+    cardBg: "bg-zinc-950/40",
+    cardBorder: "border-zinc-800/60",
+    headerBg: "bg-black/40",
+    textPrimary: "text-zinc-100",
+    textSecondary: "text-zinc-400",
+    textAccent: "text-cyan-400",
+    border: "border-zinc-800/60",
+    buttonBg: "bg-zinc-900/60",
+    buttonHover: "hover:bg-zinc-800/70",
+    buttonText: "text-zinc-200",
+    inputBg: "bg-zinc-950/60",
+    inputBorder: "border-zinc-700/70",
+    badgeBg: "bg-zinc-800/70",
+    badgeText: "text-zinc-100",
+    scrollHeaderBg: "bg-black/98",
+    dropdownBg: "bg-black",
+    linkHover: "hover:text-cyan-300",
+    rarityColors: {
+      "8/8": "bg-fuchsia-600 text-white border-fuchsia-500",
+      "7/8": "bg-red-600 text-white border-red-500",
+      "6/8": "bg-orange-600 text-white border-orange-500",
+      "5/8": "bg-amber-500 text-black border-amber-400",
+      "4/8": "bg-emerald-600 text-white border-emerald-500",
+      "3/8": "bg-cyan-500 text-black border-cyan-400",
+      "2/8": "bg-blue-600 text-white border-blue-500",
+      "1/8": "bg-zinc-700 text-zinc-200 border-zinc-600",
+    },
+  },
+  oled: {
+    name: "TEST",
+    background: "bg-black",
+    cardBg: "bg-zinc-950/40",
+    cardBorder: "border-zinc-800/30",
+    headerBg: "bg-black/60",
+    textPrimary: "text-zinc-100",
+    textSecondary: "text-zinc-400",
+    textAccent: "text-cyan-400",
+    border: "border-zinc-800/40",
+    buttonBg: "bg-zinc-900/50",
+    buttonHover: "hover:bg-zinc-800/60",
+    buttonText: "text-zinc-200",
+    inputBg: "bg-black/60",
+    inputBorder: "border-zinc-700/50",
+    badgeBg: "bg-zinc-800/60",
+    badgeText: "text-zinc-100",
+    scrollHeaderBg: "bg-black",
+    dropdownBg: "bg-black",
+    linkHover: "hover:text-cyan-300",
+    rarityColors: {
+      "8/8": "bg-cyan-500 text-black border-cyan-400",
+      "7/8": "bg-purple-500 text-white border-purple-400",
+      "6/8": "bg-blue-500 text-white border-blue-400",
+      "5/8": "bg-green-500 text-white border-green-400",
+      "4/8": "bg-yellow-500 text-black border-yellow-400",
+      "3/8": "bg-orange-500 text-white border-orange-400",
+      "2/8": "bg-red-500 text-white border-red-400",
+      "1/8": "bg-zinc-700 text-zinc-300 border-zinc-600",
+    },
+  },
 }
 
 export default function Info() {
@@ -594,6 +656,9 @@ export default function Info() {
   const handleThemeChange = (themeName: string) => {
     setCurrentTheme(themeName)
     localStorage.setItem("dinosaur-value-list-theme", themeName)
+    const url = new URL(window.location.href)
+    url.searchParams.set("theme", themeName)
+    window.history.replaceState({}, "", url.toString())
     setShowSettings(false)
   }
 
