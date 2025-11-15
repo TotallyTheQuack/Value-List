@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Paintbrush, Clock, TrendingUp, TrendingDown, RotateCcw } from "lucide-react"
+import { Paintbrush, Clock, TrendingUp, TrendingDown, RotateCcw } from 'lucide-react'
 import Link from "next/link"
 
 interface Theme {
@@ -603,113 +603,46 @@ export default function Changelog() {
   const changelogEntries: ChangelogEntry[] = [
     // RISES
     {
-      name: "Distorted King",
-      oldValue: 85,
-      newValue: 85,
+      name: "Reaper Gelioichthys",
+      oldValue: 68,
+      newValue: 69,
       oldRarity: "6/8",
       newRarity: "7/8",
       isIncrease: true,
     },
     {
-      name: "Galactic Barosaurus",
-      oldValue: 80,
-      newValue: 80,
-      oldRarity: "5/8",
-      newRarity: "6/8",
-      isIncrease: true,
-    },
-    {
-      name: "Indomitable King",
-      oldValue: 10,
-      newValue: 12,
+      name: "White Walker Carcharodontosaurus",
+      oldValue: 27,
+      newValue: 28,
       oldRarity: "4/8",
-      newRarity: "5/8",
-      isIncrease: true,
-    },
-    {
-      name: "Indomitable Thief Gen 2",
-      oldValue: 10,
-      newValue: 14,
-      oldRarity: "3/8",
-      newRarity: "3/8",
+      newRarity: "4/8",
       isIncrease: true,
     },
 
     // DROPS
     {
       name: "Blue Whale Shastasaurus",
-      oldValue: 145,
-      newValue: 115,
-      oldRarity: "8/8",
+      oldValue: 115,
+      newValue: 95,
+      oldRarity: "6/8",
       newRarity: "6/8",
       isIncrease: false,
     },
     {
       name: "Zomvinychus",
-      oldValue: 95,
-      newValue: 78,
-      oldRarity: "7/8",
-      newRarity: "6/8",
-      isIncrease: false,
-    },
-    {
-      name: "Orca Spinosaurus",
-      oldValue: 75,
-      newValue: 72,
-      oldRarity: "7/8",
-      newRarity: "6/8",
-      isIncrease: false,
-    },
-    {
-      name: "Gold Fossil Tyrannosaurus",
-      oldValue: 31,
-      newValue: 23,
-      oldRarity: "7/8",
-      newRarity: "4/8",
-      isIncrease: false,
-    },
-    {
-      name: "Alien Irritator",
-      oldValue: 21,
-      newValue: 19,
-      oldRarity: "4/8",
-      newRarity: "4/8",
+      oldValue: 78,
+      newValue: 70,
+      oldRarity: "6/8",
+      newRarity: "5/8",
       isIncrease: false,
     },
 
     // ADJUSTMENTS
     {
-      name: "Violex Magnus",
-      oldValue: 180,
-      newValue: 185,
-      oldRarity: "8/8",
-      newRarity: "7/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Pitch Luminescent Avinychus",
-      oldValue: 64,
-      newValue: 65,
+      name: "Classic Pitch Black Terror",
+      oldValue: 39,
+      newValue: 36,
       oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: true,
-      isAdjustment: true,
-    },
-    {
-      name: "Movie Spinosaurus",
-      oldValue: 24,
-      newValue: 23,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-    {
-      name: "Carcharocles Megalodon",
-      oldValue: 21,
-      newValue: 21,
-      oldRarity: "6/8",
       newRarity: "5/8",
       isIncrease: false,
       isAdjustment: true,
@@ -798,7 +731,7 @@ export default function Changelog() {
                 <TrendingUp className="w-6 h-6 text-green-400" />
                 <div>
                   <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-                    Market Update - November 11, 2025
+                    Market Update - November 15, 2025
                   </CardTitle>
                   <p className={`${theme.textSecondary} text-sm mt-1`}>Latest trading trends and market movements</p>
                 </div>
@@ -809,11 +742,7 @@ export default function Changelog() {
                 <p className="text-green-400 text-sm font-medium leading-relaxed">
                   <strong className="text-base">LATEST VALUE UPDATE!</strong>
                   <br className="mb-2" />
-                  Major shifts in the market: Blue Whale Shastasaurus drops significantly from 145 to 115 (now 6/8
-                  rarity). Violex Magnus increases to 185 (7/8). Zomvinychus sees a major drop to 78 value. Several
-                  dinosaurs received tier adjustments including Distorted King, Galactic Barosaurus, and Indomitable
-                  King gaining rarity upgrades. DNA conversion rate updated: 14K-15K DNA now equals 1 Value (decreased
-                  from previous 20K rate). PS - (All 2025 halloween skins are unstable and will not be added until they are stable).
+                  Recent market adjustments: Blue Whale Shastasaurus drops from 115 to 95 (6/8). Zomvinychus decreases to 70 (5/8). Reaper Gelioichthys rises to 69 (7/8). Classic Pitch Black Terror adjusted to 36 value (5/8). White Walker Carcharodontosaurus increases to 28 (4/8). Added 22 new tradable dinosaurs including Apparition Fossil Giganotosaurus (185, 7/8), Cathedral Fasolatherium (80, 6/8), multiple Fossil variants, and several Nomad Corythosaurus skins.
                 </p>
               </div>
             </CardContent>
@@ -975,37 +904,61 @@ export default function Changelog() {
 
           {/* Other Updates - Side by Side */}
           <div className="grid gap-6 lg:grid-cols-2">
-            {/* DNA Rate Change */}
+            {/* New Tradables - Full Width in Grid */}
             <Card
-              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden lg:col-span-1`}
             >
-              <CardHeader
-                className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}
-              >
+              <CardHeader className={`bg-gradient-to-r from-cyan-900/20 to-blue-900/20 ${theme.cardBorder} border-b`}>
                 <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-green-400" />
+                  <TrendingUp className="w-5 h-5 text-cyan-400" />
                   <div>
-                    <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>DNA Conversion</CardTitle>
-                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>Updated trading rates</p>
+                    <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>New Tradables</CardTitle>
+                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>22 new dinosaurs added</p>
                   </div>
                 </div>
               </CardHeader>
               <CardContent className="p-5">
-                <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full shrink-0 mt-1.5"></div>
-                    <div>
-                      <p className={`${theme.textPrimary} text-sm font-semibold mb-2`}>Value Increase</p>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className={`${theme.textSecondary} text-sm`}>20K DNA = 1 Value</span>
-                        <span className="text-green-400">→</span>
-                        <span className="text-green-400 font-semibold text-sm">14K-15K DNA = 1 Value</span>
+                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+                  {[
+                    { name: "Apparition Fossil Giganotosaurus", value: 185, rarity: "7/8" },
+                    { name: "Cathedral Fasolatherium", value: 80, rarity: "6/8" },
+                    { name: "Nameless Barosaurus", value: 65, rarity: "6/8" },
+                    { name: "Spectre Fossil Megavore", value: 24, rarity: "5/8" },
+                    { name: "Gold Fossil Giganotosaurus", value: 8, rarity: "4/8" },
+                    { name: "Fossil Megavore", value: 5, rarity: "2/8" },
+                    { name: "Gold Fossil Skulker", value: 4, rarity: "1/8" },
+                    { name: "Nomad Corythosaurus", value: 4, rarity: "1/8" },
+                    { name: "Fossil Giganotosaurus", value: 3, rarity: "1/8" },
+                    { name: "Old Bark Nomad Corythosaurus", value: 3, rarity: "1/8" },
+                    { name: "Pristine Vessel Nomad Corythosaurus", value: 3, rarity: "1/8" },
+                    { name: "Sky High Nomad Corythosaurus", value: 3, rarity: "1/8" },
+                    { name: "Tiderider Nomad Corythosaurus", value: 3, rarity: "1/8" },
+                    { name: "Scarecrow Thanatosdrakon", value: 3, rarity: "1/8" },
+                    { name: "Fallen Caveman", value: 2, rarity: "1/8" },
+                    { name: "Fossil Acrocanthosaurus", value: 2, rarity: "1/8" },
+                    { name: "Fossil Basilosaurus", value: 2, rarity: "1/8" },
+                    { name: "Fossil Therizinosaurus", value: 2, rarity: "1/8" },
+                    { name: "Fossil Skulker", value: 2, rarity: "1/8" },
+                    { name: "Radiated Zomvinychus", value: 2, rarity: "1/8" },
+                    { name: "Fallen", value: 1, rarity: "1/8" },
+                    { name: "Overseer Wanderer", value: 1, rarity: "1/8" },
+                  ].map((dino, index) => (
+                    <div
+                      key={index}
+                      className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1 min-w-0">
+                          <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{dino.name}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="text-cyan-400 text-xs font-semibold">{dino.value}</span>
+                            <span className="text-cyan-400 text-xs">({dino.rarity})</span>
+                          </div>
+                        </div>
+                        <div className="w-2 h-2 bg-cyan-500 rounded-full shrink-0 mt-1.5"></div>
                       </div>
-                      <p className={`${theme.textSecondary} text-xs mt-2 italic`}>
-                        Lower DNA per value means dinosaurs are more valuable
-                      </p>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
