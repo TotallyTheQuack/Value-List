@@ -831,7 +831,7 @@ export default function Component() {
       ],
     },
     {
-      name: "E Tier (5-9)",
+      name: "E Tier (4.5-9)",
       range: "4.5-9 (80K-200K dna)",
       color: "from-purple-500 to-blue-500",
       gradient: "bg-gradient-to-br from-purple-800/60 to-blue-800/60",
