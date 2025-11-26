@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Paintbrush, Clock, TrendingUp, TrendingDown, RotateCcw } from 'lucide-react'
+import { Paintbrush, Clock, TrendingUp, TrendingDown, RotateCcw } from "lucide-react"
 import Link from "next/link"
 
 interface Theme {
@@ -631,475 +631,1021 @@ interface ChangelogEntry {
   isCollectors?: boolean
 }
 
-export default function Changelog() {
-  const [currentTheme, setCurrentTheme] = useState<string>("dark")
-  const [showSettings, setShowSettings] = useState(false)
-  const [isThemeLoaded, setIsThemeLoaded] = useState(false)
+//export default function Changelog() {
+//  const [currentTheme, setCurrentTheme] = useState<string>("dark")
+//  const [showSettings, setShowSettings] = useState(false)
+//  const [isThemeLoaded, setIsThemeLoaded] = useState(false)
 
-  // Load theme from localStorage or URL params on mount
+//  // Load theme from localStorage or URL params on mount
+//  useEffect(() => {
+//    const urlParams = new URLSearchParams(window.location.search)
+//    const themeFromUrl = urlParams.get("theme")
+//    const savedTheme = localStorage.getItem("dinosaur-value-list-theme")
+
+//    let newTheme = "dark" // Default theme
+//    if (themeFromUrl && themes[themeFromUrl]) {
+//      newTheme = themeFromUrl
+//    } else if (savedTheme && themes[savedTheme]) {
+//      newTheme = savedTheme
+//    }
+
+//    setCurrentTheme(newTheme)
+//    setIsThemeLoaded(true)
+//  }, [])
+
+//  // Save theme to localStorage when changed
+//  const handleThemeChange = (themeName: string) => {
+//    setCurrentTheme(themeName)
+//    localStorage.setItem("dinosaur-value-list-theme", themeName)
+//    const url = new URL(window.location.href)
+//    url.searchParams.set("theme", themeName)
+//    window.history.replaceState({}, "", url.toString())
+//    setShowSettings(false)
+//  }
+
+//  const theme = themes[currentTheme]
+
+//  const changelogEntries: ChangelogEntry[] = [
+//    // RISES
+//    {
+//      name: "Reaper Gelioichthys",
+//      oldValue: 68,
+//      newValue: 69,
+//      oldRarity: "6/8",
+//      newRarity: "7/8",
+//      isIncrease: true,
+//    },
+//    {
+//      name: "White Walker Carcharodontosaurus",
+//      oldValue: 27,
+//      newValue: 28,
+//      oldRarity: "4/8",
+//      newRarity: "4/8",
+//      isIncrease: true,
+//    },
+
+//    // DROPS
+//    {
+//      name: "Blue Whale Shastasaurus",
+//      oldValue: 115,
+//      newValue: 95,
+//      oldRarity: "6/8",
+//      newRarity: "6/8",
+//      isIncrease: false,
+//    },
+//    {
+//      name: "Zomvinychus",
+//      oldValue: 78,
+//      newValue: 70,
+//      oldRarity: "6/8",
+//      newRarity: "5/8",
+//      isIncrease: false,
+//    },
+
+//    // ADJUSTMENTS
+//    {
+//      name: "Classic Pitch Black Terror",
+//      oldValue: 39,
+//      newValue: 36,
+//      oldRarity: "5/8",
+//      newRarity: "5/8",
+//      isIncrease: false,
+//      isAdjustment: true,
+//    },
+//  ]
+
+//  const collectorsEntries: ChangelogEntry[] = []
+
+//  return (
+//    <div
+//      className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}
+//    >
+//      {/* Header */}
+//      <div
+//        className={`relative z-20 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl`}
+//      >
+//        <div className="flex justify-between items-center">
+//          {/* Left Side: Settings Button */}
+//          <div className="relative">
+//            <button
+//              onClick={() => setShowSettings(!showSettings)}
+//              className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}
+//            >
+//              <Paintbrush className="w-4 h-4" />
+//              <span className="hidden sm:inline">Themes</span>
+//            </button>
+//            {showSettings && (
+//              <div
+//                className={`absolute top-full left-0 mt-2 ${theme.dropdownBg} backdrop-blur-xl ${theme.border} border rounded-xl p-3 min-w-[200px] z-50 shadow-2xl`}
+//              >
+//                <div className={`${theme.textSecondary} text-xs font-medium mb-3 px-1`}>Choose Theme</div>
+//                {Object.entries(themes).map(([key, themeOption]) => (
+//                  <button
+//                    key={key}
+//                    onClick={() => handleThemeChange(key)}
+//                    className={`w-full text-left px-3 py-2 rounded-lg transition-colors text-sm mb-1 ${
+//                      currentTheme === key
+//                        ? `${theme.buttonBg} ${theme.buttonText}`
+//                        : `${theme.textSecondary} ${theme.buttonHover.replace("hover:", "hover:")}`
+//                    }`}
+//                  >
+//                    {themeOption.name}
+//                  </button>
+//                ))}
+//              </div>
+//            )}
+//          </div>
+
+//          {/* Middle: Title */}
+//          <div className="text-center">
+//            <div className="flex items-center justify-center gap-3 mb-2">
+//              <Clock className={`w-8 h-8 ${theme.textAccent}`} />
+//              <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary}`}>Update History</h1>
+//            </div>
+//            <p className={`text-lg ${theme.textSecondary} font-light`}>Recent Value Changes & Market Updates</p>
+//          </div>
+
+//          {/* Right Side: Navigation Buttons */}
+//          <div className="flex gap-2 sm:gap-3">
+//            <Link href={`/info?theme=${currentTheme}`}>
+//              <button
+//                className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+//              >
+//                Info
+//              </button>
+//            </Link>
+//            <Link href={`/?theme=${currentTheme}`}>
+//              <button
+//                className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+//              >
+//                Back to Value List
+//              </button>
+//            </Link>
+//          </div>
+//        </div>
+//      </div>
+
+//      <div className="max-w-5xl mx-auto p-4 sm:p-6">
+//        <div className="space-y-8">
+//          {/* Market Summary - Full Width */}
+//          <Card
+//            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+//          >
+//            <CardHeader className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}>
+//              <div className="flex items-center gap-3">
+//                <TrendingUp className="w-6 h-6 text-green-400" />
+//                <div>
+//                  <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
+//                    Market Update - November 15, 2025
+//                  </CardTitle>
+//                  <p className={`${theme.textSecondary} text-sm mt-1`}>Latest trading trends and market movements</p>
+//                </div>
+//              </div>
+//            </CardHeader>
+//            <CardContent className="p-6">
+//              <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-5">
+//                <p className="text-green-400 text-sm font-medium leading-relaxed">
+//                  <strong className="text-base">LATEST VALUE UPDATE!</strong>
+//                  <br className="mb-2" />
+//                  Recent market adjustments: Blue Whale Shastasaurus drops from 115 to 95 (6/8). Zomvinychus decreases to 70 (5/8). Reaper Gelioichthys rises to 69 (7/8). Classic Pitch Black Terror adjusted to 36 value (5/8). White Walker Carcharodontosaurus increases to 28 (4/8). Added 22 new tradable dinosaurs including Apparition Fossil Giganotosaurus 185, (7/8), Cathedral Fasolatherium 80, (6/8), multiple new Fossil variants, and several of the Nomad Corythosaurus skins.
+//                </p>
+//              </div>
+//            </CardContent>
+//          </Card>
+
+//          {/* Value Changes - Side by Side */}
+//          <div className="grid gap-6 lg:grid-cols-2">
+//            {/* Rises */}
+//            <Card
+//              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+//            >
+//              <CardHeader
+//                className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}
+//              >
+//                <div className="flex items-center justify-between">
+//                  <div className="flex items-center gap-3">
+//                    <TrendingUp className="w-5 h-5 text-green-400" />
+//                    <div>
+//                      <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Increases</CardTitle>
+//                      <p className={`${theme.textSecondary} text-xs mt-0.5`}>
+//                        {
+//                          changelogEntries.filter(
+//                            (entry) => entry.isIncrease && !entry.isCollectors && !entry.isAdjustment,
+//                          ).length
+//                        }{" "}
+//                        items
+//                      </p>
+//                    </div>
+//                  </div>
+//                </div>
+//              </CardHeader>
+//              <CardContent className="p-4">
+//                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+//                  {changelogEntries
+//                    .filter((entry) => entry.isIncrease && !entry.isCollectors && !entry.isAdjustment)
+//                    .map((entry, index) => (
+//                      <div
+//                        key={index}
+//                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
+//                      >
+//                        <div className="flex items-start justify-between gap-3">
+//                          <div className="flex-1 min-w-0">
+//                            <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
+//                            <div className="flex items-center gap-2 mt-1">
+//                              <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
+//                              <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
+//                              <span className="text-green-400 text-xs">→</span>
+//                              <span className="text-green-400 text-xs font-semibold">{entry.newValue}</span>
+//                              <span className="text-green-400 text-xs">({entry.newRarity})</span>
+//                            </div>
+//                          </div>
+//                          <div className="w-2 h-2 bg-green-500 rounded-full shrink-0 mt-1.5"></div>
+//                        </div>
+//                      </div>
+//                    ))}
+//                </div>
+//              </CardContent>
+//            </Card>
+
+//            {/* Drops */}
+//            <Card
+//              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+//            >
+//              <CardHeader className={`bg-gradient-to-r from-red-900/20 to-pink-900/20 ${theme.cardBorder} border-b`}>
+//                <div className="flex items-center justify-between">
+//                  <div className="flex items-center gap-3">
+//                    <TrendingDown className="w-5 h-5 text-red-400" />
+//                    <div>
+//                      <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Decreases</CardTitle>
+//                      <p className={`${theme.textSecondary} text-xs mt-0.5`}>
+//                        {
+//                          changelogEntries.filter(
+//                            (entry) => !entry.isIncrease && !entry.isAdjustment && !entry.isCollectors,
+//                          ).length
+//                        }{" "}
+//                        items
+//                      </p>
+//                    </div>
+//                  </div>
+//                </div>
+//              </CardHeader>
+//              <CardContent className="p-4">
+//                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+//                  {changelogEntries
+//                    .filter((entry) => !entry.isIncrease && !entry.isAdjustment && !entry.isCollectors)
+//                    .map((entry, index) => (
+//                      <div
+//                        key={index}
+//                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
+//                      >
+//                        <div className="flex items-start justify-between gap-3">
+//                          <div className="flex-1 min-w-0">
+//                            <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
+//                            <div className="flex items-center gap-2 mt-1">
+//                              <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
+//                              <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
+//                              <span className="text-red-400 text-xs">→</span>
+//                              <span className="text-red-400 text-xs font-semibold">{entry.newValue}</span>
+//                              <span className="text-red-400 text-xs">({entry.newRarity})</span>
+//                            </div>
+//                          </div>
+//                          <div className="w-2 h-2 bg-red-500 rounded-full shrink-0 mt-1.5"></div>
+//                        </div>
+//                      </div>
+//                    ))}
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </div>
+
+//          {/* Adjustments - Full Width */}
+//          <Card
+//            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+//          >
+//            <CardHeader className={`bg-gradient-to-r from-orange-900/20 to-yellow-950/20 ${theme.cardBorder} border-b`}>
+//              <div className="flex items-center gap-3">
+//                <RotateCcw className="w-5 h-5 text-orange-400" />
+//                <div>
+//                  <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Tier Adjustments</CardTitle>
+//                  <p className={`${theme.textSecondary} text-sm mt-1`}>Rarity tier changes and value adjustments</p>
+//                </div>
+//              </div>
+//            </CardHeader>
+//            <CardContent className="p-6">
+//              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+//                {changelogEntries
+//                  .filter((entry) => entry.isAdjustment)
+//                  .map((entry, index) => (
+//                    <div
+//                      key={index}
+//                      className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
+//                    >
+//                      <div className="flex items-start gap-3">
+//                        <div
+//                          className={`w-2 h-2 rounded-full shrink-0 mt-1.5 ${entry.isIncrease ? "bg-green-500" : "bg-red-500"}`}
+//                        ></div>
+//                        <div className="flex-1 min-w-0">
+//                          <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
+//                          <div className="flex items-center gap-2 mt-1 flex-wrap">
+//                            <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
+//                            <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
+//                            <span className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs`}>→</span>
+//                            <span
+//                              className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs font-semibold`}
+//                            >
+//                              {entry.newValue}
+//                            </span>
+//                            <span className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs`}>
+//                              ({entry.newRarity})
+//                            </span>
+//                          </div>
+//                        </div>
+//                      </div>
+//                    </div>
+//                  ))}
+//              </div>
+//            </CardContent>
+//          </Card>
+
+//          {/* Other Updates - Side by Side */}
+//          <div className="grid gap-6 lg:grid-cols-2">
+//            {/* New Tradables - Full Width in Grid */}
+//            <Card
+//              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden lg:col-span-1`}
+//            >
+//              <CardHeader className={`bg-gradient-to-r from-cyan-900/20 to-blue-900/20 ${theme.cardBorder} border-b`}>
+//                <div className="flex items-center gap-3">
+//                  <TrendingUp className="w-5 h-5 text-cyan-400" />
+//                  <div>
+//                    <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>New Tradables</CardTitle>
+//                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>22 new dinosaurs added</p>
+//                  </div>
+//                </div>
+//              </CardHeader>
+//              <CardContent className="p-5">
+//                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+//                  {[
+//                    { name: "Apparition Fossil Giganotosaurus", value: 185, rarity: "7/8" },
+//                    { name: "Cathedral Fasolatherium", value: 80, rarity: "6/8" },
+//                    { name: "Nameless Barosaurus", value: 65, rarity: "6/8" },
+//                    { name: "Spectre Fossil Megavore", value: 24, rarity: "5/8" },
+//                    { name: "Gold Fossil Giganotosaurus", value: 8, rarity: "4/8" },
+//                    { name: "Fossil Megavore", value: 5, rarity: "2/8" },
+//                    { name: "Gold Fossil Skulker", value: 4, rarity: "1/8" },
+//                    { name: "Nomad Corythosaurus", value: 4, rarity: "1/8" },
+//                    { name: "Fossil Giganotosaurus", value: 3, rarity: "1/8" },
+//                    { name: "Old Bark Nomad Corythosaurus", value: 3, rarity: "1/8" },
+//                    { name: "Pristine Vessel Nomad Corythosaurus", value: 3, rarity: "1/8" },
+//                    { name: "Sky High Nomad Corythosaurus", value: 3, rarity: "1/8" },
+//                    { name: "Tiderider Nomad Corythosaurus", value: 3, rarity: "1/8" },
+//                    { name: "Scarecrow Thanatosdrakon", value: 3, rarity: "1/8" },
+//                    { name: "Fallen Caveman", value: 2, rarity: "1/8" },
+//                    { name: "Fossil Acrocanthosaurus", value: 2, rarity: "1/8" },
+//                    { name: "Fossil Basilosaurus", value: 2, rarity: "1/8" },
+//                    { name: "Fossil Therizinosaurus", value: 2, rarity: "1/8" },
+//                    { name: "Fossil Skulker", value: 2, rarity: "1/8" },
+//                    { name: "Radiated Zomvinychus", value: 2, rarity: "1/8" },
+//                    { name: "Fallen", value: 1, rarity: "1/8" },
+//                    { name: "Overseer Wanderer", value: 1, rarity: "1/8" },
+//                  ].map((dino, index) => (
+//                    <div
+//                      key={index}
+//                      className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
+//                    >
+//                      <div className="flex items-start justify-between gap-3">
+//                        <div className="flex-1 min-w-0">
+//                          <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{dino.name}</p>
+//                          <div className="flex items-center gap-2 mt-1">
+//                            <span className="text-cyan-400 text-xs font-semibold">{dino.value}</span>
+//                            <span className="text-cyan-400 text-xs">({dino.rarity})</span>
+//                          </div>
+//                        </div>
+//                        <div className="w-2 h-2 bg-cyan-500 rounded-full shrink-0 mt-1.5"></div>
+//                      </div>
+//                    </div>
+//                  ))}
+//                </div>
+//              </CardContent>
+//            </Card>
+
+//            {/* Platform Updates */}
+//            <Card
+//              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
+//            >
+//              <CardHeader className={`bg-gradient-to-r from-blue-900/20 to-cyan-900/20 ${theme.cardBorder} border-b`}>
+//                <div className="flex items-center gap-3">
+//                  <Paintbrush className="w-5 h-5 text-blue-400" />
+//                  <div>
+//                    <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>Platform Updates</CardTitle>
+//                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>Bug fixes & improvements</p>
+//                  </div>
+//                </div>
+//              </CardHeader>
+//              <CardContent className="p-5">
+//                <div className="space-y-3">
+//                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
+//                    <div className="flex items-start gap-3">
+//                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
+//                      <div>
+//                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Duplicate Entries Fixed</p>
+//                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
+//                          Removed duplicate dinosaur entries that appeared in multiple tiers
+//                        </p>
+//                      </div>
+//                    </div>
+//                  </div>
+//                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
+//                    <div className="flex items-start gap-3">
+//                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
+//                      <div>
+//                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Tier Organization Improved</p>
+//                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
+//                          All dinosaurs now correctly sorted into their appropriate value tiers
+//                        </p>
+//                      </div>
+//                    </div>
+//                  </div>
+//                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
+//                    <div className="flex items-start gap-3">
+//                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
+//                      <div>
+//                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Filter Update</p>
+//                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
+//                          Added values to the filters
+//                        </p>
+//                      </div>
+//                    </div>
+//                  </div>
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </div>
+//        </div>
+
+//        {/* Footer */}
+//        <div className="mt-12 text-center">
+//          <div className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-xl p-6 shadow-lg`}>
+//            <p className={`${theme.textSecondary} text-sm font-light`}>
+//              Directly forked from the{" "}
+//              <a
+//                href="https://discord.gg/kNPy4jwMWj"
+//                target="_blank"
+//                rel="noopener noreferrer"
+//                className={`${theme.textAccent} ${theme.linkHover} transition-colors underline decoration-current/60 hover:decoration-current font-medium`}
+//              >
+//                Dinosaur Simulator Trading Network
+//              </a>{" "}
+//              Discord Server with slight changes.
+//            </p>
+//          </div>
+//        </div>
+//      </div>
+//    </div>
+//  )
+//}
+
+// --- UPDATES START ---
+
+export default function ChangelogComponent() {
+  const [theme, setTheme] = useState<string>("dark")
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false)
+
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const themeFromUrl = urlParams.get("theme")
-    const savedTheme = localStorage.getItem("dinosaur-value-list-theme")
-
-    let newTheme = "dark" // Default theme
-    if (themeFromUrl && themes[themeFromUrl]) {
-      newTheme = themeFromUrl
-    } else if (savedTheme && themes[savedTheme]) {
-      newTheme = savedTheme
-    }
-
-    setCurrentTheme(newTheme)
-    setIsThemeLoaded(true)
+    const savedTheme = localStorage.getItem("dinosaur-value-list-theme") || "dark"
+    setTheme(savedTheme)
   }, [])
 
-  // Save theme to localStorage when changed
-  const handleThemeChange = (themeName: string) => {
-    setCurrentTheme(themeName)
-    localStorage.setItem("dinosaur-value-list-theme", themeName)
+  const handleThemeChange = (newTheme: string) => {
+    setTheme(newTheme)
+    localStorage.setItem("dinosaur-value-list-theme", newTheme)
+    setIsThemeMenuOpen(false)
+
     const url = new URL(window.location.href)
-    url.searchParams.set("theme", themeName)
-    window.history.replaceState({}, "", url.toString())
-    setShowSettings(false)
+    url.searchParams.set("theme", newTheme)
+    window.history.replaceState({}, "", url)
   }
 
-  const theme = themes[currentTheme]
-
-  const changelogEntries: ChangelogEntry[] = [
-    // RISES
-    {
-      name: "Reaper Gelioichthys",
-      oldValue: 68,
-      newValue: 69,
-      oldRarity: "6/8",
-      newRarity: "7/8",
-      isIncrease: true,
-    },
-    {
-      name: "White Walker Carcharodontosaurus",
-      oldValue: 27,
-      newValue: 28,
-      oldRarity: "4/8",
-      newRarity: "4/8",
-      isIncrease: true,
-    },
-
-    // DROPS
-    {
-      name: "Blue Whale Shastasaurus",
-      oldValue: 115,
-      newValue: 95,
-      oldRarity: "6/8",
-      newRarity: "6/8",
-      isIncrease: false,
-    },
-    {
-      name: "Zomvinychus",
-      oldValue: 78,
-      newValue: 70,
-      oldRarity: "6/8",
-      newRarity: "5/8",
-      isIncrease: false,
-    },
-
-    // ADJUSTMENTS
-    {
-      name: "Classic Pitch Black Terror",
-      oldValue: 39,
-      newValue: 36,
-      oldRarity: "5/8",
-      newRarity: "5/8",
-      isIncrease: false,
-      isAdjustment: true,
-    },
-  ]
-
-  const collectorsEntries: ChangelogEntry[] = []
+  const currentTheme = themes[theme] || themes.dark
+  const themeNames = Object.keys(themes)
 
   return (
-    <div
-      className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}
-    >
-      <div className="max-w-5xl mx-auto p-4 sm:p-6">
-        {/* Header */}
-        <div
-          className={`relative z-20 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl`}
-        >
-          <div className="flex justify-between items-center">
-            {/* Left Side: Settings Button */}
-            <div className="relative">
-              <button
-                onClick={() => setShowSettings(!showSettings)}
-                className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}
-              >
-                <Paintbrush className="w-4 h-4" />
-                <span className="hidden sm:inline">Themes</span>
-              </button>
-              {showSettings && (
-                <div
-                  className={`absolute top-full left-0 mt-2 ${theme.dropdownBg} backdrop-blur-xl ${theme.border} border rounded-xl p-3 min-w-[200px] z-50 shadow-2xl`}
-                >
-                  <div className={`${theme.textSecondary} text-xs font-medium mb-3 px-1`}>Choose Theme</div>
-                  {Object.entries(themes).map(([key, themeOption]) => (
-                    <button
-                      key={key}
-                      onClick={() => handleThemeChange(key)}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors text-sm mb-1 ${
-                        currentTheme === key
-                          ? `${theme.buttonBg} ${theme.buttonText}`
-                          : `${theme.textSecondary} ${theme.buttonHover.replace("hover:", "hover:")}`
-                      }`}
-                    >
-                      {themeOption.name}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Middle: Title */}
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <Clock className={`w-8 h-8 ${theme.textAccent}`} />
-                <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary}`}>Update History</h1>
-              </div>
-              <p className={`text-lg ${theme.textSecondary} font-light`}>Recent Value Changes & Market Updates</p>
-            </div>
-
-            {/* Right Side: Navigation Buttons */}
-            <div className="flex gap-2 sm:gap-3">
-              <Link href={`/info?theme=${currentTheme}`}>
-                <button
-                  className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
-                >
-                  Info
-                </button>
+    <div className={`min-h-screen ${currentTheme.background} pb-12`}>
+      {/* Header */}
+      <header className={`${currentTheme.headerBg} backdrop-blur-md border-b ${currentTheme.border} sticky top-0 z-50`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Link href="/" className={`${currentTheme.textPrimary} ${currentTheme.linkHover} transition-colors`}>
+                <h1 className="text-3xl font-bold">Dinosaur Simulator</h1>
+                <p className={`text-sm ${currentTheme.textSecondary}`}>Value List</p>
               </Link>
-              <Link href={`/?theme=${currentTheme}`}>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div className="relative">
                 <button
-                  className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+                  onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentTheme.buttonBg} ${currentTheme.buttonHover} ${currentTheme.buttonText} transition-colors`}
+                  aria-label="Choose Theme"
                 >
-                  Back to Value List
+                  <Paintbrush className="w-5 h-5" />
+                  Themes
                 </button>
+
+                {isThemeMenuOpen && (
+                  <div
+                    className={`absolute right-0 mt-2 w-56 rounded-lg ${currentTheme.dropdownBg} border ${currentTheme.cardBorder} shadow-lg overflow-hidden z-50`}
+                  >
+                    <div className={`px-4 py-3 border-b ${currentTheme.border}`}>
+                      <p className={`text-sm ${currentTheme.textSecondary}`}>Choose Theme</p>
+                    </div>
+                    <div className="max-h-96 overflow-y-auto">
+                      {themeNames.map((themeName) => (
+                        <button
+                          key={themeName}
+                          onClick={() => handleThemeChange(themeName)}
+                          className={`w-full text-left px-4 py-3 ${currentTheme.textPrimary} ${currentTheme.buttonHover} transition-colors ${
+                            theme === themeName ? `${currentTheme.badgeBg}` : ""
+                          }`}
+                        >
+                          {themes[themeName].name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/info"
+                className={`px-4 py-2 rounded-lg ${currentTheme.buttonBg} ${currentTheme.buttonHover} ${currentTheme.buttonText} transition-colors`}
+              >
+                Info
               </Link>
             </div>
           </div>
         </div>
+      </header>
 
-        <div className="space-y-8">
-          {/* Market Summary - Full Width */}
-          <Card
-            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-          >
-            <CardHeader className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}>
-              <div className="flex items-center gap-3">
-                <TrendingUp className="w-6 h-6 text-green-400" />
-                <div>
-                  <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-                    Market Update - November 15, 2025
-                  </CardTitle>
-                  <p className={`${theme.textSecondary} text-sm mt-1`}>Latest trading trends and market movements</p>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Card className={`${currentTheme.cardBg} ${currentTheme.cardBorder} border backdrop-blur-sm`}>
+          <CardHeader>
+            <CardTitle className={`text-4xl ${currentTheme.textPrimary} text-center`}>Changelog</CardTitle>
+            <p className={`text-center ${currentTheme.textSecondary} mt-2`}>Track all value updates and changes</p>
+          </CardHeader>
+          <CardContent>
+            {/* Latest Value Update Banner - Updated to November 15, 2025 */}
+            <div className="mb-8 p-6 bg-gradient-to-r from-green-900/40 to-green-800/40 border border-green-600/40 rounded-lg">
+              <h2 className="text-2xl font-bold text-green-100 mb-3">LATEST VALUE UPDATE!</h2>
+              <p className="text-green-200 leading-relaxed">
+                Major shifts in the market: Apparition Fossil Giganotosaurus and Violex Magnus both rise to 195 value.
+                Distorted King surges to 98 value. Giant Albino Baryonyx gets a massive boost to 58 value (7/8). Pitch
+                Wraith Terror drops to 275, Wraith Terror falls to 170. Blackodile jumps significantly from 8 to 18
+                value.
+              </p>
+            </div>
+
+            {/* Value Increases Section - Updated with November 15, 2025 increases only */}
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingUp className="w-6 h-6 text-green-500" />
+                <h3 className="text-2xl font-bold text-green-400">Value Increases</h3>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>14 items</span>
+              </div>
+              <div className="grid gap-3">
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Apparition Fossil Giganotosaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">185 (7/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">195 (7/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Violex Magnus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">185 (7/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">195 (8/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Berserk Alametus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">125 (6/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">125 (7/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Distorted King</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">85 (7/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">98 (7/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Cathedral Fasolatherium</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">80 (6/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">84 (6/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Movie Mosasaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">56 (6/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">60 (6/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Giant Albino Baryonyx</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">45 (4/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">58 (7/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Peak Spinosaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">28 (4/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">28 (5/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">White Walker Carcharodontosaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">28 (4/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">28 (5/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Alpha Kaiju Spinosaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">26 (4/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">27 (5/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Crossover Hybrid/Vinera</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">22 (4/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">24 (4/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Spawn Shunosaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">19 (5/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">21 (5/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Alien Irritator</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">19 (4/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">21 (5/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-green-200">Blackodile</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-green-400 text-sm">8 (3/8)</span>
+                        <span className="text-green-600">→</span>
+                        <span className="text-green-300 text-sm font-bold">18 (5/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  </div>
                 </div>
               </div>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-5">
-                <p className="text-green-400 text-sm font-medium leading-relaxed">
-                  <strong className="text-base">LATEST VALUE UPDATE!</strong>
-                  <br className="mb-2" />
-                  Recent market adjustments: Blue Whale Shastasaurus drops from 115 to 95 (6/8). Zomvinychus decreases to 70 (5/8). Reaper Gelioichthys rises to 69 (7/8). Classic Pitch Black Terror adjusted to 36 value (5/8). White Walker Carcharodontosaurus increases to 28 (4/8). Added 22 new tradable dinosaurs including Apparition Fossil Giganotosaurus 185, (7/8), Cathedral Fasolatherium 80, (6/8), multiple new Fossil variants, and several of the Nomad Corythosaurus skins.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
 
-          {/* Value Changes - Side by Side */}
-          <div className="grid gap-6 lg:grid-cols-2">
-            {/* Rises */}
-            <Card
-              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-            >
-              <CardHeader
-                className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <TrendingUp className="w-5 h-5 text-green-400" />
+            {/* Value Decreases Section - Updated with November 15, 2025 decreases only */}
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingDown className="w-6 h-6 text-red-500" />
+                <h3 className="text-2xl font-bold text-red-400">Value Decreases</h3>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>7 items</span>
+              </div>
+              <div className="grid gap-3">
+                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Increases</CardTitle>
-                      <p className={`${theme.textSecondary} text-xs mt-0.5`}>
-                        {
-                          changelogEntries.filter(
-                            (entry) => entry.isIncrease && !entry.isCollectors && !entry.isAdjustment,
-                          ).length
-                        }{" "}
-                        items
+                      <h4 className="font-semibold text-red-200">Pitch Wraith Terror</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-red-400 text-sm">290 (8/8)</span>
+                        <span className="text-red-600">→</span>
+                        <span className="text-red-300 text-sm font-bold">275 (7/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-red-200">Wraith Terror</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-red-400 text-sm">180 (7/8)</span>
+                        <span className="text-red-600">→</span>
+                        <span className="text-red-300 text-sm font-bold">170 (6/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-red-200">Blue Whale Shastasaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-red-400 text-sm">95 (6/8)</span>
+                        <span className="text-red-600">→</span>
+                        <span className="text-red-300 text-sm font-bold">90 (6/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-red-200">Zomvinychus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-red-400 text-sm">70 (5/8)</span>
+                        <span className="text-red-600">→</span>
+                        <span className="text-red-300 text-sm font-bold">60 (5/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-red-200">Spectre Fossil Megavore</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-red-400 text-sm">24 (5/8)</span>
+                        <span className="text-red-600">→</span>
+                        <span className="text-red-300 text-sm font-bold">21 (4/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-red-200">Gold Fossil Tyrannosaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-red-400 text-sm">23 (4/8)</span>
+                        <span className="text-red-600">→</span>
+                        <span className="text-red-300 text-sm font-bold">21 (4/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-red-200">Gold Fossil Spinosaurus</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-red-400 text-sm">22 (3/8)</span>
+                        <span className="text-red-600">→</span>
+                        <span className="text-red-300 text-sm font-bold">20 (3/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tier Adjustments Section - Updated with November 15, 2025 adjustments only */}
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-4">
+                <RotateCcw className="w-6 h-6 text-orange-500" />
+                <h3 className="text-2xl font-bold text-orange-400">Tier Adjustments</h3>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>
+                  Rarity tier changes and value adjustments
+                </span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="p-4 bg-orange-950/30 border border-orange-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-orange-200">Fallen Gladiator</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-orange-400 text-sm">145 (7/8)</span>
+                        <span className="text-orange-600">→</span>
+                        <span className="text-orange-300 text-sm font-bold">150 (7/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-orange-950/30 border border-orange-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-orange-200">Classic Albino Terror</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-orange-400 text-sm">30 (4/8)</span>
+                        <span className="text-orange-600">→</span>
+                        <span className="text-orange-300 text-sm font-bold">28 (4/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-orange-950/30 border border-orange-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-orange-200">Night Before Cretaceous</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-orange-400 text-sm">11 (2/8)</span>
+                        <span className="text-orange-600">→</span>
+                        <span className="text-orange-300 text-sm font-bold">14 (2/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-orange-950/30 border border-orange-800/40 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-orange-200">Barosaurus Plush</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-orange-400 text-sm">7 (1/8)</span>
+                        <span className="text-orange-600">→</span>
+                        <span className="text-orange-300 text-sm font-bold">4.5 (1/8)</span>
+                      </div>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Platform Updates Section */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Clock className="w-6 h-6 text-blue-500" />
+                <h3 className="text-2xl font-bold text-blue-400">Platform Updates</h3>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>Bug fixes & improvements</span>
+              </div>
+              <div className="grid gap-3">
+                <div className="p-4 bg-blue-950/30 border border-blue-800/40 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 mt-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-blue-200">Duplicate Entries Fixed</h4>
+                      <p className={`text-sm ${currentTheme.textSecondary} mt-1`}>
+                        Removed duplicate dinosaur entries that appeared in multiple tiers
                       </p>
                     </div>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent className="p-4">
-                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
-                  {changelogEntries
-                    .filter((entry) => entry.isIncrease && !entry.isCollectors && !entry.isAdjustment)
-                    .map((entry, index) => (
-                      <div
-                        key={index}
-                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1 min-w-0">
-                            <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
-                              <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
-                              <span className="text-green-400 text-xs">→</span>
-                              <span className="text-green-400 text-xs font-semibold">{entry.newValue}</span>
-                              <span className="text-green-400 text-xs">({entry.newRarity})</span>
-                            </div>
-                          </div>
-                          <div className="w-2 h-2 bg-green-500 rounded-full shrink-0 mt-1.5"></div>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </CardContent>
-            </Card>
 
-            {/* Drops */}
-            <Card
-              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-            >
-              <CardHeader className={`bg-gradient-to-r from-red-900/20 to-pink-900/20 ${theme.cardBorder} border-b`}>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <TrendingDown className="w-5 h-5 text-red-400" />
+                <div className="p-4 bg-blue-950/30 border border-blue-800/40 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 mt-2"></div>
                     <div>
-                      <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Decreases</CardTitle>
-                      <p className={`${theme.textSecondary} text-xs mt-0.5`}>
-                        {
-                          changelogEntries.filter(
-                            (entry) => !entry.isIncrease && !entry.isAdjustment && !entry.isCollectors,
-                          ).length
-                        }{" "}
-                        items
+                      <h4 className="font-semibold text-blue-200">Tier Organization Improved</h4>
+                      <p className={`text-sm ${currentTheme.textSecondary} mt-1`}>
+                        All dinosaurs now correctly sorted into their appropriate value tiers
                       </p>
                     </div>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent className="p-4">
-                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
-                  {changelogEntries
-                    .filter((entry) => !entry.isIncrease && !entry.isAdjustment && !entry.isCollectors)
-                    .map((entry, index) => (
-                      <div
-                        key={index}
-                        className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1 min-w-0">
-                            <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
-                              <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
-                              <span className="text-red-400 text-xs">→</span>
-                              <span className="text-red-400 text-xs font-semibold">{entry.newValue}</span>
-                              <span className="text-red-400 text-xs">({entry.newRarity})</span>
-                            </div>
-                          </div>
-                          <div className="w-2 h-2 bg-red-500 rounded-full shrink-0 mt-1.5"></div>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
 
-          {/* Adjustments - Full Width */}
-          <Card
-            className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-          >
-            <CardHeader className={`bg-gradient-to-r from-orange-900/20 to-yellow-950/20 ${theme.cardBorder} border-b`}>
-              <div className="flex items-center gap-3">
-                <RotateCcw className="w-5 h-5 text-orange-400" />
-                <div>
-                  <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Tier Adjustments</CardTitle>
-                  <p className={`${theme.textSecondary} text-sm mt-1`}>Rarity tier changes and value adjustments</p>
+                <div className="p-4 bg-blue-950/30 border border-blue-800/40 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 mt-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-blue-200">Filter Update</h4>
+                      <p className={`text-sm ${currentTheme.textSecondary} mt-1`}>Added values to the filters</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-blue-950/30 border border-blue-800/40 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 mt-2"></div>
+                    <div>
+                      <h4 className="font-semibold text-blue-200">OLED Theme Added</h4>
+                      <p className={`text-sm ${currentTheme.textSecondary} mt-1`}>
+                        New Pitch Black theme optimized for OLED displays with pure blacks and vibrant colors
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {changelogEntries
-                  .filter((entry) => entry.isAdjustment)
-                  .map((entry, index) => (
-                    <div
-                      key={index}
-                      className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div
-                          className={`w-2 h-2 rounded-full shrink-0 mt-1.5 ${entry.isIncrease ? "bg-green-500" : "bg-red-500"}`}
-                        ></div>
-                        <div className="flex-1 min-w-0">
-                          <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
-                          <div className="flex items-center gap-2 mt-1 flex-wrap">
-                            <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
-                            <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
-                            <span className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs`}>→</span>
-                            <span
-                              className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs font-semibold`}
-                            >
-                              {entry.newValue}
-                            </span>
-                            <span className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs`}>
-                              ({entry.newRarity})
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Other Updates - Side by Side */}
-          <div className="grid gap-6 lg:grid-cols-2">
-            {/* New Tradables - Full Width in Grid */}
-            <Card
-              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden lg:col-span-1`}
-            >
-              <CardHeader className={`bg-gradient-to-r from-cyan-900/20 to-blue-900/20 ${theme.cardBorder} border-b`}>
-                <div className="flex items-center gap-3">
-                  <TrendingUp className="w-5 h-5 text-cyan-400" />
-                  <div>
-                    <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>New Tradables</CardTitle>
-                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>22 new dinosaurs added</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-5">
-                <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
-                  {[
-                    { name: "Apparition Fossil Giganotosaurus", value: 185, rarity: "7/8" },
-                    { name: "Cathedral Fasolatherium", value: 80, rarity: "6/8" },
-                    { name: "Nameless Barosaurus", value: 65, rarity: "6/8" },
-                    { name: "Spectre Fossil Megavore", value: 24, rarity: "5/8" },
-                    { name: "Gold Fossil Giganotosaurus", value: 8, rarity: "4/8" },
-                    { name: "Fossil Megavore", value: 5, rarity: "2/8" },
-                    { name: "Gold Fossil Skulker", value: 4, rarity: "1/8" },
-                    { name: "Nomad Corythosaurus", value: 4, rarity: "1/8" },
-                    { name: "Fossil Giganotosaurus", value: 3, rarity: "1/8" },
-                    { name: "Old Bark Nomad Corythosaurus", value: 3, rarity: "1/8" },
-                    { name: "Pristine Vessel Nomad Corythosaurus", value: 3, rarity: "1/8" },
-                    { name: "Sky High Nomad Corythosaurus", value: 3, rarity: "1/8" },
-                    { name: "Tiderider Nomad Corythosaurus", value: 3, rarity: "1/8" },
-                    { name: "Scarecrow Thanatosdrakon", value: 3, rarity: "1/8" },
-                    { name: "Fallen Caveman", value: 2, rarity: "1/8" },
-                    { name: "Fossil Acrocanthosaurus", value: 2, rarity: "1/8" },
-                    { name: "Fossil Basilosaurus", value: 2, rarity: "1/8" },
-                    { name: "Fossil Therizinosaurus", value: 2, rarity: "1/8" },
-                    { name: "Fossil Skulker", value: 2, rarity: "1/8" },
-                    { name: "Radiated Zomvinychus", value: 2, rarity: "1/8" },
-                    { name: "Fallen", value: 1, rarity: "1/8" },
-                    { name: "Overseer Wanderer", value: 1, rarity: "1/8" },
-                  ].map((dino, index) => (
-                    <div
-                      key={index}
-                      className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="flex-1 min-w-0">
-                          <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{dino.name}</p>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-cyan-400 text-xs font-semibold">{dino.value}</span>
-                            <span className="text-cyan-400 text-xs">({dino.rarity})</span>
-                          </div>
-                        </div>
-                        <div className="w-2 h-2 bg-cyan-500 rounded-full shrink-0 mt-1.5"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Platform Updates */}
-            <Card
-              className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-            >
-              <CardHeader className={`bg-gradient-to-r from-blue-900/20 to-cyan-900/20 ${theme.cardBorder} border-b`}>
-                <div className="flex items-center gap-3">
-                  <Paintbrush className="w-5 h-5 text-blue-400" />
-                  <div>
-                    <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>Platform Updates</CardTitle>
-                    <p className={`${theme.textSecondary} text-xs mt-0.5`}>Bug fixes & improvements</p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-5">
-                <div className="space-y-3">
-                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
-                      <div>
-                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Duplicate Entries Fixed</p>
-                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
-                          Removed duplicate dinosaur entries that appeared in multiple tiers
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
-                      <div>
-                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Tier Organization Improved</p>
-                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
-                          All dinosaurs now correctly sorted into their appropriate value tiers
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
-                      <div>
-                        <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Filter Update</p>
-                        <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
-                          Added values to the filters
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="mt-12 text-center">
-          <div className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-xl p-6 shadow-lg`}>
-            <p className={`${theme.textSecondary} text-sm font-light`}>
-              Directly forked from the{" "}
-              <a
-                href="https://discord.gg/kNPy4jwMWj"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${theme.textAccent} ${theme.linkHover} transition-colors underline decoration-current/60 hover:decoration-current font-medium`}
-              >
-                Dinosaur Simulator Trading Network
-              </a>{" "}
-              Discord Server with slight changes.
-            </p>
-          </div>
-        </div>
-      </div>
+            </div>
+          </CardContent>
+        </Card>
+      </main>
     </div>
   )
 }

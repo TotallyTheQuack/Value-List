@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo, useEffect, useRef } from "react"
-import { Grid, List, Paintbrush, ChevronDown, ArrowDownUp, DollarSign, BarChartHorizontalBig, X } from 'lucide-react'
+import { Grid, List, Paintbrush, ChevronDown, ArrowDownUp, DollarSign, BarChartHorizontalBig, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -714,16 +714,16 @@ export default function Component() {
       color: "from-red-500 to-pink-600",
       gradient: "bg-gradient-to-br from-red-800/60 to-pink-800/60",
       dinosaurs: [
-        { name: "Blue Whale Shastasaurus", value: 95, rarity: "6/8" }, // Updated from 115 to 95
+        { name: "Blue Whale Shastasaurus", value: 90, rarity: "6/8" }, // Updated from 95 to 90
         { name: "Metron Praenintius", value: 1150, rarity: "5/8" },
-        { name: "Pitch Wraith Terror", value: 290, rarity: "8/8" },
-        { name: "Apparition Fossil Giganotosaurus", value: 185, rarity: "7/8" }, // Added new tradable
-        { name: "Violex Magnus", value: 185, rarity: "7/8" },
+        { name: "Pitch Wraith Terror", value: 275, rarity: "7/8" }, // Updated from 290 to 275
+        { name: "Apparition Fossil Giganotosaurus", value: 195, rarity: "7/8" }, // Updated from 185 to 195
+        { name: "Violex Magnus", value: 195, rarity: "8/8" }, // Updated from 185 to 195
         { name: "Hydralania", value: 180, rarity: "7/8" },
-        { name: "Fallen Gladiator", value: 145, rarity: "7/8" },
-        { name: "Wraith Terror", value: 180, rarity: "7/8" },
+        { name: "Fallen Gladiator", value: 150, rarity: "7/8" }, // Updated from 145 to 150
+        { name: "Wraith Terror", value: 170, rarity: "6/8" }, // Updated from 180 to 170
         { name: "Isisauriraptor", value: 125, rarity: "6/8" },
-        { name: "Berserk Alametus", value: 125, rarity: "6/8" },
+        { name: "Berserk Alametus", value: 125, rarity: "7/8" }, // Updated rarity from 6/8 to 7/8
       ],
     },
     {
@@ -734,16 +734,17 @@ export default function Component() {
       dinosaurs: [
         { name: "Albino Terror", value: 100, rarity: "8/8" },
         { name: "Megavore", value: 100, rarity: "8/8" },
-        { name: "Distorted King", value: 85, rarity: "7/8" },
-        { name: "Cathedral Fasolatherium", value: 80, rarity: "6/8" }, // Added new tradable
+        { name: "Distorted King", value: 98, rarity: "7/8" }, // Updated from 85 to 98
+        { name: "Cathedral Fasolatherium", value: 84, rarity: "6/8" }, // Added new tradable, updated from 80 to 84
         { name: "Galactic Barosaurus", value: 80, rarity: "6/8" },
         { name: "Orca Spinosaurus", value: 72, rarity: "6/8" },
-        { name: "Zomvinychus", value: 70, rarity: "5/8" }, // Updated from 78 to 70
+        { name: "Zomvinychus", value: 60, rarity: "5/8" }, // Updated from 70 to 60
         { name: "Reaper Gelioichthys", value: 69, rarity: "7/8" }, // Updated from 68 to 69
         { name: "Pitch Luminescent Avinychus", value: 65, rarity: "5/8" },
         { name: "Nameless Barosaurus", value: 65, rarity: "6/8" }, // Added new tradable
         { name: "Dolphin Ichthyovenator", value: 62, rarity: "6/8" },
-        { name: "Movie Mosasaurus", value: 56, rarity: "6/8" },
+        { name: "Movie Mosasaurus", value: 60, rarity: "6/8" }, // Updated from 56 to 60
+        { name: "Giant Albino Baryonyx", value: 58, rarity: "7/8" }, // Updated from 45 to 58 and rarity to 7/8
         { name: "Luminescent Avinychus", value: 54, rarity: "6/8" },
         { name: "Pitch Black Terror", value: 54, rarity: "5/8" },
       ],
@@ -758,11 +759,10 @@ export default function Component() {
         { name: "Kaiju Giraffatitan", value: 48, rarity: "5/8" },
         { name: "Scylla", value: 46, rarity: "6/8" },
         { name: "Spinofaarus", value: 45, rarity: "5/8" },
-        { name: "Giant Albino Baryonyx", value: 45, rarity: "4/8" },
         { name: "Phantom Bringer Ceratosaurus", value: 42, rarity: "5/8" },
-        { name: "Classic Pitch Black Terror", value: 36, rarity: "5/8" }, // Updated from 39 to 36
+        { name: "Classic Pitch Black Terror", value: 36, rarity: "5/8" },
         { name: "Firebird", value: 32, rarity: "6/8" },
-        { name: "Classic Albino Terror", value: 30, rarity: "4/8" },
+        { name: "Classic Albino Terror", value: 28, rarity: "4/8" }, // Updated from 30 to 28
         { name: "Early Winter Frost Sauroposeidon", value: 30, rarity: "4/8" },
         { name: "Classic Megavore", value: 30, rarity: "3/8" },
       ],
@@ -773,27 +773,30 @@ export default function Component() {
       color: "from-green-500 to-yellow-500",
       gradient: "bg-gradient-to-br from-green-800/60 to-yellow-800/60",
       dinosaurs: [
-        { name: "Peak Spinosaurus", value: 28, rarity: "4/8" },
+        { name: "Peak Spinosaurus", value: 28, rarity: "5/8" }, // Updated rarity from 4/8 to 5/8
         { name: "Reindeer Istiodactylus", value: 28, rarity: "3/8" },
-        { name: "White Walker Carcharodontosaurus", value: 28, rarity: "4/8" }, // Updated from 27 to 28
+        { name: "White Walker Carcharodontosaurus", value: 28, rarity: "5/8" }, // Updated rarity from 4/8 to 5/8
+        { name: "Classic Megavore", value: 28, rarity: "3/8" },
+        { name: "Alpha Kaiju Spinosaurus", value: 27, rarity: "5/8" }, // Updated from 26 to 27 and rarity to 5/8
         { name: "Pitch Black Dolichomalosaurus", value: 26, rarity: "4/8" },
         { name: "Rakebaby Guanlong", value: 26, rarity: "4/8" },
         { name: "Pitch Black Apatosaurus", value: 25, rarity: "4/8" },
         { name: "Disco Stegosaurus", value: 25, rarity: "4/8" },
-        { name: "Spectre Fossil Megavore", value: 24, rarity: "5/8" }, // Added new tradable
-        { name: "Gold Fossil Tyrannosaurus", value: 23, rarity: "4/8" },
+        { name: "Crossover Hybrid/Vinera", value: 24, rarity: "4/8" }, // Updated from 22 to 24
+        { name: "Spectre Fossil Megavore", value: 21, rarity: "4/8" }, // Updated from 24 to 21 and rarity to 4/8
+        { name: "Gold Fossil Tyrannosaurus", value: 21, rarity: "4/8" }, // Updated from 23 to 21
+        { name: "Spawn Shunosaurus", value: 21, rarity: "5/8" }, // Updated from 19 to 21
+        { name: "Alien Irritator", value: 21, rarity: "5/8" }, // Updated from 19 to 21 and rarity to 5/8
+        { name: "Carcharocles Megalodon", value: 21, rarity: "5/8" },
         { name: "Movie Spinosaurus", value: 23, rarity: "5/8" },
         { name: "Toy Train Mastodonsaurus", value: 23, rarity: "5/8" },
-        { name: "Crossover Hybrid/Vinera", value: 22, rarity: "4/8" },
-        { name: "Gold Fossil Spinosaurus", value: 22, rarity: "3/8" },
-        { name: "Carcharocles Megalodon", value: 21, rarity: "5/8" },
+        { name: "Gold Fossil Spinosaurus", value: 20, rarity: "3/8" }, // Updated from 22 to 20
         { name: "Headlessaurus", value: 20, rarity: "4/8" },
         { name: "Totem Terror Albertosaurus", value: 20, rarity: "4/8" },
         { name: "Phoenix Achillobator", value: 20, rarity: "3/8" },
         { name: "Krampus", value: 20, rarity: "4/8" },
         { name: "Kaiju Gelioichthys", value: 20, rarity: "5/8" },
-        { name: "Alien Irritator", value: 19, rarity: "4/8" },
-        { name: "Spawn Shunosaurus", value: 19, rarity: "5/8" },
+        { name: "Blackodile", value: 18, rarity: "5/8" }, // Updated from 8 to 18 and rarity to 5/8
         { name: "Forgotten Mutant", value: 18, rarity: "5/8" },
         { name: "Masquerade Gigantoraptor", value: 17, rarity: "5/8" },
         { name: "Cyber Ichthyovenator", value: 17, rarity: "3/8" },
@@ -809,6 +812,7 @@ export default function Component() {
       color: "from-blue-500 to-green-500",
       gradient: "bg-gradient-to-br from-blue-800/60 to-green-800/60",
       dinosaurs: [
+        { name: "Night Before Cretaceous", value: 14, rarity: "2/8" }, // Updated from 11 to 14
         { name: "Indomitable Thief Gen 2", value: 14, rarity: "3/8" },
         { name: "Clamarocles Megalodon", value: 13, rarity: "4/8" },
         { name: "Spider Troodon", value: 13, rarity: "2/8" },
@@ -820,7 +824,6 @@ export default function Component() {
         { name: "Juramaia", value: 12, rarity: "3/8" },
         { name: "Mayhem Gojirasaurus", value: 12, rarity: "3/8" },
         { name: "Abandoned Matriarch", value: 12, rarity: "3/8" },
-        { name: "Night Before Cretaceous", value: 11, rarity: "2/8" },
         { name: "Santa Ornithomimus", value: 10, rarity: "1/8" },
         { name: "Kaiju Titanosaurus", value: 10, rarity: "3/8" },
         { name: "Psychoceratops", value: 10, rarity: "2/8" },
@@ -844,14 +847,12 @@ export default function Component() {
         { name: "Saurophaganax Remodel", value: 8, rarity: "3/8" },
         { name: "Singularfaarus", value: 8, rarity: "3/8" },
         { name: "Apatosaurus Plush", value: 8, rarity: "2/8" },
-        { name: "Blackodile", value: 8, rarity: "3/8" },
         { name: "Christmas Shunosaurus", value: 8, rarity: "2/8" },
         { name: "Infected Camarasaurus", value: 8, rarity: "2/8" },
         { name: "Galactic Torvosaurus", value: 7.5, rarity: "3/8" },
         { name: "Fossil Spinosaurus", value: 7.5, rarity: "2/8" },
         { name: "Fossil Baryonyx", value: 7, rarity: "2/8" },
         { name: "Polar Grazer Puertasaurus", value: 7, rarity: "2/8" },
-        { name: "Barosaurus Plush", value: 7, rarity: "1/8" },
         { name: "Kaiju Quetzalcoatlus", value: 7, rarity: "2/8" },
         { name: "Kaiju Archelon", value: 7, rarity: "3/8" },
         { name: "Neon Pulverizer Concavenator", value: 7, rarity: "2/8" },
@@ -878,6 +879,7 @@ export default function Component() {
         { name: "Acrocanthorse", value: 5, rarity: "2/8" },
         { name: "Pop Candy Pachycephalosaurus", value: 5, rarity: "2/8" },
         { name: "Flying Dutchman", value: 5, rarity: "2/8" },
+        { name: "Barosaurus Plush", value: 4.5, rarity: "1/8" }, // Updated from 7 to 4.5
         { name: "Fossil Brachiosaurus", value: 4.5, rarity: "1/8" },
         { name: "Pitch Black Avimimus", value: 4.5, rarity: "3/8" },
         { name: "Fossil Carcharocles Megalodon", value: 4.5, rarity: "1/8" },
