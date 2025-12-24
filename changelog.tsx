@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Paintbrush, Clock, TrendingUp, TrendingDown, RefreshCw, Rocket } from "lucide-react"
+import { Paintbrush, Clock, TrendingUp, TrendingDown, RefreshCw, Sparkles } from "lucide-react"
 import Link from "next/link"
 
 interface Theme {
@@ -26,6 +26,7 @@ interface Theme {
   dropdownBg: string
   linkHover: string
   rarityColors: Record<string, string>
+  valueBg?: string // Added for new tradables section
 }
 
 const themes: Record<string, Theme> = {
@@ -607,6 +608,7 @@ const themes: Record<string, Theme> = {
     scrollHeaderBg: "bg-black",
     dropdownBg: "bg-black",
     linkHover: "hover:text-cyan-300",
+    valueBg: "bg-cyan-500 text-black", // Added for consistency with other themes
     rarityColors: {
       "8/8": "bg-cyan-500 text-black border-cyan-400",
       "7/8": "bg-purple-500 text-white border-purple-400",
@@ -631,482 +633,76 @@ interface ChangelogEntry {
   isCollectors?: boolean
 }
 
-// --- OLD COMPONENT START ---
-// export default function Changelog() {
-//   const [currentTheme, setCurrentTheme] = useState<string>("dark")
-//   const [showSettings, setShowSettings] = useState(false)
-//   const [isThemeLoaded, setIsThemeLoaded] = useState(false)
+// Helper component for individual value change entries
+const ValueChangeItem = ({
+  name,
+  oldValue,
+  newValue,
+  oldRarity,
+  newRarity,
+  theme,
+  isDecrease,
+}: {
+  name: string
+  oldValue: number | string
+  newValue: number | string
+  oldRarity: string
+  newRarity: string
+  theme: Theme
+  isDecrease?: boolean
+}) => {
+  const isIncrease = !isDecrease
+  const color = isIncrease ? "text-green-400" : "text-red-400"
+  const dotColor = isIncrease ? "bg-green-500" : "bg-red-500"
 
-//   // Load theme from localStorage or URL params on mount
-//   useEffect(() => {
-//     const urlParams = new URLSearchParams(window.location.search)
-//     const themeFromUrl = urlParams.get("theme")
-//     const savedTheme = localStorage.getItem("dinosaur-value-list-theme")
+  return (
+    <div
+      className={`${theme.cardBg} ${theme.cardBorder} border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200`}
+    >
+      <div className="flex items-center justify-between">
+        <div>
+          <h4 className={`font-semibold ${theme.textPrimary} truncate`}>{name}</h4>
+          <div className="flex items-center gap-2 mt-1">
+            <span className={`${color} text-sm`}>
+              {oldValue} ({oldRarity})
+            </span>
+            <span className={`${color} text-xs`}>→</span>
+            <span className={`${color} text-sm font-bold`}>{newValue}</span>
+            <span className={`${color} text-sm`}>({newRarity})</span>
+          </div>
+        </div>
+        <div className={`w-2 h-2 rounded-full ${dotColor}`}></div>
+      </div>
+    </div>
+  )
+}
 
-//     let newTheme = "dark" // Default theme
-//     if (themeFromUrl && themes[themeFromUrl]) {
-//       newTheme = themeFromUrl
-//     } else if (savedTheme && themes[savedTheme]) {
-//       newTheme = savedTheme
-//     }
+// Helper component for tier adjustment cards
+const TierAdjustmentCard = ({
+  name,
+  change,
+  theme,
+  isIncrease,
+}: {
+  name: string
+  change: string
+  theme: Theme
+  isIncrease: boolean
+}) => {
+  const textColor = isIncrease ? "text-green-300" : "text-red-300"
+  const dotColor = isIncrease ? "bg-green-500" : "bg-red-500"
 
-//     setCurrentTheme(newTheme)
-//     setIsThemeLoaded(true)
-//   }, [])
+  return (
+    <div className={`p-4 rounded-lg border ${theme.border} ${theme.cardBg}`}>
+      <div className="flex items-center gap-2 mb-2">
+        <div className={`w-2 h-2 rounded-full ${dotColor}`}></div>
+        <h4 className={`font-semibold ${textColor}`}>{name}</h4>
+      </div>
+      <p className={`text-sm ${textColor}`}>{change}</p>
+    </div>
+  )
+}
 
-//   // Save theme to localStorage when changed
-//   const handleThemeChange = (themeName: string) => {
-//     setCurrentTheme(themeName)
-//     localStorage.setItem("dinosaur-value-list-theme", themeName)
-//     const url = new URL(window.location.href)
-//     url.searchParams.set("theme", themeName)
-//     window.history.replaceState({}, "", url.toString())
-//     setShowSettings(false)
-//   }
-
-//   const theme = themes[currentTheme]
-
-//   const changelogEntries: ChangelogEntry[] = [
-//     // RISES
-//     {
-//       name: "Reaper Gelioichthys",
-//       oldValue: 68,
-//       newValue: 69,
-//       oldRarity: "6/8",
-//       newRarity: "7/8",
-//       isIncrease: true,
-//     },
-//     {
-//       name: "White Walker Carcharodontosaurus",
-//       oldValue: 27,
-//       newValue: 28,
-//       oldRarity: "4/8",
-//       newRarity: "4/8",
-//       isIncrease: true,
-//     },
-
-//     // DROPS
-//     {
-//       name: "Blue Whale Shastasaurus",
-//       oldValue: 115,
-//       newValue: 95,
-//       oldRarity: "6/8",
-//       newRarity: "6/8",
-//       isIncrease: false,
-//     },
-//     {
-//       name: "Zomvinychus",
-//       oldValue: 78,
-//       newValue: 70,
-//       oldRarity: "6/8",
-//       newRarity: "5/8",
-//       isIncrease: false,
-//     },
-
-//     // ADJUSTMENTS
-//     {
-//       name: "Classic Pitch Black Terror",
-//       oldValue: 39,
-//       newValue: 36,
-//       oldRarity: "5/8",
-//       newRarity: "5/8",
-//       isIncrease: false,
-//       isAdjustment: true,
-//     },
-//   ]
-
-//   const collectorsEntries: ChangelogEntry[] = []
-
-//   return (
-//     <div
-//       className={`min-h-screen ${theme.background} transition-opacity duration-200 ${isThemeLoaded ? "opacity-100" : "opacity-0"}`}
-//     >
-//       {/* Header */}
-//       <div
-//         className={`relative z-20 ${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl`}
-//       >
-//         <div className="flex justify-between items-center">
-//           {/* Left Side: Settings Button */}
-//           <div className="relative">
-//             <button
-//               onClick={() => setShowSettings(!showSettings)}
-//               className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}
-//             >
-//               <Paintbrush className="w-4 h-4" />
-//               <span className="hidden sm:inline">Themes</span>
-//             </button>
-//             {showSettings && (
-//               <div
-//                 className={`absolute top-full left-0 mt-2 ${theme.dropdownBg} backdrop-blur-xl ${theme.border} border rounded-xl p-3 min-w-[200px] z-50 shadow-2xl`}
-//               >
-//                 <div className={`${theme.textSecondary} text-xs font-medium mb-3 px-1`}>Choose Theme</div>
-//                 {Object.entries(themes).map(([key, themeOption]) => (
-//                   <button
-//                     key={key}
-//                     onClick={() => handleThemeChange(key)}
-//                     className={`w-full text-left px-3 py-2 rounded-lg transition-colors text-sm mb-1 ${
-//                       currentTheme === key
-//                         ? `${theme.buttonBg} ${theme.buttonText}`
-//                         : `${theme.textSecondary} ${theme.buttonHover.replace("hover:", "hover:")}`
-//                     }`}
-//                   >
-//                     {themeOption.name}
-//                   </button>
-//                 ))}
-//               </div>
-//             )}
-//           </div>
-
-//           {/* Middle: Title */}
-//           <div className="text-center">
-//             <div className="flex items-center justify-center gap-3 mb-2">
-//               <Clock className={`w-8 h-8 ${theme.textAccent}`} />
-//               <h1 className={`text-3xl sm:text-4xl font-bold ${theme.textPrimary}`}>Update History</h1>
-//             </div>
-//             <p className={`text-lg ${theme.textSecondary} font-light`}>Recent Value Changes & Market Updates</p>
-//           </div>
-
-//           {/* Right Side: Navigation Buttons */}
-//           <div className="flex gap-2 sm:gap-3">
-//             <Link href={`/info?theme=${currentTheme}`}>
-//               <button
-//                 className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
-//               >
-//                 Info
-//               </button>
-//             </Link>
-//             <Link href={`/?theme=${currentTheme}`}>
-//               <button
-//                 className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
-//               >
-//                 Back to Value List
-//               </button>
-//             </Link>
-//           </div>
-//         </div>
-//       </div>
-
-//       <div className="max-w-5xl mx-auto p-4 sm:p-6">
-//         <div className="space-y-8">
-//           {/* Market Summary - Full Width */}
-//           <Card
-//             className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-//           >
-//             <CardHeader className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}>
-//               <div className="flex items-center gap-3">
-//                 <TrendingUp className="w-6 h-6 text-green-400" />
-//                 <div>
-//                   <CardTitle className={`${theme.textPrimary} text-2xl font-bold`}>
-//                     Market Update - November 15, 2025
-//                   </CardTitle>
-//                   <p className={`${theme.textSecondary} text-sm mt-1`}>Latest trading trends and market movements</p>
-//                 </div>
-//               </div>
-//             </CardHeader>
-//             <CardContent className="p-6">
-//               <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-5">
-//                 <p className="text-green-400 text-sm font-medium leading-relaxed">
-//                   <strong className="text-base">LATEST VALUE UPDATE!</strong>
-//                   <br className="mb-2" />
-//                   Recent market adjustments: Blue Whale Shastasaurus drops from 115 to 95 (6/8). Zomvinychus decreases to 70 (5/8). Reaper Gelioichthys rises to 69 (7/8). Classic Pitch Black Terror adjusted to 36 value (5/8). White Walker Carcharodontosaurus increases to 28 (4/8). Added 22 new tradable dinosaurs including Apparition Fossil Giganotosaurus 185, (7/8), Cathedral Fasolatherium 80, (6/8), multiple new Fossil variants, and several of the Nomad Corythosaurus skins.
-//                 </p>
-//               </div>
-//             </CardContent>
-//           </Card>
-
-//           {/* Value Changes - Side by Side */}
-//           <div className="grid gap-6 lg:grid-cols-2">
-//             {/* Rises */}
-//             <Card
-//               className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-//             >
-//               <CardHeader
-//                 className={`bg-gradient-to-r from-green-900/20 to-emerald-900/20 ${theme.cardBorder} border-b`}
-//               >
-//                 <div className="flex items-center justify-between">
-//                   <div className="flex items-center gap-3">
-//                     <TrendingUp className="w-5 h-5 text-green-400" />
-//                     <div>
-//                       <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Increases</CardTitle>
-//                       <p className={`${theme.textSecondary} text-xs mt-0.5`}>
-//                         {
-//                           changelogEntries.filter(
-//                             (entry) => entry.isIncrease && !entry.isCollectors && !entry.isAdjustment,
-//                           ).length
-//                         }{" "}
-//                         items
-//                       </p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </CardHeader>
-//               <CardContent className="p-4">
-//                 <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
-//                   {changelogEntries
-//                     .filter((entry) => entry.isIncrease && !entry.isCollectors && !entry.isAdjustment)
-//                     .map((entry, index) => (
-//                       <div
-//                         key={index}
-//                         className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
-//                       >
-//                         <div className="flex items-start justify-between gap-3">
-//                           <div className="flex-1 min-w-0">
-//                             <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
-//                             <div className="flex items-center gap-2 mt-1">
-//                               <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
-//                               <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
-//                               <span className="text-green-400 text-xs">→</span>
-//                               <span className="text-green-400 text-xs font-semibold">{entry.newValue}</span>
-//                               <span className="text-green-400 text-xs">({entry.newRarity})</span>
-//                             </div>
-//                           </div>
-//                           <div className="w-2 h-2 bg-green-500 rounded-full shrink-0 mt-1.5"></div>
-//                         </div>
-//                       </div>
-//                     ))}
-//                 </div>
-//               </CardContent>
-//             </Card>
-
-//             {/* Drops */}
-//             <Card
-//               className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-//             >
-//               <CardHeader className={`bg-gradient-to-r from-red-900/20 to-pink-900/20 ${theme.cardBorder} border-b`}>
-//                 <div className="flex items-center justify-between">
-//                   <div className="flex items-center gap-3">
-//                     <TrendingDown className="w-5 h-5 text-red-400" />
-//                     <div>
-//                       <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Value Decreases</CardTitle>
-//                       <p className={`${theme.textSecondary} text-xs mt-0.5`}>
-//                         {
-//                           changelogEntries.filter(
-//                             (entry) => !entry.isIncrease && !entry.isAdjustment && !entry.isCollectors,
-//                           ).length
-//                         }{" "}
-//                         items
-//                       </p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </CardHeader>
-//               <CardContent className="p-4">
-//                 <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
-//                   {changelogEntries
-//                     .filter((entry) => !entry.isIncrease && !entry.isAdjustment && !entry.isCollectors)
-//                     .map((entry, index) => (
-//                       <div
-//                         key={index}
-//                         className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
-//                       >
-//                         <div className="flex items-start justify-between gap-3">
-//                           <div className="flex-1 min-w-0">
-//                             <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
-//                             <div className="flex items-center gap-2 mt-1">
-//                               <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
-//                               <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
-//                               <span className="text-red-400 text-xs">→</span>
-//                               <span className="text-red-400 text-xs font-semibold">{entry.newValue}</span>
-//                               <span className="text-red-400 text-xs">({entry.newRarity})</span>
-//                             </div>
-//                           </div>
-//                           <div className="w-2 h-2 bg-red-500 rounded-full shrink-0 mt-1.5"></div>
-//                         </div>
-//                       </div>
-//                     ))}
-//                 </div>
-//               </CardContent>
-//             </Card>
-//           </div>
-
-//           {/* Adjustments - Full Width */}
-//           <Card
-//             className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-//           >
-//             <CardHeader className={`bg-gradient-to-r from-orange-900/20 to-yellow-950/20 ${theme.cardBorder} border-b`}>
-//               <div className="flex items-center gap-3">
-//                 <RotateCcw className="w-5 h-5 text-orange-400" />
-//                 <div>
-//                   <CardTitle className={`${theme.textPrimary} text-xl font-bold`}>Tier Adjustments</CardTitle>
-//                   <p className={`${theme.textSecondary} text-sm mt-1`}>Rarity tier changes and value adjustments</p>
-//                 </div>
-//               </div>
-//             </CardHeader>
-//             <CardContent className="p-6">
-//               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-//                 {changelogEntries
-//                   .filter((entry) => entry.isAdjustment)
-//                   .map((entry, index) => (
-//                     <div
-//                       key={index}
-//                       className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
-//                     >
-//                       <div className="flex items-start gap-3">
-//                         <div
-//                           className={`w-2 h-2 rounded-full shrink-0 mt-1.5 ${entry.isIncrease ? "bg-green-500" : "bg-red-500"}`}
-//                         ></div>
-//                         <div className="flex-1 min-w-0">
-//                           <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{entry.name}</p>
-//                           <div className="flex items-center gap-2 mt-1 flex-wrap">
-//                             <span className={`${theme.textSecondary} text-xs`}>{entry.oldValue}</span>
-//                             <span className={`${theme.textSecondary} text-xs`}>({entry.oldRarity})</span>
-//                             <span className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs`}>→</span>
-//                             <span
-//                               className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs font-semibold`}
-//                             >
-//                               {entry.newValue}
-//                             </span>
-//                             <span className={`${entry.isIncrease ? "text-green-400" : "text-red-400"} text-xs`}>
-//                               ({entry.newRarity})
-//                             </span>
-//                           </div>
-//                         </div>
-//                       </div>
-//                     </div>
-//                   ))}
-//               </div>
-//             </CardContent>
-//           </Card>
-
-//           {/* Other Updates - Side by Side */}
-//           <div className="grid gap-6 lg:grid-cols-2">
-//             {/* New Tradables - Full Width in Grid */}
-//             <Card
-//               className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden lg:col-span-1`}
-//             >
-//               <CardHeader className={`bg-gradient-to-r from-cyan-900/20 to-blue-900/20 ${theme.cardBorder} border-b`}>
-//                 <div className="flex items-center gap-3">
-//                   <TrendingUp className="w-5 h-5 text-cyan-400" />
-//                   <div>
-//                     <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>New Tradables</CardTitle>
-//                     <p className={`${theme.textSecondary} text-xs mt-0.5`}>22 new dinosaurs added</p>
-//                   </div>
-//                 </div>
-//               </CardHeader>
-//               <CardContent className="p-5">
-//                 <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
-//                   {[
-//                     { name: "Apparition Fossil Giganotosaurus", value: 185, rarity: "7/8" },
-//                     { name: "Cathedral Fasolatherium", value: 80, rarity: "6/8" },
-//                     { name: "Nameless Barosaurus", value: 65, rarity: "6/8" },
-//                     { name: "Spectre Fossil Megavore", value: 24, rarity: "5/8" },
-//                     { name: "Gold Fossil Giganotosaurus", value: 4, rarity: "4/8" },
-//                     { name: "Fossil Megavore", value: 5, rarity: "2/8" },
-//                     { name: "Gold Fossil Skulker", value: 4, rarity: "1/8" },
-//                     { name: "Nomad Corythosaurus", value: 4, rarity: "1/8" },
-//                     { name: "Fossil Giganotosaurus", value: 3, rarity: "1/8" },
-//                     { name: "Old Bark Nomad Corythosaurus", value: 3, rarity: "1/8" },
-//                     { name: "Pristine Vessel Nomad Corythosaurus", value: 3, rarity: "1/8" },
-//                     { name: "Sky High Nomad Corythosaurus", value: 3, rarity: "1/8" },
-//                     { name: "Tiderider Nomad Corythosaurus", value: 3, rarity: "1/8" },
-//                     { name: "Scarecrow Thanatosdrakon", value: 3, rarity: "1/8" },
-//                     { name: "Fallen Caveman", value: 2, rarity: "1/8" },
-//                     { name: "Fossil Acrocanthosaurus", value: 2, rarity: "1/8" },
-//                     { name: "Fossil Basilosaurus", value: 2, rarity: "1/8" },
-//                     { name: "Fossil Therizinosaurus", value: 2, rarity: "1/8" },
-//                     { name: "Fossil Skulker", value: 2, rarity: "1/8" },
-//                     { name: "Radiated Zomvinychus", value: 2, rarity: "1/8" },
-//                     { name: "Fallen", value: 1, rarity: "1/8" },
-//                     { name: "Overseer Wanderer", value: 1, rarity: "1/8" },
-//                   ].map((dino, index) => (
-//                     <div
-//                       key={index}
-//                       className={`${theme.inputBg} ${theme.border} border rounded-lg p-3 hover:scale-[1.02] transition-all duration-200`}
-//                     >
-//                       <div className="flex items-start justify-between gap-3">
-//                         <div className="flex-1 min-w-0">
-//                           <p className={`${theme.textPrimary} text-sm font-semibold truncate`}>{dino.name}</p>
-//                           <div className="flex items-center gap-2 mt-1">
-//                             <span className="text-cyan-400 text-xs font-semibold">{dino.value}</span>
-//                             <span className="text-cyan-400 text-xs">({dino.rarity})</span>
-//                           </div>
-//                         </div>
-//                         <div className="w-2 h-2 bg-cyan-500 rounded-full shrink-0 mt-1.5"></div>
-//                       </div>
-//                     </div>
-//                   ))}
-//                 </div>
-//               </CardContent>
-//             </Card>
-
-//             {/* Platform Updates */}
-//             <Card
-//               className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-xl rounded-2xl overflow-hidden`}
-//             >
-//               <CardHeader className={`bg-gradient-to-r from-blue-900/20 to-cyan-900/20 ${theme.cardBorder} border-b`}>
-//                 <div className="flex items-center gap-3">
-//                   <Paintbrush className="w-5 h-5 text-blue-400" />
-//                   <div>
-//                     <CardTitle className={`${theme.textPrimary} text-lg font-bold`}>Platform Updates</CardTitle>
-//                     <p className={`${theme.textSecondary} text-xs mt-0.5`}>Bug fixes & improvements</p>
-//                   </div>
-//                 </div>
-//               </CardHeader>
-//               <CardContent className="p-5">
-//                 <div className="space-y-3">
-//                   <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
-//                     <div className="flex items-start gap-3">
-//                       <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
-//                       <div>
-//                         <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Duplicate Entries Fixed</p>
-//                         <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
-//                           Removed duplicate dinosaur entries that appeared in multiple tiers
-//                         </p>
-//                       </div>
-//                     </div>
-//                   </div>
-//                   <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
-//                     <div className="flex items-start gap-3">
-//                       <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
-//                       <div>
-//                         <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Tier Organization Improved</p>
-//                         <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
-//                           All dinosaurs now correctly sorted into their appropriate value tiers
-//                         </p>
-//                       </div>
-//                     </div>
-//                   </div>
-//                   <div className={`${theme.inputBg} ${theme.cardBorder} border rounded-lg p-4`}>
-//                     <div className="flex items-start gap-3">
-//                       <div className="w-2 h-2 bg-blue-500 rounded-full shrink-0 mt-1"></div>
-//                       <div>
-//                         <p className={`${theme.textPrimary} text-sm font-semibold mb-1`}>Filter Update</p>
-//                         <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
-//                           Added values to the filters
-//                         </p>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </CardContent>
-//             </Card>
-//           </div>
-//         </div>
-
-//         {/* Footer */}
-//         <div className="mt-12 text-center">
-//           <div className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm rounded-xl p-6 shadow-lg`}>
-//             <p className={`${theme.textSecondary} text-sm font-light`}>
-//               Directly forked from the{" "}
-//               <a
-//                 href="https://discord.gg/kNPy4jwMWj"
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className={`${theme.textAccent} ${theme.linkHover} transition-colors underline decoration-current/60 hover:decoration-current font-medium`}
-//               >
-//                 Dinosaur Simulator Trading Network
-//               </a>{" "}
-//               Discord Server with slight changes.
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-// --- OLD COMPONENT END ---
-
-// --- NEW COMPONENT START ---
 export default function ChangelogComponent() {
   const [theme, setTheme] = useState<string>("dark")
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false)
@@ -1196,667 +792,439 @@ export default function ChangelogComponent() {
             <p className={`text-center ${currentTheme.textSecondary} mt-2`}>Track all value updates and changes</p>
           </CardHeader>
           <CardContent>
-            {/* Latest Value Update Banner - Updated to November 15, 2025 */}
-            <div className="mb-8 p-6 bg-gradient-to-r from-green-900/40 to-green-800/40 border border-green-600/40 rounded-lg">
-              <h2 className="text-2xl font-bold text-green-100 mb-3">LATEST VALUE UPDATE!</h2>
-              <p className="text-green-200 leading-relaxed">
-                Massive market update with 109 skins changed! Apparition Fossil Giganotosaurus surges to 440 value
-                (8/8). Eschaton Argentinosaurus reaches 400 value. Blue Whale Shastasaurus increases to 140, Distorted
-                King jumps to 130, and Galactic Barosaurus rises to 98. DNA conversion improved to 9-11K DNA per value
-                (down from 14-15K), making all dinosaurs more valuable!
+            {/* Latest Value Update Banner - Updated to latest update */}
+            <div className="mb-8 p-6 bg-gradient-to-r from-red-900/40 to-orange-800/40 border border-red-600/40 rounded-lg">
+              <h2 className="text-2xl font-bold text-red-100 mb-3">LATEST VALUE UPDATE!</h2>
+              <p className="text-red-200 leading-relaxed">
+                Major market correction: Apparition Fossil Giganotosaurus soars to 570 value (8/8) and Eschaton
+                Argentinosaurus reaches 470 value! Pitchygator surges to 175. DNA conversion decreased to 20-23K DNA per
+                value, reflecting market stabilization after recent inflation. Several rarity adjustments and 2 new
+                tradables added.
               </p>
             </div>
 
-            {/* Value Increases Section - Updated with November 15, 2025 increases only */}
+            {/* Value Increases Section - Updated with latest increases only */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
                 <TrendingUp className="w-6 h-6 text-green-500" />
                 <h3 className="text-2xl font-bold text-green-400">Value Increases</h3>
-                <span className={`text-sm ${currentTheme.textSecondary}`}>27 items (25%)</span>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>21 items</span>
               </div>
               <div className="grid gap-3">
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Apparition Fossil Giganotosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">195 (7/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">440 (8/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Eschaton Argentinosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">0 (0/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">400 (8/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Blue Whale Shastasaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">95 (6/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">140 (7/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Distorted King</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">98 (7/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">130 (7/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Galactic Barosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">80 (6/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">98 (7/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Cathedral Fasolatherium</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">84 (6/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">96 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Orca Spinosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">72 (6/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">85 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Nameless Barosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">65 (6/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">75 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Giant Albino Baryonyx</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">58 (7/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">68 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Movie Mosasaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">60 (6/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">70 (7/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Pitch Luminescent Avinychus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">65 (5/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">60 (5/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Kaiju Giraffatitan</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">48 (5/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">52 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Zomvinychus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">60 (5/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">52 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Pitch Coconut Brachiosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">0 (0/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">42 (4/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Scylla</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">46 (6/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">38 (5/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Kaiju Spinofaarus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">0 (0/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">36 (5/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Crossover Hybrid/Vinera</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">24 (4/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">33 (5/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">White Walker Carcharodontosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">28 (4/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">24 (4/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Gold Fossil Giganotosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">8 (4/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">22 (3/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Gold Fossil Tyrannosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">21 (4/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">13 (3/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Movie Giganotosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">5 (3/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">14 (3/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Movie Therizinosaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">3 (1/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">14 (2/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Gold Lily Saurolophus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">6 (2/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">12 (2/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Kaiju Sauroposeidon</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">12 (3/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">11 (3/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Juramaia</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">12 (3/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">5 (1/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Mayhem Gojirasaurus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">12 (3/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">9 (2/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-green-950/30 border border-green-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-green-200">Clamarocles Megalodon</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-green-400 text-sm">13 (4/8)</span>
-                        <span className="text-green-600">→</span>
-                        <span className="text-green-300 text-sm font-bold">9 (2/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
+                <ValueChangeItem
+                  name="Apparition Fossil Giganotosaurus"
+                  oldValue="440"
+                  newValue="570"
+                  oldRarity="8/8"
+                  newRarity="8/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Eschaton Argentinosaurus"
+                  oldValue="400"
+                  newValue="470"
+                  oldRarity="8/8"
+                  newRarity="8/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Pitch Wraith Terror"
+                  oldValue="280"
+                  newValue="290"
+                  oldRarity="8/8"
+                  newRarity="8/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Pitch Black Sunfish Shonisaurus"
+                  oldValue="210"
+                  newValue="220"
+                  oldRarity="6/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Wraith Terror"
+                  oldValue="180"
+                  newValue="190"
+                  oldRarity="6/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Pitchygator"
+                  oldValue="140"
+                  newValue="175"
+                  oldRarity="7/8"
+                  newRarity="7/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Hydralania"
+                  oldValue="160"
+                  newValue="165"
+                  oldRarity="6/8"
+                  newRarity="7/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Distorted King"
+                  oldValue="130"
+                  newValue="135"
+                  oldRarity="7/8"
+                  newRarity="8/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Pitch Black Moray Oxalaia"
+                  oldValue="120"
+                  newValue="122"
+                  oldRarity="6/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Cathedral Fasolatherium"
+                  oldValue="96"
+                  newValue="100"
+                  oldRarity="6/8"
+                  newRarity="7/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Nameless Barosaurus"
+                  oldValue="75"
+                  newValue="82"
+                  oldRarity="6/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Giant Albino Baryonyx"
+                  oldValue="68"
+                  newValue="70"
+                  oldRarity="6/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Aurora Borethalass"
+                  oldValue="49"
+                  newValue="62"
+                  oldRarity="6/8"
+                  newRarity="7/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Zomvinychus"
+                  oldValue="52"
+                  newValue="55"
+                  oldRarity="6/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Peak Spinosaurus"
+                  oldValue="30"
+                  newValue="30"
+                  oldRarity="5/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Butterfly Alametus"
+                  oldValue="26"
+                  newValue="26"
+                  oldRarity="5/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Carcharocles Megalodon"
+                  oldValue="25"
+                  newValue="28"
+                  oldRarity="5/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Kaiju Gelioichthys"
+                  oldValue="24"
+                  newValue="26"
+                  oldRarity="5/8"
+                  newRarity="5/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Chaos Titanosaur"
+                  oldValue="11"
+                  newValue="13"
+                  oldRarity="3/8"
+                  newRarity="3/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Nidhogg"
+                  oldValue="8"
+                  newValue="10"
+                  oldRarity="3/8"
+                  newRarity="3/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Violex Parvulus"
+                  oldValue="8"
+                  newValue="9"
+                  oldRarity="2/8"
+                  newRarity="3/8"
+                  theme={currentTheme}
+                />
+                <ValueChangeItem
+                  name="Indomitable Thief"
+                  oldValue="6"
+                  newValue="7"
+                  oldRarity="2/8"
+                  newRarity="3/8"
+                  theme={currentTheme}
+                />
               </div>
             </div>
 
-            {/* Value Decreases Section - Updated with November 15, 2025 decreases only */}
+            {/* Value Decreases Section - Updated with latest decreases only */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
                 <TrendingDown className="w-6 h-6 text-red-500" />
                 <h3 className="text-2xl font-bold text-red-400">Value Decreases</h3>
-                <span className={`text-sm ${currentTheme.textSecondary}`}>68 items (62%)</span>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>11 items</span>
               </div>
               <div className="grid gap-3">
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Wraith Terror</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">170 (6/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">180 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Violex Magnus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">195 (8/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">150 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Fallen Gladiator</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">150 (7/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">135 (7/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Berserk Alametus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">125 (7/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">125 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Isisauriraptor</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">125 (6/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">122 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Pitch Black Moray Oxalaia</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">0 (0/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">120 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Reaper Gelioichthys</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">69 (7/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">72 (7/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Pitch Black Terror</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">54 (5/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">70 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Dolphin Ichthyovenator</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">62 (6/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">65 (6/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-red-950/30 border border-red-800/40 rounded-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-red-200">Luminescent Avinychus</h4>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-red-400 text-sm">54 (6/8)</span>
-                        <span className="text-red-600">→</span>
-                        <span className="text-red-300 text-sm font-bold">50 (5/8)</span>
-                      </div>
-                    </div>
-                    <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  </div>
-                </div>
+                <ValueChangeItem
+                  name="Pitch Black Baryonyx"
+                  oldValue="200"
+                  newValue="200"
+                  oldRarity="6/8"
+                  newRarity="5/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Fallen Gladiator"
+                  oldValue="135"
+                  newValue="135"
+                  oldRarity="7/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Isisauriraptor"
+                  oldValue="122"
+                  newValue="115"
+                  oldRarity="6/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Orca Spinosaurus"
+                  oldValue="85"
+                  newValue="80"
+                  oldRarity="6/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Reaper Gelioichthys"
+                  oldValue="72"
+                  newValue="69"
+                  oldRarity="7/8"
+                  newRarity="6/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Pitch Black Terror"
+                  oldValue="70"
+                  newValue="67"
+                  oldRarity="6/8"
+                  newRarity="6/7"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Pitch Luminescent Avinychus"
+                  oldValue="60"
+                  newValue="54"
+                  oldRarity="5/8"
+                  newRarity="5/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Spectre Fossil Megavore"
+                  oldValue="28"
+                  newValue="27"
+                  oldRarity="4/8"
+                  newRarity="4/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Rakebaby Guanlong"
+                  oldValue="24"
+                  newValue="23"
+                  oldRarity="4/8"
+                  newRarity="4/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Masquerade Gigantoraptor"
+                  oldValue="22"
+                  newValue="18"
+                  oldRarity="4/8"
+                  newRarity="4/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
+                <ValueChangeItem
+                  name="Lil UFO Pteranodon"
+                  oldValue="13"
+                  newValue="10"
+                  oldRarity="2/8"
+                  newRarity="2/8"
+                  theme={currentTheme}
+                  isDecrease
+                />
               </div>
             </div>
 
-            {/* Tier Adjustments Section - Updated with November 15, 2025 adjustments only */}
+            {/* Tier Adjustments Section - Updated with latest adjustments */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
                 <RefreshCw className="w-6 h-6 text-orange-500" />
                 <h3 className="text-2xl font-bold text-orange-400">Tier Adjustments</h3>
-                <span className={`text-sm ${currentTheme.textSecondary}`}>Rarity tier changes</span>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>
+                  Rarity tier changes and value adjustments
+                </span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 bg-green-950/20 border border-green-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                    <h4 className="font-semibold text-green-300">B Tier Range Changed</h4>
-                  </div>
-                  <p className="text-sm text-green-400">30-49 → 25-49</p>
-                </div>
-                <div className="p-4 bg-green-950/20 border border-green-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                    <h4 className="font-semibold text-green-300">C Tier Range Changed</h4>
-                  </div>
-                  <p className="text-sm text-green-400">15-29 → 15-25</p>
-                </div>
-                <div className="p-4 bg-green-950/20 border border-green-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                    <h4 className="font-semibold text-green-300">DNA Conversion Improved</h4>
-                  </div>
-                  <p className="text-sm text-green-400">14K-15K → 9K-11K per value</p>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <TierAdjustmentCard
+                  name="Blue Whale Shastasaurus"
+                  change="140 (7/8) → 155 (6/8)"
+                  theme={currentTheme}
+                  isIncrease={true}
+                />
+                <TierAdjustmentCard
+                  name="Movie Mosasaurus"
+                  change="70 (7/8) → 70 (6/8)"
+                  theme={currentTheme}
+                  isIncrease={false}
+                />
+                <TierAdjustmentCard
+                  name="Pitch Coconut Brachiosaurus"
+                  change="42 (4/8) → 40 (4/8)"
+                  theme={currentTheme}
+                  isIncrease={false}
+                />
+                <TierAdjustmentCard
+                  name="Kaiju Spinofaarus"
+                  change="36 (5/8) → 38 (5/8)"
+                  theme={currentTheme}
+                  isIncrease={true}
+                />
+                <TierAdjustmentCard
+                  name="Spinofaarus"
+                  change="35 (5/8) → 36 (5/8)"
+                  theme={currentTheme}
+                  isIncrease={true}
+                />
+                <TierAdjustmentCard
+                  name="Kaiju Sauroposeidon"
+                  change="11 (3/8) → 10 (3/8)"
+                  theme={currentTheme}
+                  isIncrease={false}
+                />
+                <TierAdjustmentCard
+                  name="Pumpkin Megalodon"
+                  change="5 (1/8) → 3 (1/8)"
+                  theme={currentTheme}
+                  isIncrease={false}
+                />
+                <TierAdjustmentCard
+                  name="Singulafaarus"
+                  change="8 (3/8) → 9 (3/8)"
+                  theme={currentTheme}
+                  isIncrease={true}
+                />
               </div>
             </div>
 
-            {/* DNA Conversion Section */}
-            <div className="mb-8 p-6 bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-700/30 rounded-lg">
-              <div className="flex items-center gap-3 mb-4">
-                <Clock className="w-6 h-6 text-green-400" />
-                <h3 className="text-2xl font-bold text-green-300">DNA Conversion</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-4 bg-green-950/30 rounded-lg">
-                  <div>
-                    <p className="text-green-400 font-semibold">Value Increase</p>
-                    <p className="text-sm text-green-500 mt-1">14K-15K DNA = 1 Value → 9K-11K DNA = 1 Value</p>
-                    <p className="text-xs text-green-600 mt-2 italic">
-                      Lower DNA per value means dinosaurs are more valuable
-                    </p>
-                  </div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Platform Updates Section */}
+            {/* New Tradables Section */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
-                <Rocket className="w-6 h-6 text-blue-500" />
-                <h3 className="text-2xl font-bold text-blue-400">Platform Updates</h3>
-                <span className={`text-sm ${currentTheme.textSecondary}`}>Bug fixes & improvements</span>
+                <Sparkles className="w-6 h-6 text-cyan-500" />
+                <h3 className="text-2xl font-bold text-cyan-400">New Tradables</h3>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>2 new skins added</span>
               </div>
-              <div className="space-y-3">
-                <div className="p-4 bg-blue-950/20 border border-blue-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    <h4 className="font-semibold text-blue-300">OLED Theme Added</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className={`p-4 rounded-lg border ${currentTheme.border} ${currentTheme.cardBg}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className={`font-bold ${currentTheme.text}`}>Pitch Black Shantungosaurus</h4>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm font-bold ${currentTheme.valueBg || "bg-purple-500/20"} ${currentTheme.text}`}
+                    >
+                      12
+                    </span>
                   </div>
-                  <p className="text-sm text-blue-400">
-                    New Pitch Black (OLED) theme optimized for OLED displays with pure blacks
-                  </p>
-                </div>
-                <div className="p-4 bg-blue-950/20 border border-blue-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    <h4 className="font-semibold text-blue-300">Theme Persistence Fixed</h4>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-1 rounded text-xs font-medium bg-purple-500/20 text-purple-300`}>
+                      3/8
+                    </span>
+                    <span className={`text-xs ${currentTheme.textSecondary}`}>D Tier</span>
                   </div>
-                  <p className="text-sm text-blue-400">
-                    Themes now persist correctly across all pages (Info, Changelog, Main)
-                  </p>
                 </div>
-                <div className="p-4 bg-blue-950/20 border border-blue-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    <h4 className="font-semibold text-blue-300">Duplicate Entries Fixed</h4>
+
+                <div className={`p-4 rounded-lg border ${currentTheme.border} ${currentTheme.cardBg}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className={`font-bold ${currentTheme.text}`}>Blinding White Shantungosaurus</h4>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm font-bold ${currentTheme.valueBg || "bg-purple-500/20"} ${currentTheme.text}`}
+                    >
+                      8
+                    </span>
                   </div>
-                  <p className="text-sm text-blue-400">
-                    Removed duplicate dinosaur entries that appeared in multiple tiers
-                  </p>
-                </div>
-                <div className="p-4 bg-blue-950/20 border border-blue-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    <h4 className="font-semibold text-blue-300">Tier Organization Improved</h4>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2 py-1 rounded text-xs font-medium bg-purple-500/20 text-purple-300`}>
+                      2/8
+                    </span>
+                    <span className={`text-xs ${currentTheme.textSecondary}`}>E Tier</span>
                   </div>
-                  <p className="text-sm text-blue-400">
-                    All dinosaurs now correctly sorted into their appropriate value tiers
-                  </p>
                 </div>
-                <div className="p-4 bg-blue-950/20 border border-blue-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    <h4 className="font-semibold text-blue-300">Filter Enhancement</h4>
-                  </div>
-                  <p className="text-sm text-blue-400">
-                    Added value ranges and DNA amounts to tier filters for better clarity
-                  </p>
+              </div>
+            </div>
+
+            {/* DNA Conversion Section - Updated with DNA decrease */}
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-4">
+                <Clock className="w-6 h-6 text-red-500" />
+                <h3 className="text-2xl font-bold text-red-400">DNA Conversion</h3>
+                <span className={`text-sm ${currentTheme.textSecondary}`}>Updated trading rates</span>
+              </div>
+              <div className={`p-6 rounded-lg border ${currentTheme.border} ${currentTheme.cardBg}`}>
+                <div className="flex items-center gap-3 mb-3">
+                  <TrendingDown className="w-5 h-5 text-red-500" />
+                  <h4 className={`font-bold text-lg ${currentTheme.text}`}>Value Decrease</h4>
                 </div>
-                <div className="p-4 bg-blue-950/20 border border-blue-800/30 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    <h4 className="font-semibold text-blue-300">Active Filters Display</h4>
-                  </div>
-                  <p className="text-sm text-blue-400">Added clear all button for active filters</p>
+                <div className="flex items-center gap-4 text-2xl font-bold mb-2">
+                  <span className="text-red-400">9-11K DNA = 1 Value</span>
+                  <span className={currentTheme.textSecondary}>→</span>
+                  <span className="text-red-500">20-23K DNA = 1 Value</span>
                 </div>
+                <p className={`text-sm ${currentTheme.textSecondary} italic`}>
+                  Higher DNA per value indicates market stabilization after recent inflation
+                </p>
               </div>
             </div>
           </CardContent>
@@ -1865,4 +1233,3 @@ export default function ChangelogComponent() {
     </div>
   )
 }
-// --- NEW COMPONENT END ---
