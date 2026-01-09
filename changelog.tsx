@@ -791,7 +791,7 @@ export default function ChangelogComponent() {
             <p className={`text-center ${currentTheme.textSecondary} mt-2`}>Track all value updates and changes</p>
           </CardHeader>
           <CardContent>
-            {/* Latest Value Update Banner - Updated to latest update */}
+            {/* LATEST VALUE UPDATE Banner */}
             <div className="mb-8 p-6 bg-gradient-to-r from-red-900/40 to-orange-800/40 border border-red-600/40 rounded-lg">
               <h2 className="text-2xl font-bold text-red-100 mb-3">LATEST VALUE UPDATE!</h2>
               <p className="text-red-200 leading-relaxed">
