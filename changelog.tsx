@@ -778,6 +778,12 @@ export default function ChangelogComponent() {
               >
                 Info
               </Link>
+              <Link
+                href="/calculator"
+                className={`px-4 py-2 rounded-lg ${currentTheme.buttonBg} ${currentTheme.buttonHover} ${currentTheme.buttonText} transition-colors`}
+              >
+                Calculator
+              </Link>
             </div>
           </div>
         </div>
