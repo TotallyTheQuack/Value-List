@@ -759,21 +759,28 @@ export default function Info() {
 
             {/* Right Side: Navigation Buttons */}
             <div className="flex gap-2 sm:gap-3">
-              <Link href={`/changelog?theme=${currentTheme}`}>
-                <button
-                  className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
-                >
-                  Changelog
-                </button>
-              </Link>
-              <Link href={`/?theme=${currentTheme}`}>
-                <button
-                  className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
-                >
-                  Back to Value List
-                </button>
-              </Link>
-            </div>
+<Link href={`/changelog?theme=${currentTheme}`}>
+                  <button
+                    className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+                  >
+                    Changelog
+                  </button>
+                </Link>
+                <Link href={`/calculator?theme=${currentTheme}`}>
+                  <button
+                    className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+                  >
+                    Calculator
+                  </button>
+                </Link>
+                <Link href={`/?theme=${currentTheme}`}>
+                  <button
+                    className={`px-4 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
+                  >
+                    Back to Value List
+                  </button>
+                </Link>
+              </div>
           </div>
         </div>
 
