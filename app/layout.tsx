@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains' })
+
 export const metadata: Metadata = {
-  title: 'Value List',
-  description: 'The Value List of all time',
+  title: 'Dinosaur Simulator Value List',
+  description: 'The definitive trading value list for Dinosaur Simulator',
   generator: 'TheQuack',
 }
 
@@ -13,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }

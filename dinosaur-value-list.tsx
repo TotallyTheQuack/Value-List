@@ -1229,27 +1229,33 @@ export default function Component() {
   <div className={`min-h-screen ${theme.background}`}>
   {/* Obsolete Notice Popup */}
   {showObsoleteNotice && (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowObsoleteNotice(false)} />
-      <div className={`relative max-w-lg w-full ${theme.cardBg} border-2 border-red-500/60 rounded-2xl p-6 shadow-2xl`}>
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/20 border border-red-500/40">
-            <span className="text-red-400 text-xl font-bold">!</span>
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Obsolete notice">
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setShowObsoleteNotice(false)} />
+      <div className={`relative max-w-md w-full ${theme.cardBg} border border-red-500/40 rounded-2xl overflow-hidden shadow-2xl`}>
+        <div className="h-1 bg-red-500/60" />
+        <div className="p-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-red-500/15 border border-red-500/30">
+              <X className="w-5 h-5 text-red-400" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-red-400">Heads Up</h2>
+              <p className={`text-xs ${theme.textSecondary}`}>Important notice</p>
+            </div>
           </div>
-          <h2 className={`text-xl font-bold text-red-400`}>Notice</h2>
+          <p className={`${theme.textPrimary} text-sm leading-relaxed mb-2`}>
+            This value list is currently <span className="text-red-400 font-semibold">not being updated</span> and may contain outdated information.
+          </p>
+          <p className={`${theme.textSecondary} text-xs leading-relaxed mb-5`}>
+            Values shown may not reflect the current market. Do not rely on this list for trading decisions until further notice.
+          </p>
+          <button
+            onClick={() => setShowObsoleteNotice(false)}
+            className="w-full py-2.5 bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-red-300 rounded-xl transition-all duration-200 text-sm font-medium"
+          >
+            Got it
+          </button>
         </div>
-        <p className={`${theme.textPrimary} text-base leading-relaxed mb-2`}>
-          This value list is currently <span className="text-red-400 font-semibold">obsolete</span> and is <span className="text-red-400 font-semibold">no longer being updated</span>.
-        </p>
-        <p className={`${theme.textSecondary} text-sm leading-relaxed mb-6`}>
-          The values shown here may be inaccurate or outdated. It is not recommended to rely on this list for trading decisions until further notice. Please check back later for updates.
-        </p>
-        <button
-          onClick={() => setShowObsoleteNotice(false)}
-          className="w-full py-3 bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-300 rounded-xl transition-all duration-200 font-medium"
-        >
-          I Understand
-        </button>
       </div>
     </div>
   )}
@@ -1258,30 +1264,35 @@ export default function Component() {
       <div
         className={`fixed inset-0 z-[100] transition-opacity duration-300 ${isThemePanelOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
       >
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsThemePanelOpen(false)} />
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-md" onClick={() => setIsThemePanelOpen(false)} />
         <div
           className={`relative w-72 max-w-[80vw] h-full ${theme.dropdownBg} ${theme.border} border-r transition-transform duration-300 ${isThemePanelOpen ? "translate-x-0" : "-translate-x-full"}`}
         >
-          <div className="flex items-center justify-between p-4 border-b ${theme.border}">
-            <h2 className={`font-semibold ${theme.textPrimary}`}>Select Theme</h2>
+          <div className={`flex items-center justify-between p-5 border-b ${theme.border}`}>
+            <div>
+              <h2 className={`font-semibold ${theme.textPrimary} text-sm`}>Appearance</h2>
+              <p className={`text-xs ${theme.textSecondary} mt-0.5`}>Choose your theme</p>
+            </div>
             <button
               onClick={() => setIsThemePanelOpen(false)}
-              className={`${theme.buttonBg} ${theme.buttonHover} p-2 rounded-lg`}
+              className={`${theme.buttonBg} ${theme.buttonHover} p-2 rounded-lg transition-colors`}
+              aria-label="Close theme panel"
             >
-              <X className={`w-5 h-5 ${theme.textSecondary}`} />
+              <X className={`w-4 h-4 ${theme.textSecondary}`} />
             </button>
           </div>
-          <div className="p-4 space-y-2">
+          <div className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-80px)]">
             {Object.entries(themes).map(([key, themeOption]) => (
               <button
                 key={key}
                 onClick={() => handleThemeChange(key)}
-                className={`w-full text-left px-3 py-2 rounded-lg transition-colors text-sm ${
+                className={`w-full text-left px-3 py-2.5 rounded-xl transition-all duration-150 text-sm flex items-center gap-3 ${
                   currentTheme === key
-                    ? `${theme.buttonBg} ${theme.buttonText}`
-                    : `${theme.textSecondary} ${theme.buttonHover.replace("hover:", "hover:")}`
+                    ? `${theme.buttonBg} ${theme.buttonText} ${theme.border} border`
+                    : `${theme.textSecondary} ${theme.buttonHover} border border-transparent`
                 }`}
               >
+                <div className={`w-2 h-2 rounded-full ${currentTheme === key ? "bg-current" : "bg-transparent"}`} />
                 {themeOption.name}
               </button>
             ))}
@@ -1293,14 +1304,14 @@ export default function Component() {
       <div
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showFloatingSearch ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"}`}
       >
-        <div className={`${theme.scrollHeaderBg} backdrop-blur-xl ${theme.border} border-b shadow-lg`}>
+        <div className={`${theme.scrollHeaderBg} backdrop-blur-xl ${theme.border} border-b`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
             <Input
               type="text"
               placeholder="Search dinosaurs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className={`h-10 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-lg backdrop-blur-sm text-sm`}
+              className={`h-10 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} rounded-xl text-sm`}
             />
           </div>
         </div>
@@ -1308,120 +1319,89 @@ export default function Component() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <div ref={headerControlsRef}>
-          {/* Compact Header */}
-          <div
-            className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6`}
-          >
+          {/* Header */}
+          <div className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-5 sm:p-6 mb-5`}>
             <div className="flex items-center justify-between gap-4">
-              {/* Left: Theme Button */}
               <button
                 onClick={() => setIsThemePanelOpen(true)}
-                className={`px-3 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}
+                className={`px-3 py-2.5 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl ${theme.border} border transition-all duration-200 flex items-center gap-2 text-sm`}
+                aria-label="Open theme panel"
               >
                 <Paintbrush className="w-4 h-4" />
                 <span className="hidden sm:inline">Themes</span>
               </button>
 
-              {/* Center: Title */}
               <div className="text-center flex-1">
-                <h1 className={`text-2xl sm:text-3xl font-bold ${theme.textPrimary}`}>Dinosaur Simulator</h1>
-                <p className={`text-sm ${theme.textSecondary} font-light`}>Value List</p>
+                <h1 className={`text-2xl sm:text-3xl font-bold ${theme.textPrimary} tracking-tight text-balance`}>Dinosaur Simulator</h1>
+                <p className={`text-xs ${theme.textSecondary} mt-1 tracking-wide uppercase`}>Value List</p>
               </div>
 
-              {/* Right: Navigation */}
-              <div className="flex gap-2">
-                <Link href={`/info?theme=${currentTheme}`}>
-                  <button
-                    className={`px-3 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
-                  >
-                    Info
-                  </button>
+              <nav className="flex gap-2" aria-label="Main navigation">
+                <Link href={`/info?theme=${currentTheme}`} className={`px-3 py-2.5 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl ${theme.border} border transition-all duration-200 text-sm hidden sm:block`}>
+                  Info
                 </Link>
-                <Link href={`/changelog?theme=${currentTheme}`}>
-                  <button
-                    className={`px-3 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
-                  >
-                    Changelog
-                  </button>
+                <Link href={`/changelog?theme=${currentTheme}`} className={`px-3 py-2.5 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl ${theme.border} border transition-all duration-200 text-sm`}>
+                  Changelog
                 </Link>
-                <Link href={`/calculator?theme=${currentTheme}`}>
-                  <button
-                    className={`px-3 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 text-sm font-light`}
-                  >
-                    Calculator
-                  </button>
+                <Link href={`/calculator?theme=${currentTheme}`} className={`px-3 py-2.5 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl ${theme.border} border transition-all duration-200 text-sm`}>
+                  Calculator
                 </Link>
-              </div>
+              </nav>
             </div>
           </div>
 
-          {/* Search and Filters - Organized */}
-          <div className="space-y-4 mb-6">
-            {/* Search Bar - Full Width */}
+          {/* Search and Filters */}
+          <div className="space-y-3 mb-5">
             <Input
               type="text"
               placeholder="Search dinosaurs, values, codes..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className={`h-12 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} placeholder:${theme.textSecondary} focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} rounded-xl backdrop-blur-sm text-base`}
+              className={`h-12 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} rounded-xl text-sm`}
             />
 
-            {/* Filters Row */}
-            <div className="flex flex-wrap items-center gap-3">
-              {/* Tier Filter */}
-              <div className="relative flex-1 min-w-[180px] max-w-xs">
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="relative flex-1 min-w-[160px] max-w-xs">
                 <select
                   value={selectedTier}
                   onChange={(e) => setSelectedTier(e.target.value)}
-                  className={`w-full h-11 px-4 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} rounded-xl backdrop-blur-sm focus:${theme.inputBorder.replace("border-", "border-").replace("/50", "/70")} appearance-none cursor-pointer text-sm font-medium`}
+                  className={`w-full h-10 px-4 ${theme.inputBg} ${theme.inputBorder} border ${theme.textPrimary} rounded-xl appearance-none cursor-pointer text-sm`}
+                  aria-label="Filter by tier"
                 >
-                  <option value="all" className="bg-gray-900 text-white">
-                    All Tiers
-                  </option>
+                  <option value="all" className="bg-gray-900 text-white">All Tiers</option>
                   {tiers.map((tier) => (
-                    <option key={tier.name} value={tier.name} className="bg-gray-900 text-white">
-                      {tier.name}
-                    </option>
+                    <option key={tier.name} value={tier.name} className="bg-gray-900 text-white">{tier.name}</option>
                   ))}
                 </select>
-                <ChevronDown
-                  className={`absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 ${theme.textSecondary} pointer-events-none`}
-                />
+                <ChevronDown className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 ${theme.textSecondary} pointer-events-none`} />
               </div>
 
-              {/* Sort Options */}
-              <div className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border h-11`}>
-                <button
-                  onClick={() => setSortMode("value")}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs ${sortMode === "value" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
-                >
-                  <DollarSign className="w-3.5 h-3.5" /> Value
-                </button>
-                <button
-                  onClick={() => setSortMode("alphabetical")}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs ${sortMode === "alphabetical" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
-                >
-                  <ArrowDownUp className="w-3.5 h-3.5" /> A-Z
-                </button>
-                <button
-                  onClick={() => setSortMode("demand")}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs ${sortMode === "demand" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
-                >
-                  <BarChartHorizontalBig className="w-3.5 h-3.5" /> Demand
-                </button>
+              <div className={`flex ${theme.inputBg} rounded-xl p-1 ${theme.inputBorder} border h-10`}>
+                {(["value", "alphabetical", "demand"] as SortMode[]).map((mode) => (
+                  <button
+                    key={mode}
+                    onClick={() => setSortMode(mode)}
+                    className={`px-3 py-1 rounded-lg transition-all flex items-center gap-1.5 text-xs ${sortMode === mode ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary}`}`}
+                  >
+                    {mode === "value" && <><DollarSign className="w-3.5 h-3.5" /> Value</>}
+                    {mode === "alphabetical" && <><ArrowDownUp className="w-3.5 h-3.5" /> A-Z</>}
+                    {mode === "demand" && <><BarChartHorizontalBig className="w-3.5 h-3.5" /> Demand</>}
+                  </button>
+                ))}
               </div>
 
-              {/* View Toggle */}
-              <div className={`flex ${theme.inputBg} rounded-xl p-1 backdrop-blur-sm ${theme.inputBorder} border h-11`}>
+              <div className={`flex ${theme.inputBg} rounded-xl p-1 ${theme.inputBorder} border h-10`}>
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center ${viewMode === "grid" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                  className={`px-3 py-1 rounded-lg transition-all ${viewMode === "grid" ? `${theme.buttonBg} ${theme.buttonText}` : theme.textSecondary}`}
+                  aria-label="Grid view"
                 >
                   <Grid className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center justify-center ${viewMode === "list" ? `${theme.buttonBg} ${theme.buttonText}` : `${theme.textSecondary} hover:text-white`}`}
+                  className={`px-3 py-1 rounded-lg transition-all ${viewMode === "list" ? `${theme.buttonBg} ${theme.buttonText}` : theme.textSecondary}`}
+                  aria-label="List view"
                 >
                   <List className="w-4 h-4" />
                 </button>
@@ -1429,160 +1409,86 @@ export default function Component() {
             </div>
           </div>
 
-          {/* Active Filters & Quick Actions */}
+          {/* Active Filters */}
           {(searchTerm || selectedTier !== "all" || sortMode !== "value") && (
-            <div className="flex items-center gap-2 flex-wrap mb-6">
-              <span className={`${theme.textSecondary} text-xs`}>Active filters:</span>
-              {searchTerm && (
-                <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>Search: {searchTerm}</Badge>
-              )}
-              {selectedTier !== "all" && (
-                <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>Tier: {selectedTier}</Badge>
-              )}
-              {sortMode !== "value" && (
-                <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>
-                  Sort: {sortMode === "alphabetical" ? "A-Z" : "Demand"}
-                </Badge>
-              )}
-              <button
-                onClick={() => {
-                  setSearchTerm("")
-                  setSelectedTier("all")
-                  setSortMode("value")
-                }}
-                className={`text-xs ${theme.textAccent} ${theme.linkHover} underline`}
-              >
-                Clear all
-              </button>
+            <div className="flex items-center gap-2 flex-wrap mb-5">
+              <span className={`${theme.textSecondary} text-xs`}>Filters:</span>
+              {searchTerm && <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>{searchTerm}</Badge>}
+              {selectedTier !== "all" && <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>{selectedTier}</Badge>}
+              {sortMode !== "value" && <Badge className={`${theme.badgeBg} ${theme.badgeText} text-xs`}>{sortMode === "alphabetical" ? "A-Z" : "Demand"}</Badge>}
+              <button onClick={() => { setSearchTerm(""); setSelectedTier("all"); setSortMode("value") }} className={`text-xs ${theme.textAccent} underline`}>Clear</button>
             </div>
           )}
 
-          {/* Results Count */}
-          <div className="flex items-center justify-between">
-            <p className={`${theme.textSecondary} text-sm`}>
-              Showing <span className={`${theme.textAccent} font-semibold`}>{filteredAndSortedDinosaurs.length}</span>{" "}
-              dinosaurs
-            </p>
-          </div>
+          <p className={`${theme.textSecondary} text-xs mb-4`}>
+            <span className={`${theme.textAccent} font-semibold font-mono`}>{filteredAndSortedDinosaurs.length}</span> dinosaurs
+          </p>
         </div>
 
         <div>
           {viewMode === "grid" ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {filteredAndSortedDinosaurs.map((dino, index) => (
                 <Card
                   key={`${dino.name}-${index}`}
-                  className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm hover:scale-105 transition-all duration-200 group shadow-lg`}
+                  className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm hover:translate-y-[-2px] transition-all duration-200 group overflow-hidden`}
                 >
                   <CardContent className="p-4">
-                    <div className="flex justify-between items-start mb-3">
-                      <h3
-                        className={`font-semibold ${theme.textPrimary} text-sm leading-tight group-hover:${theme.textAccent} transition-colors`}
-                      >
-                        {dino.name}
-                      </h3>
-                      <Badge
-                        className={`${theme.badgeBg} ${theme.badgeText} border-0 ml-2 shrink-0 font-bold text-xs shadow-sm`}
-                      >
-                        {dino.value}
-                      </Badge>
+                    <div className="flex justify-between items-start gap-2 mb-3">
+                      <h3 className={`font-medium ${theme.textPrimary} text-sm leading-snug`}>{dino.name}</h3>
+                      <span className={`${theme.textAccent} font-bold text-sm font-mono shrink-0 tabular-nums`}>{dino.value}</span>
                     </div>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    <div className="flex flex-wrap items-center gap-1.5">
                       {dino.rarity && (
-                        <Badge className={`text-xs ${getRarityColor(dino.rarity)} border shadow-sm shrink-0 font-bold`}>
-                          {dino.rarity}
-                        </Badge>
+                        <Badge className={`text-[10px] ${getRarityColor(dino.rarity)} border font-bold px-1.5 py-0.5`}>{dino.rarity}</Badge>
                       )}
                       {dino.code && (
-                        <Badge className="text-xs bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shadow-sm">
-                          Code: {dino.code}
-                        </Badge>
+                        <Badge className="text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 px-1.5 py-0.5">{dino.code}</Badge>
                       )}
                       {dino.sdna && (
-                        <Badge className="text-xs bg-gradient-to-r from-emerald-500 to-green-500 text-white border-0 shadow-sm">
-                          {dino.sdna}
-                        </Badge>
+                        <Badge className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-1.5 py-0.5">{dino.sdna}</Badge>
                       )}
-                    </div>
-                    <div className="mt-3">
-                      <Badge
-                        className={`text-xs ${theme.textAccent} ${theme.border} border ${theme.inputBg} backdrop-blur-sm`}
-                      >
-                        {dino.tier}
-                      </Badge>
+                      <Badge className={`text-[10px] ${theme.textSecondary} ${theme.border} border ${theme.inputBg} px-1.5 py-0.5`}>{dino.tier}</Badge>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
           ) : (
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               {filteredAndSortedDinosaurs.map((dino, index) => (
-                <Card
+                <div
                   key={`${dino.name}-${index}`}
-                  className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm ${theme.buttonHover.replace("hover:", "hover:")} transition-all duration-200 shadow-lg`}
+                  className={`${theme.cardBg} ${theme.cardBorder} border rounded-xl px-4 py-3 flex items-center justify-between gap-3 ${theme.buttonHover} transition-colors`}
                 >
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
-                        <h3 className={`font-semibold ${theme.textPrimary} text-sm flex-1 truncate`}>{dino.name}</h3>
-                        <Badge
-                          className={`${theme.badgeBg} ${theme.badgeText} border-0 font-bold text-xs shrink-0 shadow-sm`}
-                        >
-                          {dino.value}
-                        </Badge>
-                      </div>
-                      <div className="flex items-center gap-1.5 sm:gap-2 ml-3 sm:ml-4 flex-wrap">
-                        {dino.rarity && (
-                          <Badge className={`text-xs ${getRarityColor(dino.rarity)} border shadow-sm shrink-0`}>
-                            {dino.rarity}
-                          </Badge>
-                        )}
-                        {dino.code && (
-                          <Badge className="text-xs bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shrink-0 shadow-sm">
-                            Code: {dino.code}
-                          </Badge>
-                        )}
-                        {dino.sdna && (
-                          <Badge className="text-xs bg-gradient-to-r from-emerald-500 to-green-500 text-white border-0 shrink-0 shadow-sm">
-                            {dino.sdna}
-                          </Badge>
-                        )}
-                        <Badge
-                          className={`text-xs ${theme.textAccent} ${theme.border} border ${theme.inputBg} shrink-0 backdrop-blur-sm`}
-                        >
-                          {dino.tier}
-                        </Badge>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                  <h3 className={`font-medium ${theme.textPrimary} text-sm truncate flex-1`}>{dino.name}</h3>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className={`${theme.textAccent} font-bold text-sm font-mono tabular-nums`}>{dino.value}</span>
+                    {dino.rarity && (
+                      <Badge className={`text-[10px] ${getRarityColor(dino.rarity)} border font-bold px-1.5 py-0.5`}>{dino.rarity}</Badge>
+                    )}
+                    <Badge className={`text-[10px] ${theme.textSecondary} ${theme.border} border ${theme.inputBg} px-1.5 py-0.5`}>{dino.tier}</Badge>
+                  </div>
+                </div>
               ))}
             </div>
           )}
           {filteredAndSortedDinosaurs.length === 0 && (
-            <Card className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm shadow-lg`}>
-              <CardContent className="text-center py-8 sm:py-12">
-                <p className={`${theme.textSecondary} font-light`}>No dinosaurs found matching your criteria</p>
-              </CardContent>
-            </Card>
+            <div className={`${theme.cardBg} ${theme.cardBorder} border rounded-2xl py-16 text-center`}>
+              <p className={`${theme.textSecondary} text-sm`}>No dinosaurs found matching your criteria</p>
+            </div>
           )}
         </div>
 
-        <div className="mt-12 sm:mt-16 text-center">
-          <p className={`${theme.textSecondary} text-sm font-light`}>
-            Directly forked from the{" "}
-            <a
-              href="https://discord.gg/kNPy4jwMWj"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${theme.textAccent} ${theme.linkHover} transition-colors underline decoration-current/60 hover:decoration-current`}
-            >
+        <footer className="mt-12 text-center">
+          <p className={`${theme.textSecondary} text-xs leading-relaxed`}>
+            Forked from the{" "}
+            <a href="https://discord.gg/kNPy4jwMWj" target="_blank" rel="noopener noreferrer" className={`${theme.textAccent} ${theme.linkHover} transition-colors underline underline-offset-2`}>
               Dinosaur Simulator Trading Network
             </a>{" "}
-            Discord Server with minor changes.
+            Discord server
           </p>
-        </div>
+        </footer>
       </div>
     </div>
   )
