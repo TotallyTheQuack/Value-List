@@ -1325,7 +1325,7 @@ export default function Component() {
               {/* Center: Title - Bold and Modern */}
               <div className="text-center flex-1 space-y-2">
                 <h1 className={`text-5xl sm:text-6xl font-black ${theme.textPrimary} tracking-tighter leading-none`}>Dinosaur Simulator</h1>
-                <p className={`text-sm sm:text-base font-bold ${theme.textAccent} uppercase tracking-widest`}>⚡ Trading Value List</p>
+                <p className={`text-sm sm:text-base font-bold ${theme.textAccent} uppercase tracking-widest`}>Trading Value List</p>
               </div>
 
               {/* Right: Navigation */}
