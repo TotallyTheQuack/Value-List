@@ -1226,33 +1226,33 @@ export default function Component() {
   }
 
   return (
-  <div className={`min-h-screen ${theme.background}`}>
-  {/* Obsolete Notice Popup */}
-  {showObsoleteNotice && (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowObsoleteNotice(false)} />
-      <div className={`relative max-w-lg w-full ${theme.cardBg} border-2 border-red-500/60 rounded-2xl p-6 shadow-2xl`}>
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/20 border border-red-500/40">
-            <span className="text-red-400 text-xl font-bold">!</span>
+    <div className={`min-h-screen ${theme.background}`}>
+    {/* Obsolete Notice Popup */}
+    {showObsoleteNotice && (
+      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div className="absolute inset-0 bg-black/70" onClick={() => setShowObsoleteNotice(false)} />
+        <div className={`relative max-w-lg w-full ${theme.cardBg} border-2 border-red-500/60 rounded-2xl p-8 shadow-2xl card-hover`}>
+          <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-500/20 border border-red-500/40">
+              <span className="text-red-400 text-2xl font-bold">⚠</span>
+            </div>
+            <h2 className={`text-2xl font-bold text-red-400`}>Important Notice</h2>
           </div>
-          <h2 className={`text-xl font-bold text-red-400`}>Notice</h2>
+          <p className={`${theme.textPrimary} text-base leading-relaxed mb-3 font-semibold`}>
+            This value list is currently <span className="text-red-400">obsolete</span> and is <span className="text-red-400">no longer being updated</span>.
+          </p>
+          <p className={`${theme.textSecondary} text-sm leading-relaxed mb-8`}>
+            The values shown here may be inaccurate or outdated. It is not recommended to rely on this list for trading decisions until further notice. Please check back later for updates.
+          </p>
+          <button
+            onClick={() => setShowObsoleteNotice(false)}
+            className="w-full py-3 bg-red-500/20 hover:bg-red-500/35 border border-red-500/50 text-red-300 rounded-xl smooth-transition font-semibold text-base"
+          >
+            I Understand
+          </button>
         </div>
-        <p className={`${theme.textPrimary} text-base leading-relaxed mb-2`}>
-          This value list is currently <span className="text-red-400 font-semibold">obsolete</span> and is <span className="text-red-400 font-semibold">no longer being updated</span>.
-        </p>
-        <p className={`${theme.textSecondary} text-sm leading-relaxed mb-6`}>
-          The values shown here may be inaccurate or outdated. It is not recommended to rely on this list for trading decisions until further notice. Please check back later for updates.
-        </p>
-        <button
-          onClick={() => setShowObsoleteNotice(false)}
-          className="w-full py-3 bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-300 rounded-xl transition-all duration-200 font-medium"
-        >
-          I Understand
-        </button>
       </div>
-    </div>
-  )}
+    )}
 
   {/* Theme Side Panel */}
       <div
@@ -1310,22 +1310,22 @@ export default function Component() {
         <div ref={headerControlsRef}>
           {/* Compact Header */}
           <div
-            className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6`}
+            className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-5 sm:p-6 mb-6 sm:mb-8 card-hover shadow-lg`}
           >
             <div className="flex items-center justify-between gap-4">
               {/* Left: Theme Button */}
               <button
                 onClick={() => setIsThemePanelOpen(true)}
-                className={`px-3 py-2 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border transition-all duration-200 hover:scale-105 flex items-center gap-2 text-sm font-light`}
+                className={`px-4 py-2.5 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border smooth-transition hover:scale-110 flex items-center gap-2 text-sm font-semibold`}
               >
                 <Paintbrush className="w-4 h-4" />
                 <span className="hidden sm:inline">Themes</span>
               </button>
 
               {/* Center: Title */}
-              <div className="text-center flex-1">
-                <h1 className={`text-2xl sm:text-3xl font-bold ${theme.textPrimary}`}>Dinosaur Simulator</h1>
-                <p className={`text-sm ${theme.textSecondary} font-light`}>Value List</p>
+              <div className="text-center flex-1 space-y-0.5">
+                <h1 className={`text-3xl sm:text-4xl font-black ${theme.textPrimary} tracking-tight`}>Dinosaur Simulator</h1>
+                <p className={`text-xs sm:text-sm font-semibold ${theme.textAccent} uppercase letter-spacing-wider`}>Trading Value List</p>
               </div>
 
               {/* Right: Navigation */}
