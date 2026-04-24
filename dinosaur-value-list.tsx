@@ -1308,24 +1308,24 @@ export default function Component() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <div ref={headerControlsRef}>
-          {/* Compact Header */}
+          {/* Compact Header - Modern Hero Section */}
           <div
-            className={`w-full ${theme.headerBg} backdrop-blur-xl ${theme.border} border rounded-2xl p-5 sm:p-6 mb-6 sm:mb-8 card-hover shadow-lg`}
+            className={`w-full ${theme.headerBg} backdrop-blur-2xl ${theme.border} border rounded-3xl p-7 sm:p-10 mb-8 sm:mb-10 shadow-2xl`}
           >
             <div className="flex items-center justify-between gap-4">
               {/* Left: Theme Button */}
               <button
                 onClick={() => setIsThemePanelOpen(true)}
-                className={`px-4 py-2.5 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-xl backdrop-blur-sm ${theme.border} border smooth-transition hover:scale-110 flex items-center gap-2 text-sm font-semibold`}
+                className={`px-5 py-3 ${theme.buttonBg} ${theme.buttonHover} ${theme.buttonText} rounded-2xl backdrop-blur-md ${theme.border} border smooth-transition hover:scale-105 active:scale-95 flex items-center gap-2.5 text-sm font-bold shadow-lg`}
               >
-                <Paintbrush className="w-4 h-4" />
+                <Paintbrush className="w-5 h-5" />
                 <span className="hidden sm:inline">Themes</span>
               </button>
 
-              {/* Center: Title */}
-              <div className="text-center flex-1 space-y-0.5">
-                <h1 className={`text-3xl sm:text-4xl font-black ${theme.textPrimary} tracking-tight`}>Dinosaur Simulator</h1>
-                <p className={`text-xs sm:text-sm font-semibold ${theme.textAccent} uppercase letter-spacing-wider`}>Trading Value List</p>
+              {/* Center: Title - Bold and Modern */}
+              <div className="text-center flex-1 space-y-2">
+                <h1 className={`text-5xl sm:text-6xl font-black ${theme.textPrimary} tracking-tighter leading-none`}>Dinosaur Simulator</h1>
+                <p className={`text-sm sm:text-base font-bold ${theme.textAccent} uppercase tracking-widest`}>⚡ Trading Value List</p>
               </div>
 
               {/* Right: Navigation */}
@@ -1468,21 +1468,21 @@ export default function Component() {
 
         <div>
           {viewMode === "grid" ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
               {filteredAndSortedDinosaurs.map((dino, index) => (
                 <Card
                   key={`${dino.name}-${index}`}
-                  className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-sm hover:scale-105 transition-all duration-200 group shadow-lg`}
+                  className={`${theme.cardBg} ${theme.cardBorder} border backdrop-blur-md hover:scale-110 hover:shadow-2xl transition-all duration-300 group shadow-xl rounded-2xl overflow-hidden`}
                 >
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-start mb-3">
+                  <CardContent className="p-5">
+                    <div className="flex justify-between items-start mb-4 gap-2">
                       <h3
-                        className={`font-semibold ${theme.textPrimary} text-sm leading-tight group-hover:${theme.textAccent} transition-colors`}
+                        className={`font-bold ${theme.textPrimary} text-base leading-tight group-hover:text-cyan-400 transition-colors`}
                       >
                         {dino.name}
                       </h3>
                       <Badge
-                        className={`${theme.badgeBg} ${theme.badgeText} border-0 ml-2 shrink-0 font-bold text-xs shadow-sm`}
+                        className={`${theme.badgeBg} ${theme.badgeText} border-0 shrink-0 font-black text-sm shadow-lg px-3 py-1`}
                       >
                         {dino.value}
                       </Badge>
